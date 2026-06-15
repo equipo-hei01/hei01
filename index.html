@@ -1,0 +1,615 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HEI01 · Human Empowered Intelligence</title>
+<meta name="description" content="Adopta IA con criterio ejecutivo. Sin caos, sin hype, con evidencia.">
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-5G4MFF75');</script>
+<!-- End Google Tag Manager -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Special+Elite&family=Space+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--noche:#0D0D12;--profundo:#1E1030;--rosa:#E8678A;--violeta:#7C3AED;--lavanda:#D8B4FE;--blanco:#FFFFFF;--grafito:#888780;--surface:#181020;--surface2:#231540;--ease-out:cubic-bezier(0.22,1,0.36,1);--ease-spring:cubic-bezier(0.34,1.56,0.64,1);--dur-fast:150ms;--dur-base:300ms;--dur-slow:600ms}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--noche);color:var(--blanco);font-family:'Space Grotesk',sans-serif;font-size:16px;line-height:1.7;overflow-x:hidden}
+.headline{font-family:'Special Elite',serif;line-height:1.15}
+h1{font-size:clamp(2rem,5vw,3.5rem)}
+h2{font-size:clamp(1.5rem,3vw,2.2rem)}
+h3{font-size:1.1rem;font-weight:600}
+.rosa{color:var(--rosa)}.violeta{color:var(--lavanda)}.muted{color:var(--grafito)}
+.container{max-width:900px;margin:0 auto;padding:0 1.5rem}
+.section{padding:5rem 0}.section-sm{padding:3rem 0}
+@keyframes slideUp{from{opacity:0;transform:translateY(40px)}to{opacity:1;transform:translateY(0)}}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+@keyframes starFloat{0%,100%{transform:translateY(0) rotate(0deg)}50%{transform:translateY(-8px) rotate(5deg)}}
+@keyframes scrollBounce{0%,100%{transform:translateY(0)}50%{transform:translateY(6px)}}
+@keyframes spin{to{transform:rotate(360deg)}}
+.anim-up{animation:slideUp var(--dur-slow) var(--ease-out) both}
+.anim-fade{animation:fadeIn var(--dur-slow) var(--ease-out) both}
+.d1{animation-delay:.1s}.d2{animation-delay:.2s}.d3{animation-delay:.35s}.d4{animation-delay:.5s}.d5{animation-delay:.65s}
+.animate-on-scroll{opacity:0;transform:translateY(30px);transition:opacity .6s var(--ease-out),transform .6s var(--ease-out)}
+.animate-on-scroll.visible{opacity:1;transform:translateY(0)}
+.animate-on-scroll.delay-1{transition-delay:.1s}.animate-on-scroll.delay-2{transition-delay:.2s}.animate-on-scroll.delay-3{transition-delay:.3s}
+.spinning{display:inline-block;animation:spin .8s linear infinite}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:12px 24px;border-radius:8px;font-family:'Space Grotesk',sans-serif;font-size:15px;font-weight:600;cursor:pointer;border:none;text-decoration:none;transition:transform var(--dur-fast) var(--ease-out),box-shadow var(--dur-base) var(--ease-out),background var(--dur-fast)}
+.btn:hover{transform:translateY(-2px)}.btn:active{transform:translateY(0) scale(.98)}
+.btn-rosa{background:var(--rosa);color:#fff}.btn-rosa:hover{background:#d4537e;box-shadow:0 8px 24px rgba(232,103,138,.35)}
+.btn-outline{background:transparent;color:var(--lavanda);border:1.5px solid var(--violeta)}.btn-outline:hover{background:rgba(124,58,237,.15)}
+.btn-ghost{background:transparent;color:#5F5E5A;border:1px solid rgba(0,0,0,.15);font-size:13px;padding:8px 16px}.btn-ghost:hover{color:#0D0D12;border-color:rgba(0,0,0,.35);background:rgba(0,0,0,.04)}
+.tag{display:inline-block;padding:3px 12px;border-radius:20px;font-size:11px;font-weight:600;letter-spacing:.8px;text-transform:uppercase}
+.tag-rosa{background:rgba(232,103,138,.15);color:var(--rosa);border:1px solid rgba(232,103,138,.3)}
+.tag-violeta{background:rgba(124,58,237,.15);color:var(--lavanda);border:1px solid rgba(124,58,237,.3)}
+nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:0.75rem 1.5rem;display:flex;align-items:center;justify-content:space-between;background:#ffffff;backdrop-filter:blur(12px);border-bottom:1px solid rgba(0,0,0,.08);box-shadow:0 1px 12px rgba(0,0,0,.06)}
+.nav-logo{font-family:'Special Elite',serif;font-size:1.3rem;color:var(--blanco);text-decoration:none;display:flex;align-items:center;gap:6px}
+.nav-logo .star{color:var(--rosa);animation:starFloat 3s ease-in-out infinite;display:inline-block}
+#hero{min-height:100vh;display:flex;align-items:center;justify-content:center;text-align:center;padding:6rem 1.5rem 4rem;position:relative;overflow:hidden}
+.hero-bg{position:absolute;inset:0;background:radial-gradient(ellipse 60% 50% at 50% 0%,rgba(124,58,237,.18) 0%,transparent 70%),radial-gradient(ellipse 40% 40% at 80% 80%,rgba(232,103,138,.1) 0%,transparent 60%);pointer-events:none}
+.hero-content{position:relative;z-index:1;max-width:720px}
+.hero-title{margin-bottom:1.5rem;letter-spacing:-.02em}.hero-title .line2{color:var(--rosa)}
+.hero-sub{font-size:1.1rem;color:var(--grafito);max-width:520px;margin:0 auto 2.5rem;line-height:1.6}
+.hero-btns{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-bottom:2rem}
+.caminos{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px;margin-top:1rem}
+.camino-card{background:var(--surface);border:1px solid rgba(255,255,255,.08);border-radius:16px;padding:1.75rem;cursor:pointer;text-align:left;transition:border-color var(--dur-base),transform var(--dur-base),box-shadow var(--dur-base)}
+.camino-card:hover{border-color:var(--rosa);transform:translateY(-4px);box-shadow:0 16px 40px rgba(232,103,138,.15)}
+.camino-card.explore:hover{border-color:var(--violeta);box-shadow:0 16px 40px rgba(124,58,237,.15)}
+.camino-icon{font-size:2rem;margin-bottom:1rem}
+.camino-card h3{font-size:1rem;margin-bottom:.5rem}
+.camino-card p{font-size:13px;color:var(--grafito);line-height:1.5;margin-bottom:1rem}
+.camino-arrow{font-size:13px;font-weight:600;color:var(--rosa);display:flex;align-items:center;gap:6px;transition:gap var(--dur-fast)}
+.camino-card.explore .camino-arrow{color:var(--lavanda)}.camino-card:hover .camino-arrow{gap:10px}
+.scroll-hint{display:flex;flex-direction:column;align-items:center;gap:6px;color:var(--grafito);font-size:12px;animation:scrollBounce 2s ease-in-out infinite;margin-top:2.5rem}
+.scroll-hint-line{width:1px;height:36px;background:linear-gradient(to bottom,rgba(232,103,138,.6),transparent)}
+.divider{height:1px;background:linear-gradient(to right,transparent,rgba(255,255,255,.08),transparent)}
+.section-label{font-size:11px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:var(--rosa);margin-bottom:.75rem}
+.panel{background:var(--surface);border:1px solid rgba(255,255,255,.08);border-radius:16px;padding:2rem;margin-top:1.5rem}
+/* SCALA TEST */
+.scala-hdr{border-left:3px solid var(--rosa);padding-left:1rem;margin-bottom:1.5rem}
+.scala-hdr .tag-label{font-size:12px;font-weight:600;color:var(--rosa);letter-spacing:.5px;margin-bottom:4px}
+.scala-hdr p{font-size:13px;color:var(--grafito);line-height:1.5}
+.step-dots{display:flex;gap:6px;margin-bottom:1.5rem;align-items:center}
+.sdot{width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,.15);transition:background .3s}
+.sdot.active{background:var(--rosa)}.sdot.done{background:var(--violeta)}
+.sdot-label{font-size:12px;color:var(--grafito);margin-left:4px}
+.qcard{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:12px;padding:1.25rem;margin-bottom:1rem}
+.dim-badge{display:inline-flex;align-items:center;gap:6px;font-size:11px;font-weight:600;padding:3px 12px;border-radius:20px;margin-bottom:12px;background:rgba(232,103,138,.15);color:var(--rosa);border:1px solid rgba(232,103,138,.25)}
+.qtext{font-size:15px;font-weight:500;line-height:1.5;margin-bottom:1rem}
+.opts{display:flex;flex-direction:column;gap:6px}
+.obtn{display:flex;align-items:flex-start;gap:10px;padding:10px 12px;border:1px solid rgba(255,255,255,.1);border-radius:8px;background:rgba(255,255,255,.03);cursor:pointer;text-align:left;width:100%;transition:border-color .2s,background .2s;color:var(--blanco);font-family:'Space Grotesk',sans-serif;font-size:13px}
+.obtn:hover{background:rgba(255,255,255,.07);border-color:rgba(255,255,255,.2)}
+.obtn.sel{border-color:var(--rosa);background:rgba(232,103,138,.1)}.obtn.sel .onum{background:var(--rosa);border-color:var(--rosa);color:#fff}
+.onum{min-width:22px;height:22px;border-radius:50%;border:1px solid rgba(255,255,255,.2);display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:600;color:var(--grafito);flex-shrink:0;margin-top:1px;transition:all .2s}
+.bonus-card{background:rgba(124,58,237,.08);border:1px solid rgba(124,58,237,.2);border-radius:12px;padding:1.25rem;margin-bottom:1rem}
+.blabel{font-size:14px;font-weight:500;margin-bottom:12px;line-height:1.4}
+.bopt{display:flex;align-items:flex-start;gap:8px;padding:8px 10px;border-radius:8px;cursor:pointer;transition:background .2s}
+.bopt:hover{background:rgba(255,255,255,.05)}.bopt.sel{background:rgba(124,58,237,.15)}
+.bopt input{accent-color:var(--violeta);margin-top:3px;flex-shrink:0}.bopt span{font-size:13px;line-height:1.4}
+.nav-btns{display:flex;justify-content:space-between;align-items:center;margin-top:1rem}
+.result-bars{display:flex;flex-direction:column;gap:8px;margin:1rem 0 1.5rem}
+.bar-row{display:flex;align-items:center;gap:10px}
+.bar-lbl{font-size:12px;color:var(--grafito);width:140px;flex-shrink:0}
+.bar-track{flex:1;height:5px;background:rgba(255,255,255,.1);border-radius:3px;overflow:hidden}
+.bar-fill{height:100%;border-radius:3px;background:var(--rosa);transition:width .8s var(--ease-out)}
+.bar-score{font-size:12px;font-weight:600;width:28px;text-align:right}
+.ins-block{background:rgba(255,255,255,.04);border-radius:10px;padding:1rem 1.25rem;margin-bottom:10px}
+.ins-lbl{font-size:11px;font-weight:600;color:var(--rosa);letter-spacing:.5px;margin-bottom:5px}
+.ins-lbl.v{color:var(--lavanda)}.ins-text{font-size:13px;color:rgba(255,255,255,.8);line-height:1.5}
+.honest-note{padding:10px 14px;border-left:2px solid var(--violeta);font-size:12px;color:var(--grafito);line-height:1.5;margin:1rem 0}
+/* CONFIGURADOR */
+.config-phase{border:1px solid rgba(255,255,255,.08);border-radius:12px;overflow:hidden;margin-bottom:10px;transition:border-color .2s}
+.config-phase.sel{border-color:var(--violeta)}
+.phase-hdr{display:flex;align-items:center;gap:12px;padding:14px 16px;cursor:pointer;background:rgba(255,255,255,.03);transition:background .2s;user-select:none}
+.phase-hdr:hover{background:rgba(255,255,255,.06)}.config-phase.sel .phase-hdr{background:rgba(124,58,237,.1)}
+.pchk{width:22px;height:22px;border-radius:5px;border:1px solid rgba(255,255,255,.2);display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:all .2s;font-size:13px;color:transparent}
+.config-phase.sel .pchk{background:var(--violeta);border-color:var(--violeta);color:#fff}
+.pkey{width:30px;height:30px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;flex-shrink:0;transition:all .2s}
+.pname{font-size:14px;font-weight:600}.phook{font-size:12px;color:var(--grafito);margin-top:2px;line-height:1.3}
+.pcount{font-size:11px;color:var(--grafito);flex-shrink:0;white-space:nowrap;margin-left:auto}
+.phase-body{display:none;padding:0 16px 16px}.config-phase.open .phase-body{display:block}
+.sec-lbl{font-size:11px;font-weight:600;letter-spacing:.5px;margin:12px 0 6px;display:flex;align-items:center;gap:6px}
+.sec-lbl.pain{color:#F59E0B}.sec-lbl.gain{color:#10B981}.sec-lbl.lose{color:#F87171}
+.pill-list{display:flex;flex-direction:column;gap:4px}
+.pill{display:flex;align-items:flex-start;gap:8px;font-size:12px;line-height:1.4;padding:7px 10px;border-radius:7px}
+.pill.pain{background:rgba(245,158,11,.08);color:rgba(255,255,255,.85)}
+.pill.gain{background:rgba(16,185,129,.08);color:rgba(255,255,255,.85)}
+.pill.lose{background:rgba(248,113,113,.08);color:rgba(255,255,255,.85)}
+.pill-dot{width:5px;height:5px;border-radius:50%;flex-shrink:0;margin-top:5px}
+.pill.pain .pill-dot{background:#F59E0B}.pill.gain .pill-dot{background:#10B981}.pill.lose .pill-dot{background:#F87171}
+.acts-toggle{font-size:12px;color:var(--lavanda);background:none;border:none;cursor:pointer;padding:8px 0 0;text-decoration:underline;font-family:'Space Grotesk',sans-serif;display:flex;align-items:center;gap:4px}
+.acts-toggle:hover{color:var(--blanco)}
+.acts-list{display:flex;flex-direction:column;gap:5px;margin-top:8px}
+.act-item{display:flex;gap:8px;align-items:flex-start;padding:7px 10px;background:rgba(255,255,255,.04);border-radius:7px;border:1px solid rgba(255,255,255,.06)}
+.act-title{font-size:12px;font-weight:600}.act-desc{font-size:11px;color:var(--grafito);margin-top:2px;line-height:1.3}
+.phase-sel-btn{margin-top:12px;width:100%;padding:9px 18px;border-radius:8px;font-size:13px;font-weight:600;cursor:pointer;font-family:'Space Grotesk',sans-serif;transition:all .2s}
+.phase-sel-btn.add{background:rgba(124,58,237,.15);border:1px solid rgba(124,58,237,.4);color:var(--lavanda)}.phase-sel-btn.add:hover{background:rgba(124,58,237,.25)}
+.phase-sel-btn.remove{background:rgba(124,58,237,.3);border:1px solid var(--violeta);color:#fff}
+.alcance-box{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:12px;padding:1.25rem;margin:1.5rem 0}
+.alcance-box label{font-size:13px;color:var(--grafito);display:block;margin-bottom:10px}
+.arow{display:flex;align-items:center;gap:12px}.arow input[type=range]{flex:1;accent-color:var(--violeta)}
+.aval{font-size:20px;font-weight:600;min-width:110px}.ahint{font-size:12px;color:var(--grafito);margin-top:8px}
+.resumen{background:rgba(124,58,237,.08);border:1px solid rgba(124,58,237,.25);border-radius:12px;padding:1.25rem;margin-top:1rem}
+.res-title{font-size:14px;font-weight:600;margin-bottom:1rem}.res-empty{font-size:13px;color:var(--grafito);font-style:italic}
+.res-tag{display:inline-block;padding:2px 10px;border-radius:10px;font-size:11px;background:rgba(124,58,237,.2);color:var(--lavanda);margin:2px;border:1px solid rgba(124,58,237,.3)}
+.res-stats{display:flex;gap:16px;margin-top:1rem;padding-top:1rem;border-top:1px solid rgba(255,255,255,.08)}
+.stat{flex:1;text-align:center}.stat-n{font-size:22px;font-weight:700;color:var(--lavanda)}.stat-l{font-size:11px;color:var(--grafito);margin-top:2px}
+/* FORMS */
+.form-wrap{display:flex;flex-direction:column;gap:10px}
+.ff{display:flex;flex-direction:column;gap:4px}.ff label{font-size:12px;color:var(--grafito)}
+.ff input{padding:10px 14px;border:1px solid rgba(255,255,255,.15);border-radius:8px;background:rgba(255,255,255,.05);color:var(--blanco);font-family:'Space Grotesk',sans-serif;font-size:14px;width:100%;transition:border-color .2s}
+.ff input:focus{outline:none;border-color:var(--rosa)}.ff input::placeholder{color:rgba(255,255,255,.25)}
+.frow{display:flex;gap:10px}.frow .ff{flex:1}
+.err-msg{font-size:12px;color:#F87171;margin-top:4px;display:none}
+/* DECISIÓN */
+.decision-cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px;margin-top:1.5rem}
+.dec-card{background:var(--surface);border:1px solid rgba(255,255,255,.08);border-radius:14px;padding:1.5rem;display:flex;flex-direction:column;gap:12px;transition:border-color .2s,transform .2s,box-shadow .2s}
+.dec-card:hover{transform:translateY(-3px)}
+.dec-card.featured{border-color:rgba(232,103,138,.4)}.dec-card.featured:hover{border-color:var(--rosa);box-shadow:0 8px 30px rgba(232,103,138,.2)}
+.dec-card.explore-c{border-color:rgba(124,58,237,.3)}.dec-card.explore-c:hover{border-color:var(--violeta);box-shadow:0 8px 30px rgba(124,58,237,.15)}
+.dec-icon{font-size:1.8rem}.dec-title{font-size:1rem;font-weight:600;line-height:1.3}.dec-desc{font-size:13px;color:var(--grafito);line-height:1.5}
+.dec-list{display:flex;flex-direction:column;gap:5px}
+.dec-item{display:flex;align-items:flex-start;gap:6px;font-size:12px;line-height:1.4;color:rgba(255,255,255,.75)}
+.dec-item::before{content:'✓';color:var(--rosa);flex-shrink:0;font-size:11px;margin-top:2px}
+.dec-card.explore-c .dec-item::before{color:var(--lavanda)}
+.confirm-block{background:rgba(124,58,237,.1);border:1px solid rgba(124,58,237,.3);border-radius:12px;padding:2rem;text-align:center;display:none}
+.confirm-block.visible{display:block}
+.confirm-icon{font-size:2.5rem;color:var(--lavanda);margin-bottom:.75rem}
+.confirm-title{font-size:1.1rem;font-weight:600;color:var(--lavanda);margin-bottom:6px}
+.confirm-sub{font-size:13px;color:var(--grafito);line-height:1.5;margin-bottom:1.5rem}
+.explore-panel{background:rgba(124,58,237,.06);border:1px solid rgba(124,58,237,.2);border-radius:12px;padding:1.5rem;margin-top:1rem;display:none}
+.explore-panel.visible{display:block}
+.resource-item{display:flex;align-items:center;gap:12px;padding:12px 14px;border:1px solid rgba(255,255,255,.08);border-radius:10px;background:rgba(255,255,255,.03);cursor:pointer;margin-bottom:8px;transition:background .2s,border-color .2s;text-decoration:none;color:inherit}
+.resource-item:hover{background:rgba(255,255,255,.06);border-color:rgba(124,58,237,.3)}
+.resource-icon{font-size:1.4rem;flex-shrink:0}.resource-info{flex:1}
+.resource-title{font-size:13px;font-weight:600}.resource-desc{font-size:12px;color:var(--grafito);margin-top:2px}
+.resource-arrow{font-size:1rem;color:var(--grafito)}
+footer{padding:3rem 0 0;border-top:1px solid rgba(255,255,255,.06);background:#ffffff}
+.footer-inner{display:flex;justify-content:space-between;align-items:flex-start;gap:2rem;flex-wrap:wrap;padding-bottom:2rem}
+.footer-left{display:flex;flex-direction:column;gap:.5rem;max-width:260px}
+.footer-tagline{font-size:13px;color:var(--rosa);letter-spacing:.5px;font-weight:500;margin-top:.25rem}
+.footer-sub{font-size:12px;color:#666;line-height:1.5}
+.footer-email{font-size:12px;color:#666;text-decoration:none;transition:color .2s}.footer-email:hover{color:#0D0D12}
+.footer-right{display:flex;flex-direction:column;align-items:flex-end;gap:.75rem}
+.footer-rrss-label{font-size:11px;font-weight:600;letter-spacing:1px;text-transform:uppercase;color:#999}
+.footer-rrss{display:flex;flex-direction:row;gap:8px}
+.rrss-icon-btn{display:flex;align-items:center;justify-content:center;width:38px;height:38px;border:1px solid rgba(0,0,0,.12);border-radius:8px;color:#444;text-decoration:none;transition:border-color .2s,color .2s,background .2s}
+.rrss-icon-btn:hover{border-color:var(--rosa);color:var(--rosa);background:rgba(232,103,138,.06)}
+.footer-bottom{border-top:1px solid rgba(0,0,0,.08);padding:1.25rem 0;display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px}
+.footer-bottom span{font-size:11px;color:#999}
+@media(max-width:640px){.footer-inner{flex-direction:column}.footer-right{align-items:flex-start}.footer-bottom{flex-direction:column;gap:4px}}
+@media(max-width:640px){.hero-btns{flex-direction:column;align-items:center}.btn{width:100%;justify-content:center}.nav-cta .btn-outline{display:none}.frow{flex-direction:column}.decision-cards{grid-template-columns:1fr}.res-stats{gap:8px}}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms !important;animation-iteration-count:1 !important;transition-duration:.01ms !important}}
+</style>
+</head>
+<body>
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5G4MFF75"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+
+<nav>
+  <a href="#" class="nav-logo"><img src="data:image/png;base64,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" alt="HEI01 · Human Empowered Intelligence" style="height:40px;width:auto"></a>
+  <div class="nav-cta" style="display:flex;gap:10px;align-items:center">
+    <a href="#test" class="btn btn-ghost">Diagnóstico SCALA</a>
+    <a href="#calendario" class="btn btn-rosa" style="padding:9px 18px;font-size:14px">Agendar con Hei →</a>
+  </div>
+</nav>
+
+<section id="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-content">
+    <div class="hero-tag anim-up"><span class="tag tag-rosa">Human Empowered Intelligence</span></div>
+    <h1 class="headline hero-title anim-up d1">Adopta IA con<br><span class="line2">criterio ejecutivo.</span></h1>
+    <p class="hero-sub anim-up d2">Sin caos, sin hype, con evidencia.<br>Desde la estrategia hasta el impacto real en tu organización.</p>
+    <div class="hero-btns anim-up d3">
+      <a href="#configurador" class="btn btn-rosa">Diseñar mi ruta de adopción e implementación →</a>
+      <a href="#test" class="btn btn-outline">Hacer mi diagnóstico</a>
+    </div>
+    <div class="caminos anim-up d4">
+      <div class="camino-card" onclick="document.querySelector('#configurador').scrollIntoView({behavior:'smooth'})">
+        <div class="camino-icon">⚡</div>
+        <h3>Quiero diseñar mi ruta</h3>
+        <p>Define las fases de adopción que necesita tu organización y agenda la sesión para recibir los valores reales.</p>
+        <div class="camino-arrow">Diseñar mi ruta <span>→</span></div>
+      </div>
+      <div class="camino-card explore" onclick="document.querySelector('#test').scrollIntoView({behavior:'smooth'})">
+        <div class="camino-icon">🔍</div>
+        <h3>Necesito explorar primero</h3>
+        <p>No sé bien dónde estamos. Quiero entender el diagnóstico antes de decidir.</p>
+        <div class="camino-arrow">Hacer el test SCALA <span>→</span></div>
+      </div>
+    </div>
+    <div class="scroll-hint anim-fade d5">
+      <div class="scroll-hint-line"></div>
+      <span>Explorar</span>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<section id="test" class="section">
+  <div class="container">
+    <div class="section-label animate-on-scroll">Diagnóstico ejecutivo</div>
+    <h2 class="headline animate-on-scroll delay-1" style="margin-bottom:.75rem">Hacer mi diagnóstico <span class="rosa">·</span> 6 preguntas</h2>
+    <p class="muted animate-on-scroll delay-2" style="max-width:520px;margin-bottom:2rem">Tu percepción como líder sobre la adopción de IA en tu organización. Resultado inmediato, sin registro previo.</p>
+    <div class="panel animate-on-scroll delay-2" id="scala-panel"><div id="scala-app"></div></div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<section id="configurador" class="section">
+  <div class="container">
+    <div class="section-label animate-on-scroll">Configurador de propuesta</div>
+    <h2 class="headline animate-on-scroll delay-1" style="margin-bottom:.75rem">Arma tu programa <span class="rosa">como LEGO</span></h2>
+    <p class="muted animate-on-scroll delay-2" style="max-width:540px;margin-bottom:2rem">Define las fases que necesita tu organización para pasar de iniciativas dispersas a adopción con impacto real. Sin precios todavía — primero el encaje.</p>
+    <div class="animate-on-scroll delay-2" id="config-app"></div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<section id="decision" class="section">
+  <div class="container">
+    <div class="section-label animate-on-scroll">¿Qué necesitas ahora?</div>
+    <h2 class="headline animate-on-scroll delay-1" style="margin-bottom:.75rem">Elige tu <span class="rosa">próximo paso</span></h2>
+    <p class="muted animate-on-scroll delay-2" style="max-width:480px">Sin presión. Cada camino es válido según el momento de tu organización.</p>
+    <div class="decision-cards animate-on-scroll delay-2">
+      <div class="dec-card featured">
+        <span class="tag tag-rosa" style="align-self:flex-start">Recomendado</span>
+        <div class="dec-icon">📅</div>
+        <div class="dec-title">Quiero los valores — agendo con Hei</div>
+        <div class="dec-desc">Sesión ejecutiva de 60 min para revisar tu propuesta con valores reales adaptados a tu industria.</div>
+        <div class="dec-list">
+          <div class="dec-item">Revisamos el diagnóstico SCALA de tu organización</div>
+          <div class="dec-item">Ajustamos las fases según tu contexto real</div>
+          <div class="dec-item">Recibes los valores al final de la sesión</div>
+          <div class="dec-item">Sin costo — solo si hay encaje avanzamos</div>
+        </div>
+        <button class="btn btn-rosa" onclick="openCapture()" style="width:100%;justify-content:center">Agendar sesión ejecutiva →</button>
+      </div>
+      <div class="dec-card explore-c">
+        <span class="tag tag-violeta" style="align-self:flex-start">Para quien necesita más contexto</span>
+        <div class="dec-icon">📚</div>
+        <div class="dec-title">Sigo explorando — quiero aprender primero</div>
+        <div class="dec-desc">Test completo SCALA + contenido gratuito de HEI01.</div>
+        <div class="dec-list">
+          <div class="dec-item">Hacer mi diagnóstico completo (20 preguntas) — resultado al correo</div>
+          <div class="dec-item">Training gratuito Acelera IA — los 3 pilares</div>
+          <div class="dec-item">Casos reales de organizaciones</div>
+          <div class="dec-item">Agenda cuando estés listo</div>
+        </div>
+        <button class="btn btn-outline" onclick="openExplore()" style="width:100%;justify-content:center">Explorar contenido gratuito →</button>
+      </div>
+    </div>
+
+    <div style="margin-top:1.5rem" id="capture-wrap">
+      <div class="panel" id="capture-panel" style="display:none">
+        <h3 style="margin-bottom:.5rem">Agenda tu sesión ejecutiva</h3>
+        <p class="muted" style="font-size:13px;margin-bottom:1.25rem">60 min · Google Meet · Sin costo. Dejamos registro y abrimos tu agenda directamente.</p>
+        <div class="form-wrap">
+          <div class="frow">
+            <div class="ff"><label>Nombre *</label><input type="text" id="cap-nombre" placeholder="Tu nombre"></div>
+            <div class="ff"><label>Cargo *</label><input type="text" id="cap-cargo" placeholder="Tu cargo"></div>
+          </div>
+          <div class="ff"><label>Correo corporativo *</label><input type="email" id="cap-email" placeholder="nombre@empresa.com"></div>
+          <div class="frow">
+            <div class="ff"><label>Empresa</label><input type="text" id="cap-empresa" placeholder="Empresa"></div>
+            <div class="ff"><label>País</label><input type="text" id="cap-pais" placeholder="País"></div>
+          </div>
+          <div class="ff"><label>¿Cuándo lo necesitas?</label><input type="text" id="cap-fecha" placeholder="Ej: segunda quincena de julio"></div>
+          <button class="btn btn-rosa" id="cap-sbtn" onclick="submitCapture()" style="width:100%;justify-content:center"><span id="cap-lbl">Confirmar y abrir agenda →</span></button>
+          <div class="err-msg" id="cap-err">Por favor ingresa al menos tu nombre y correo.</div>
+          <div style="text-align:center;margin-top:8px"><button onclick="closeCapture()" style="background:none;border:none;font-size:12px;color:var(--grafito);cursor:pointer;text-decoration:underline;font-family:'Space Grotesk',sans-serif">← Volver</button></div>
+        </div>
+      </div>
+      <div class="confirm-block" id="confirm-block">
+        <div class="confirm-icon">✦</div>
+        <div class="confirm-title">¡Listo — tu agenda está abierta!</div>
+        <div class="confirm-sub">Si la pestaña no se abrió automáticamente:</div>
+        <a href="https://calendar.app.google/8w3sut8DU4kk4MUR6" target="_blank" class="btn btn-rosa" style="display:inline-flex;margin:0 auto 1rem">Abrir agenda de Hei →</a>
+        <p style="font-size:12px;color:var(--grafito)">Hei confirmará el horario en las próximas 24 horas.</p>
+      </div>
+    </div>
+
+    <div class="explore-panel" id="explore-panel">
+      <h3 style="margin-bottom:.5rem">Contenido gratuito de HEI01</h3>
+      <p class="muted" style="font-size:13px;margin-bottom:1.25rem">Explora a tu ritmo. La sesión ejecutiva sigue disponible cuando estés listo.</p>
+      <a href="https://forms.gle/fDsFjEyRxnvYf37k8" target="_blank" class="resource-item">
+        <div class="resource-icon">🎯</div>
+        <div class="resource-info"><div class="resource-title">Hacer mi diagnóstico completo — 20 preguntas</div><div class="resource-desc">Resultado personalizado por correo con tu perfil en las 5 dimensiones</div></div>
+        <div class="resource-arrow">→</div>
+      </a>
+      <a href="#" class="resource-item" onclick="alert('Próximamente');return false">
+        <div class="resource-icon">▶️</div>
+        <div class="resource-info"><div class="resource-title">Training gratuito — Acelera IA</div><div class="resource-desc">Los 3 pilares para acelerar la eficiencia operativa con IA sin caos interno</div></div>
+        <div class="resource-arrow">→</div>
+      </a>
+      <a href="https://linkedin.com/in/heileengoodson" target="_blank" class="resource-item">
+        <div class="resource-icon">💼</div>
+        <div class="resource-info"><div class="resource-title">Casos reales en LinkedIn</div><div class="resource-desc">Organizaciones que pasaron de iniciativas dispersas a adopción con impacto medible</div></div>
+        <div class="resource-arrow">→</div>
+      </a>
+      <div style="margin-top:1.25rem;text-align:center">
+        <button class="btn btn-rosa" onclick="closeExplore();openCapture()" style="margin:0 auto">Ya estoy listo — agendar con Hei →</button>
+      </div>
+    </div>
+
+    <p class="muted animate-on-scroll" style="font-size:12px;text-align:center;margin-top:1.5rem">Sin precios en el sitio — los valores se entregan en la sesión ejecutiva, una vez que confirmamos el encaje.</p>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- CALENDARIO -->
+<section id="calendario" class="section-sm">
+  <div class="container">
+    <div class="section-label animate-on-scroll">Agenda directa</div>
+    <h2 class="headline animate-on-scroll delay-1" style="margin-bottom:.75rem">Reserva tu <span class="rosa">sesión ejecutiva</span></h2>
+    <p class="muted animate-on-scroll delay-2" style="max-width:520px;margin-bottom:2rem">Elige el horario que mejor te acomoda. La sesión es de 60 minutos, sin costo. Los valores los revisamos ahí.</p>
+    <div class="animate-on-scroll delay-2" style="background:#fff;border-radius:16px;overflow:hidden;border:1px solid rgba(255,255,255,.1)">
+      <iframe src="https://calendar.google.com/calendar/appointments/schedules/AcZssZ1PQZrGvaF53wBSMlrRLVGigUUl3GasROhOxy6AEsgrtlvdHRfxye6OBRsKI6WdBp5pTV-G0AL4?gv=true" style="border:0;display:block" width="100%" height="600" frameborder="0" title="Agenda tu sesión ejecutiva con Hei"></iframe>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div class="footer-inner">
+      <!-- Logo izquierda -->
+      <div class="footer-left">
+        <a href="#hero"><img src="data:image/png;base64,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" alt="HEI01 · Human Empowered Intelligence" style="height:52px;width:auto"></a>
+        <div class="footer-tagline">IA que deja huella.</div>
+        <div class="footer-sub">Human Empowered Intelligence<br>Santiago, Chile · Latam + España</div>        
+      </div>
+      <!-- RRSS derecha -->
+      <div class="footer-right">
+        <div class="footer-rrss-label">Sígueme en</div>
+        <div class="footer-rrss">
+          <a href="https://linkedin.com/in/heileengoodson" target="_blank" class="rrss-icon-btn" aria-label="LinkedIn de Heileen Goodson">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+          </a>
+          <a href="https://www.youtube.com/@HEILEENGOODSON" target="_blank" class="rrss-icon-btn" aria-label="YouTube de Heileen Goodson">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 00.502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 002.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 002.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+          </a>
+          <a href="https://instagram.com/heileengoodson" target="_blank" class="rrss-icon-btn" aria-label="Instagram de Heileen Goodson">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 HEI01 · Human Empowered Intelligence</span>
+      <span>Todos los derechos reservados</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+const SCRIPT_URL='https://script.google.com/macros/s/AKfycbw3Qbqn30O7gac8dLyyZqvm-PtZ4-tyGihItFs2mHEIATUUkXud0LtZuFbYfd3USx3-/exec';
+const CAL_URL='https://calendar.app.google/8w3sut8DU4kk4MUR6';
+
+const io=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible');});},{threshold:0.1});
+document.querySelectorAll('.animate-on-scroll').forEach(el=>io.observe(el));
+
+/* ---- TEST SCALA ---- */
+const DIMS=[
+  {key:'S',name:'Sentido estratégico',q:'¿Tu organización sabe exactamente por qué la IA importa ahora — y todos los líderes lo comunicarían de la misma manera?'},
+  {key:'C',name:'Compromiso directivo',q:'¿Tú y tu equipo directivo están dispuestos a cambiar su propia forma de trabajar — no solo la de sus equipos?'},
+  {key:'A1',name:'Aprendizaje práctico',q:'¿Las personas de tu organización saben cómo usar IA en su trabajo real — con un plan de formación que llegue a todos los niveles?'},
+  {key:'L',name:'Logro en acción',q:'¿La IA ya está produciendo resultados concretos en tu organización — o sigue siendo un experimento que no escala?'},
+  {key:'A2',name:'Adopción sostenida',q:'¿La adopción de IA está construyendo una nueva cultura o depende de unas pocas personas clave?'}
+];
+const SOPTS=[{v:1,t:'Esto aún no ocurre en mi organización'},{v:2,t:'Hay intentos, pero es inconsistente'},{v:3,t:'Estamos avanzando, con brechas visibles'},{v:4,t:'Está funcionando y lo estamos consolidando'},{v:5,t:'Somos referentes en esto dentro de nuestra industria'}];
+const BONUS=[{k:'S',t:'Sentido estratégico — No tenemos una dirección clara compartida'},{k:'C',t:'Compromiso directivo — Los líderes aún no modelamos el cambio'},{k:'A1',t:'Aprendizaje práctico — Falta formación estructurada en IA'},{k:'L',t:'Logro en acción — Tenemos conocimiento pero no lo aplicamos'},{k:'A2',t:'Adopción sostenida — El cambio depende de pocas personas'}];
+const PERFILES=[
+  {min:5,max:12,name:'Explorando el terreno',desc:'Tu organización tiene conciencia de que la IA importa, pero aún no ha dado pasos estructurados. Es el momento ideal para definir la hoja de ruta antes de que las iniciativas dispersas generen desgaste.',insight:'El riesgo no es quedarse atrás en tecnología — es invertir sin criterio y perder credibilidad ante el comité.',rec:'El primer paso es un diagnóstico real con tu primera línea. Sin ese dato, cualquier plan es intuición.'},
+  {min:13,max:17,name:'Avanzando con brechas',desc:'Hay movimiento y voluntad, pero las iniciativas no siempre se leen como parte de una estrategia común. El liderazgo aún no modela el cambio de forma consistente.',insight:'El problema no es falta de iniciativas — es falta de una narrativa ejecutiva que las conecte.',rec:'Necesitas alinear a tu primera línea antes de escalar. El caos no escala, solo se multiplica.'},
+  {min:18,max:22,name:'Con criterio, consolidando',desc:'Tu organización avanza con orden y evidencia. Hay casos funcionando, el liderazgo está comprometido y existe una lógica compartida. El desafío ahora es sostener y escalar sin perder foco.',insight:'Estás en el momento crítico: lo que construiste puede volverse referente interno o quedarse como piloto eterno.',rec:'El siguiente nivel requiere gobernanza, métricas y embajadores que lleven el modelo al resto de la organización.'},
+  {min:23,max:25,name:'Referente en construcción',desc:'Tu organización tiene madurez real en adopción de IA. Los líderes modelan el cambio, hay resultados medibles y la cultura está absorbiendo la transformación.',insight:'La pregunta ya no es si la IA aporta valor — es cómo documentar ese valor para replicarlo en otros países o unidades.',rec:'El foco ahora es estandarizar el modelo, formar embajadores y construir evidencia replicable.'}
+];
+let sstep=0,sans={},sbonus=null,sshowForm=false,ssent=false,ssending=false;
+function dl(k){return k.replace('A1','A').replace('A2','A');}
+function gP(t){return PERFILES.find(p=>t>=p.min&&t<=p.max)||PERFILES[0];}
+function stotal(){return Object.values(sans).reduce((a,b)=>a+b,0);}
+function srender(){
+  const app=document.getElementById('scala-app');
+  const TS=DIMS.length+1;
+  if(sstep<DIMS.length){
+    const d=DIMS[sstep],sel=sans[d.key];
+    const dots=Array.from({length:TS},(_,i)=>{let c='sdot';if(i<sstep)c+=' done';else if(i===sstep)c+=' active';return `<div class="${c}"></div>`;}).join('');
+    app.innerHTML=`<div class="scala-hdr"><div class="tag-label">TEST SCALA · HEI01</div><p>Tu percepción como líder — 6 preguntas, resultado inmediato</p></div>
+    <div class="step-dots">${dots}<span class="sdot-label">${sstep+1} de ${TS}</span></div>
+    <div class="qcard"><div class="dim-badge">${dl(d.key)} · ${d.name}</div><div class="qtext">${d.q}</div>
+    <div class="opts">${SOPTS.map(o=>`<button class="obtn ${sel===o.v?'sel':''}" onclick="spick('${d.key}',${o.v})"><div class="onum">${o.v}</div><div>${o.t}</div></button>`).join('')}</div></div>
+    <div class="nav-btns"><button class="btn btn-ghost" onclick="sgo(-1)" ${sstep===0?'disabled':''}>← Anterior</button><button class="btn btn-rosa" onclick="sgo(1)" ${!sel?'disabled':''}>${sstep===DIMS.length-1?'Última →':'Siguiente →'}</button></div>`;
+  } else if(sstep===DIMS.length&&!sshowForm&&!ssent){
+    const dots=Array.from({length:TS},(_,i)=>{let c='sdot';if(i<sstep)c+=' done';else if(i===sstep)c+=' active';return `<div class="${c}"></div>`;}).join('');
+    app.innerHTML=`<div class="scala-hdr"><div class="tag-label" style="color:var(--lavanda)">PREGUNTA FINAL</div><p>Una mirada antes de ver tu resultado</p></div>
+    <div class="step-dots">${dots}<span class="sdot-label">${TS} de ${TS}</span></div>
+    <div class="bonus-card"><div class="blabel">¿Cuál sientes que es la mayor oportunidad de desarrollo para tu organización hoy?</div>
+    ${BONUS.map(o=>`<div class="bopt ${sbonus===o.k?'sel':''}" onclick="spickB('${o.k}')"><input type="radio" name="bonus" ${sbonus===o.k?'checked':''} readonly><span>${o.t}</span></div>`).join('')}</div>
+    <div class="nav-btns"><button class="btn btn-ghost" onclick="sgo(-1)">← Anterior</button><button class="btn btn-rosa" onclick="sshowResult()" ${!sbonus?'disabled':''}>Ver mi resultado →</button></div>`;
+  } else { srendResult(); }
+}
+function srendResult(){
+  const app=document.getElementById('scala-app');
+  const t=stotal(),p=gP(t),bd=BONUS.find(o=>o.k===sbonus);
+  const bars=DIMS.map(d=>{const s=sans[d.key]||0;return `<div class="bar-row"><div class="bar-lbl">${dl(d.key)} · ${d.name}</div><div class="bar-track"><div class="bar-fill" style="width:${Math.round((s/5)*100)}%"></div></div><div class="bar-score">${s}/5</div></div>`;}).join('');
+  let cta='';
+  if(!sshowForm&&!ssent){
+    cta=`<div style="border:1px solid rgba(232,103,138,.3);border-radius:12px;padding:1.25rem;margin-top:1rem">
+      <h3 style="margin-bottom:6px">¿Reconoces tu organización en este perfil?</h3>
+      <p class="muted" style="font-size:13px;margin-bottom:1rem">En una sesión de 60 min revisamos el resultado con los datos reales de tu primera línea.</p>
+      <button class="btn btn-rosa" onclick="sopenCapture()" style="width:100%;justify-content:center;margin-bottom:8px">Agendar sesión ejecutiva →</button>
+      <a href="https://forms.gle/fDsFjEyRxnvYf37k8" target="_blank" class="btn btn-outline" style="width:100%;justify-content:center;font-size:13px;display:flex">Hacer el test completo (20 preguntas) →</a>
+    </div>`;
+  } else if(sshowForm&&!ssent){
+    cta=`<div style="border:1px solid rgba(232,103,138,.3);border-radius:12px;padding:1.25rem;margin-top:1rem">
+      <h3 style="margin-bottom:6px">Agenda tu sesión ejecutiva</h3>
+      <p class="muted" style="font-size:13px;margin-bottom:1rem">Registro automático + agenda directa con Hei.</p>
+      <div class="form-wrap">
+        <div class="frow"><div class="ff"><label>Nombre *</label><input type="text" id="sf-n" placeholder="Tu nombre"></div><div class="ff"><label>Cargo *</label><input type="text" id="sf-c" placeholder="Tu cargo"></div></div>
+        <div class="ff"><label>Correo *</label><input type="email" id="sf-e" placeholder="nombre@empresa.com"></div>
+        <div class="frow"><div class="ff"><label>Empresa</label><input type="text" id="sf-em" placeholder="Empresa"></div><div class="ff"><label>País</label><input type="text" id="sf-p" placeholder="País"></div></div>
+        <div class="ff"><label>¿Cuándo lo necesitas?</label><input type="text" id="sf-f" placeholder="Ej: segunda quincena de julio"></div>
+        <button class="btn btn-rosa" id="sf-sbtn" onclick="ssubmit()" style="width:100%;justify-content:center"><span id="sf-lbl">Confirmar y abrir agenda →</span></button>
+        <div class="err-msg" id="sf-err">Por favor ingresa al menos tu nombre y correo.</div>
+        <div style="text-align:center;margin-top:8px"><button onclick="sshowForm=false;srendResult()" style="background:none;border:none;font-size:12px;color:var(--grafito);cursor:pointer;text-decoration:underline;font-family:'Space Grotesk',sans-serif">← Volver</button></div>
+      </div></div>`;
+  } else if(ssent){
+    cta=`<div class="confirm-block visible" style="margin-top:1rem"><div class="confirm-icon">✦</div><div class="confirm-title">¡Listo — tu agenda está abierta!</div><div class="confirm-sub">Si la pestaña no se abrió, haz clic aquí:</div><a href="${CAL_URL}" target="_blank" class="btn btn-rosa" style="display:inline-flex;margin:0 auto">Abrir agenda de Hei →</a></div>`;
+  }
+  app.innerHTML=`<div style="text-align:center;margin-bottom:1.5rem"><span class="tag tag-rosa" style="margin-bottom:10px;display:inline-block">Tu perfil SCALA</span><h3 style="font-size:1.3rem;margin-bottom:6px">${p.name}</h3><p class="muted" style="font-size:13px;line-height:1.5;max-width:480px;margin:0 auto">${p.desc}</p></div>
+  <div class="result-bars">${bars}</div>
+  <div class="ins-block"><div class="ins-lbl">Lo que revela este resultado</div><div class="ins-text">${p.insight}</div></div>
+  <div class="ins-block" style="border-left:2px solid var(--violeta);border-radius:0 10px 10px 0"><div class="ins-lbl v">Tu mayor oportunidad autopercibida</div><div class="ins-text">${bd?bd.t:''}</div></div>
+  <div class="ins-block"><div class="ins-lbl">El siguiente paso que recomienda Hei</div><div class="ins-text">${p.rec}</div></div>
+  <div class="honest-note">Este resultado refleja tu percepción como líder. El diagnóstico completo — con tu primera línea respondiendo las 20 preguntas — lo hacemos juntos en la sesión ejecutiva.</div>
+  ${cta}`;
+}
+function spick(k,v){sans[k]=v;srender();}
+function spickB(k){sbonus=k;srender();}
+function sgo(d){sstep=Math.max(0,Math.min(DIMS.length,sstep+d));srender();}
+function sshowResult(){sstep=DIMS.length+1;srender();}
+function sopenCapture(){sshowForm=true;srendResult();}
+async function ssubmit(){
+  if(ssending)return;
+  const n=document.getElementById('sf-n').value.trim(),e=document.getElementById('sf-e').value.trim();
+  const err=document.getElementById('sf-err');
+  if(!n||!e){err.style.display='block';return;}
+  err.style.display='none';ssending=true;
+  document.getElementById('sf-sbtn').disabled=true;
+  document.getElementById('sf-lbl').innerHTML='<span class="spinning">↻</span> Registrando...';
+  const selPhasesScala=PHASES.filter(p=>csel.has(p.key));
+  const fasesScala=selPhasesScala.length>0?selPhasesScala.map(p=>p.label).join(', '):'';
+  const actsPorFaseScala={};
+  selPhasesScala.forEach(p=>{actsPorFaseScala[p.key]=p.acts.map(a=>a.t);});
+  const payload={nombre:n,cargo:document.getElementById('sf-c').value.trim(),email:e,empresa:document.getElementById('sf-em').value.trim(),pais:document.getElementById('sf-p').value.trim(),fecha:document.getElementById('sf-f').value.trim(),S:sans.S||0,C:sans.C||0,A1:sans.A1||0,L:sans.L||0,A2:sans.A2||0,bonus:BONUS.find(o=>o.k===sbonus)?.t||'',fases:fasesScala,actividades_por_fase:actsPorFaseScala,personas:cpersonas,origen:'Hacer mi diagnóstico web'};
+  try{await fetch(SCRIPT_URL,{method:'POST',mode:'no-cors',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)});}catch(ex){}
+  ssending=false;ssent=true;sshowForm=false;srendResult();
+  try{document.getElementById('calendario').scrollIntoView({behavior:'smooth'});}catch(ex){}
+}
+srender();
+
+/* ---- CONFIGURADOR ---- */
+const PHASES=[
+  {key:'S',label:'S · Sentido estratégico',hook:'Tu organización quiere avanzar con IA, pero cada líder tiene una versión distinta de por qué.',color:'rgba(232,103,138,.15)',tc:'var(--rosa)',
+    pains:['Cada área tiene su propia iniciativa de IA — sin una dirección común.','Cuando alguien pregunta "¿para qué adoptamos IA?", nadie responde igual.','Los proyectos existen, pero no hay urgencia ni narrativa que los conecte.'],
+    gains:['Una hoja de ruta compartida que todos los líderes pueden comunicar.','Una línea base medible para saber desde dónde partes y cómo avanzas.','Métricas de éxito definidas antes de invertir — no después.'],
+    loses:['Las iniciativas seguirán compitiendo entre sí en vez de sumar.','Invertirás presupuesto sin poder demostrar retorno al comité.','La adopción dependerá del entusiasmo de una persona, no de una estrategia.'],
+    acts:[{t:'Kickoff ejecutivo y alineación de alcance',d:'Roadmap, etapas, hitos, responsables y secuencia.'},{t:'Charla ejecutiva de apertura',d:'"IA sin miedo: del ruido tecnológico a la decisión estratégica."'},{t:'Índice de Madurez IA — capa ejecutiva',d:'Evaluación en 8 dimensiones. Línea base medible.'},{t:'Definición de métricas de éxito',d:'Dashboard prototipo para gestionar la implementación.'}]},
+  {key:'C',label:'C · Compromiso directivo',hook:'El problema no es falta de iniciativas — es que el liderazgo aún no modela el cambio.',color:'rgba(124,58,237,.12)',tc:'var(--lavanda)',
+    pains:['Los directivos piden adopción de IA a los equipos, pero no la usan ellos mismos.','Hay resistencia silenciosa en la primera línea que nadie está nombrando.','Las iniciativas de IA no están conectadas con los problemas reales del negocio.'],
+    gains:['Un mapa claro de qué impulsa y qué frena la adopción en cada líder.','Iniciativas priorizadas según impacto y viabilidad real.','El liderazgo comprometido públicamente — no solo en el discurso.'],
+    loses:['Los equipos esperarán señales del liderazgo antes de moverse — y no llegarán.','Las iniciativas se lanzarán sin respaldo político y morirán solas.','El capital invertido en tecnología no tendrá quien lo defienda internamente.'],
+    acts:[{t:'Segunda charla ejecutiva',d:'"El rol del liderazgo en la adopción de IA."'},{t:'IA Executive Módulo 1',d:'"IA, negocio y toma de decisiones."'},{t:'Levantamiento tecnológico de IA',d:'Stack, datos y brechas principales.'},{t:'Mapa de dolores del negocio',d:'Problemas priorizados y oportunidades de IA.'},{t:'Contexto del cambio',d:'Stakeholders, motivadores y resistencias.'},{t:'Alineación de valor de iniciativas',d:'Portafolio priorizado e hipótesis de impacto.'}]},
+  {key:'A1',label:'A · Aprendizaje práctico',hook:'Tu equipo directivo toma decisiones sobre IA sin tener los criterios para evaluarla.',color:'rgba(16,185,129,.08)',tc:'#10B981',
+    pains:['Los líderes aprueban o rechazan iniciativas de IA sin criterios claros.','No existe un marco de gobernanza — cada área decide por su cuenta.','Nadie sabe exactamente qué herramientas están permitidas ni bajo qué condiciones.'],
+    gains:['Criterios ejecutivos para evaluar, aprobar o pausar cualquier iniciativa.','Un marco de gobernanza propio, adaptado a tu industria y riesgos.','Políticas de uso seguro que protegen sin frenar la innovación.'],
+    loses:['Las decisiones seguirán siendo reactivas — apagando incendios.','La exposición regulatoria irá creciendo sin que nadie la gestione.','Los equipos usarán IA sin criterio — poniendo en riesgo datos sensibles.'],
+    acts:[{t:'IA Executive Módulo 2',d:'"Medir el impacto de la IA."'},{t:'Workshop de métricas',d:'Dashboard de adopción con indicadores.'},{t:'IA Executive Módulo 3',d:'"Gobernanza, regulación y uso responsable."'},{t:'Marco de Gobernanza IA',d:'Principios, roles y estructura de decisión.'},{t:'Políticas de uso seguro',d:'Criterios de qué está permitido o requiere aprobación.'}]},
+  {key:'L',label:'L · Logro en acción',hook:'Tu organización tiene conocimiento sobre IA, pero aún no pasó del experimento al resultado.',color:'rgba(245,158,11,.08)',tc:'#F59E0B',
+    pains:['Los pilotos de IA no escalan — se quedan como pruebas que nadie replica.','Los equipos no saben cómo bajar la estrategia a su trabajo cotidiano.','Los líderes no tienen guión para hablar de IA con sus equipos sin generar miedo.'],
+    gains:['Estrategia de gestión del cambio lista para bajar el mensaje en cada área.','Playbook ejecutivo con talking points y criterios de conversación.','Equipos preparados para implementar — no solo informados.'],
+    loses:['El conocimiento adquirido se evaporará sin estructura para aplicarlo.','Los líderes seguirán improvisando — generando mensajes inconsistentes.','La brecha entre estrategia y operación se ampliará con cada mes que pase.'],
+    acts:[{t:'IA Executive Módulo 4',d:'"La IA y el futuro del trabajo."'},{t:'Workshop de gestión del cambio',d:'Estrategia ADKAR por arquetipo (white/blue collar).'},{t:'Playbook de liderazgo',d:'Talking points, FAQs y guía de conversación con equipos.'}]},
+  {key:'A2',label:'A · Adopción sostenida',hook:'Lo que no se mide no se sostiene — y lo que no se sostiene no escala.',color:'rgba(56,189,248,.08)',tc:'#38BDF8',
+    pains:['No hay forma de saber si la adopción de IA avanza o retrocede.','El proceso depende de las personas más entusiastas — si se van, se para.','No existe evidencia para justificar escalar el modelo a otras áreas o países.'],
+    gains:['Evidencia medible del avance: antes y después con datos reales.','Un modelo de adopción que funciona sin depender de personas específicas.','Argumentos sólidos para escalar a otras unidades o geografías.'],
+    loses:['Lo construido en fases anteriores quedará sin respaldo ni continuidad.','El comité pedirá resultados y no habrá datos para responder.','Perderás la oportunidad de ser referente replicable en tu industria.'],
+    acts:[{t:'Re-medición de madurez IA',d:'Comparativa inicial vs actual.'},{t:'Análisis de resultados',d:'Logros, desviaciones y aprendizajes.'},{t:'Revisión del roadmap',d:'Plan ajustado según resultados.'},{t:'Ajuste de gobernanza',d:'Políticas refinadas y alineadas a la realidad.'},{t:'Estrategia de escalamiento',d:'Próximos pasos para consolidar y escalar el modelo.'}]}
+];
+const HINTS=[[0,30,'Comité directivo — primera línea'],[31,80,'Equipos directivos y gerencias clave'],[81,150,'Gerencias medias incluidas'],[151,300,'Adopción amplia — múltiples niveles'],[301,500,'Transformación organizacional masiva']];
+let csel=new Set(),copen=new Set(),cacts=new Set(),cpersonas=50;
+function getHint(v){const h=HINTS.find(([a,b])=>v>=a&&v<=b);return h?h[2]:'';}
+function ctoggleSel(key,e){if(e)e.stopPropagation();if(csel.has(key))csel.delete(key);else csel.add(key);crender();crenderRes();}
+function ctoggleOpen(key){if(copen.has(key))copen.delete(key);else copen.add(key);crender();}
+function ctoggleActs(key,e){if(e)e.stopPropagation();if(cacts.has(key))cacts.delete(key);else cacts.add(key);crender();}
+function cupdP(v){cpersonas=parseInt(v);document.getElementById('cp-val').textContent=cpersonas;document.getElementById('cp-hint').textContent=getHint(cpersonas);crenderRes();}
+function crender(){
+  const container=document.getElementById('config-app');
+  const phasesHtml=PHASES.map(p=>{
+    const isSel=csel.has(p.key),isOpen=copen.has(p.key),isActs=cacts.has(p.key);
+    const actsHtml=isActs?`<div class="acts-list">${p.acts.map(a=>`<div class="act-item"><div><div class="act-title">${a.t}</div><div class="act-desc">${a.d}</div></div></div>`).join('')}</div>`:'';
+    return `<div class="config-phase ${isSel?'sel':''} ${isOpen?'open':''}">
+      <div class="phase-hdr" onclick="ctoggleOpen('${p.key}')">
+        <div class="pchk" onclick="ctoggleSel('${p.key}',event)">✓</div>
+        <div class="pkey" style="background:${isSel?'var(--violeta)':p.color};color:${isSel?'#fff':p.tc}">${dl(p.key)}</div>
+        <div style="flex:1;min-width:0"><div class="pname">${p.label}</div><div class="phook">${p.hook}</div></div>
+        <div class="pcount">${p.acts.length} actividades</div>
+      </div>
+      <div class="phase-body">
+        <div class="sec-lbl pain">⚡ Lo que probablemente estás viendo hoy</div>
+        <div class="pill-list">${p.pains.map(t=>`<div class="pill pain"><div class="pill-dot"></div>${t}</div>`).join('')}</div>
+        <div class="sec-lbl gain" style="margin-top:14px">✓ Qué gana tu organización al hacer esta fase</div>
+        <div class="pill-list">${p.gains.map(t=>`<div class="pill gain"><div class="pill-dot"></div>${t}</div>`).join('')}</div>
+        <div class="sec-lbl lose" style="margin-top:14px">✗ Qué arriesgas si decides no hacerla</div>
+        <div class="pill-list">${p.loses.map(t=>`<div class="pill lose"><div class="pill-dot"></div>${t}</div>`).join('')}</div>
+        <button class="acts-toggle" onclick="ctoggleActs('${p.key}',event)">${isActs?'▲ Ocultar actividades':'▼ Ver actividades y entregables'}</button>
+        ${actsHtml}
+        <button class="phase-sel-btn ${isSel?'remove':'add'}" onclick="ctoggleSel('${p.key}',event)">${isSel?'✓ Fase incluida en tu propuesta':'+ Incluir esta fase'}</button>
+      </div>
+    </div>`;
+  }).join('');
+  container.innerHTML=`<div style="display:flex;flex-direction:column;gap:10px;margin-bottom:1.5rem">${phasesHtml}</div>
+  <div class="alcance-box"><label>¿A cuántas personas llegaría el programa?</label>
+    <div class="arow"><input type="range" min="10" max="500" step="10" value="${cpersonas}" oninput="cupdP(this.value)">
+    <div class="aval"><span id="cp-val">${cpersonas}</span> <span style="font-size:14px;font-weight:400;color:var(--grafito)">personas</span></div></div>
+    <div class="ahint" id="cp-hint">${getHint(cpersonas)}</div>
+  </div>
+  <div class="resumen" id="config-res"></div>`;
+  crenderRes();
+}
+function crenderRes(){
+  const res=document.getElementById('config-res');
+  if(!res)return;
+  if(csel.size===0){res.innerHTML='<div class="res-title">Tu propuesta en construcción</div><div class="res-empty">Selecciona al menos una fase para ver el resumen.</div>';return;}
+  const selP=PHASES.filter(p=>csel.has(p.key));
+  const totalA=selP.reduce((a,p)=>a+p.acts.length,0);
+  res.innerHTML=`<div class="res-title">Tu propuesta en construcción</div>
+  ${selP.map(p=>`<div style="margin-bottom:10px"><div style="font-size:12px;font-weight:600;color:${p.tc};margin-bottom:4px">${p.label}</div><div>${p.acts.map(a=>`<span class="res-tag">${a.t}</span>`).join('')}</div></div>`).join('')}
+  <div class="res-stats"><div class="stat"><div class="stat-n">${csel.size}</div><div class="stat-l">fases</div></div><div class="stat"><div class="stat-n">${totalA}</div><div class="stat-l">actividades</div></div><div class="stat"><div class="stat-n">${cpersonas}</div><div class="stat-l">personas</div></div></div>
+  <div style="display:flex;gap:10px;margin-top:1rem;flex-wrap:wrap">
+    <button class="btn btn-rosa" onclick="openCapture()" style="flex:1;justify-content:center;min-width:200px">Quiero los valores →</button>
+    <button class="btn btn-outline" onclick="document.getElementById('decision').scrollIntoView({behavior:'smooth'})" style="justify-content:center;font-size:13px;padding:10px 16px">Ver opciones ↓</button>
+  </div>
+  <p class="muted" style="font-size:11px;text-align:center;margin-top:10px">Sin precios todavía — los valores se entregan en la sesión ejecutiva.</p>`;
+}
+crender();
+
+/* ---- ZONA DECISIÓN ---- */
+function openCapture(){document.getElementById('capture-panel').style.display='block';document.getElementById('confirm-block').classList.remove('visible');document.getElementById('explore-panel').classList.remove('visible');document.getElementById('capture-panel').scrollIntoView({behavior:'smooth',block:'start'});}
+function closeCapture(){document.getElementById('capture-panel').style.display='none';}
+function openExplore(){document.getElementById('explore-panel').classList.add('visible');document.getElementById('capture-panel').style.display='none';document.getElementById('explore-panel').scrollIntoView({behavior:'smooth',block:'start'});}
+function closeExplore(){document.getElementById('explore-panel').classList.remove('visible');}
+let capsending=false;
+async function submitCapture(){
+  if(capsending)return;
+  const n=document.getElementById('cap-nombre').value.trim(),e=document.getElementById('cap-email').value.trim();
+  const err=document.getElementById('cap-err');
+  if(!n||!e){err.style.display='block';return;}
+  err.style.display='none';capsending=true;
+  document.getElementById('cap-sbtn').disabled=true;
+  document.getElementById('cap-lbl').innerHTML='<span class="spinning">↻</span> Registrando...';
+  const selPhasesData=PHASES.filter(p=>csel.has(p.key));
+  const fasesStr=selPhasesData.map(p=>p.label).join(', ');
+  const actsPorFase={};
+  selPhasesData.forEach(p=>{actsPorFase[p.key]=p.acts.map(a=>a.t);});
+  const payload={nombre:n,cargo:document.getElementById('cap-cargo').value.trim(),email:e,empresa:document.getElementById('cap-empresa').value.trim(),pais:document.getElementById('cap-pais').value.trim(),fecha:document.getElementById('cap-fecha').value.trim(),fases:fasesStr,actividades_por_fase:actsPorFase,personas:cpersonas,origen:'Zona decisión web'};
+  try{await fetch(SCRIPT_URL,{method:'POST',mode:'no-cors',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)});}catch(ex){}
+  capsending=false;
+  document.getElementById('capture-panel').style.display='none';
+  document.getElementById('confirm-block').classList.add('visible');
+  document.getElementById('confirm-block').scrollIntoView({behavior:'smooth',block:'start'});
+  try{document.getElementById('calendario').scrollIntoView({behavior:'smooth'});}catch(ex){}
+}
+</script>
+</body>
+</html>
