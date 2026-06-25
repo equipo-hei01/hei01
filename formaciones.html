@@ -1,0 +1,1284 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Formaciones HEI01 · IA que deja huella</title>
+<meta name="description" content="Formaciones en IA para todos los niveles. Presencial, casos reales, learning by doing. El mismo día aplicas.">
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-5G4MFF75');</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Special+Elite&family=Space+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+/* === RESET & VARS === */
+:root{--noche:#0D0D12;--surface:#181020;--surface2:#231540;--rosa:#E8678A;--violeta:#7C3AED;--lavanda:#D8B4FE;--blanco:#FFFFFF;--grafito:#888780;--teal:#10B981;--amber:#F59E0B;--ease-out:cubic-bezier(.22,1,.36,1);--dur-fast:150ms;--dur-base:300ms;--dur-slow:600ms}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--noche);color:var(--blanco);font-family:"Space Grotesk",sans-serif;font-size:16px;line-height:1.7;overflow-x:hidden}
+.headline{font-family:"Special Elite",serif;line-height:1.15}
+h1{font-size:clamp(2rem,5vw,3.5rem)}
+h2{font-size:clamp(1.5rem,3vw,2.2rem)}
+.rosa{color:var(--rosa)}.muted{color:var(--grafito)}
+.container{max-width:960px;margin:0 auto;padding:0 1.5rem}
+.section{padding:5rem 0}.section-sm{padding:3rem 0}
+.divider{height:1px;background:linear-gradient(to right,transparent,rgba(255,255,255,.08),transparent)}
+/* === ANIMATIONS === */
+@keyframes slideUp{from{opacity:0;transform:translateY(40px)}to{opacity:1;transform:translateY(0)}}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+@keyframes starFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+@keyframes scrollBounce{0%,100%{transform:translateY(0)}50%{transform:translateY(6px)}}
+.anim-up{animation:slideUp var(--dur-slow) var(--ease-out) both}
+.d1{animation-delay:.1s}.d2{animation-delay:.2s}.d3{animation-delay:.35s}.d4{animation-delay:.5s}
+.animate-on-scroll{opacity:0;transform:translateY(30px);transition:opacity .6s var(--ease-out),transform .6s var(--ease-out)}
+.animate-on-scroll.visible{opacity:1;transform:translateY(0)}
+.delay-1{transition-delay:.1s}.delay-2{transition-delay:.2s}.delay-3{transition-delay:.3s}
+/* === BUTTONS === */
+.btn{display:inline-flex;align-items:center;gap:8px;padding:12px 24px;border-radius:8px;font-family:"Space Grotesk",sans-serif;font-size:15px;font-weight:600;cursor:pointer;border:none;text-decoration:none;transition:transform var(--dur-fast),box-shadow var(--dur-base),background var(--dur-fast)}
+.btn:hover{transform:translateY(-2px)}.btn:active{transform:translateY(0) scale(.98)}
+.btn:disabled{opacity:.5;cursor:not-allowed;transform:none}
+.btn-rosa{background:var(--rosa);color:#fff}.btn-rosa:hover{background:#d4537e;box-shadow:0 8px 24px rgba(232,103,138,.35)}
+.btn-outline{background:transparent;color:var(--lavanda);border:1.5px solid var(--violeta)}.btn-outline:hover{background:rgba(124,58,237,.15)}
+.btn-ghost{background:transparent;color:var(--grafito);border:1px solid rgba(255,255,255,.15);font-size:13px;padding:8px 16px}.btn-ghost:hover{color:var(--blanco);border-color:rgba(255,255,255,.4)}
+.tag{display:inline-block;padding:3px 12px;border-radius:20px;font-size:11px;font-weight:600;letter-spacing:.8px;text-transform:uppercase}
+.tag-rosa{background:rgba(232,103,138,.15);color:var(--rosa);border:1px solid rgba(232,103,138,.3)}
+.tag-violeta{background:rgba(124,58,237,.15);color:var(--lavanda);border:1px solid rgba(124,58,237,.3)}
+.tag-teal{background:rgba(16,185,129,.1);color:var(--teal);border:1px solid rgba(16,185,129,.3)}
+.tag-amber{background:rgba(245,158,11,.1);color:var(--amber);border:1px solid rgba(245,158,11,.3)}
+.tag-gray{background:rgba(136,135,128,.1);color:var(--grafito);border:1px solid rgba(136,135,128,.2)}
+/* === NAV === */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:.75rem 1.5rem;display:flex;align-items:center;justify-content:space-between;background:#fff;border-bottom:1px solid rgba(0,0,0,.08);box-shadow:0 1px 12px rgba(0,0,0,.06)}
+.nav-logo{text-decoration:none}
+.nav-links{display:flex;gap:4px;align-items:center}
+.nav-link{font-size:13px;color:#5F5E5A;text-decoration:none;padding:7px 12px;border-radius:6px;transition:color .2s,background .2s;font-weight:500}
+.nav-link:hover{color:#0D0D12;background:rgba(0,0,0,.05)}
+.nav-link.active{color:var(--violeta);background:rgba(124,58,237,.08)}
+.nav-link-cta{background:var(--rosa);color:#fff !important;border-radius:8px;font-size:14px;padding:9px 18px}.nav-link-cta:hover{background:#d4537e !important}
+/* === PERSON BADGE === */
+.person-badge{display:none;align-items:center;gap:6px;font-size:12px;color:var(--lavanda);background:rgba(124,58,237,.1);border:1px solid rgba(124,58,237,.2);padding:5px 12px;border-radius:20px;cursor:pointer}
+.person-badge:hover{background:rgba(124,58,237,.2)}
+/* === HERO === */
+#hero{min-height:90vh;display:flex;align-items:center;justify-content:center;text-align:center;padding:7rem 1.5rem 4rem;position:relative;overflow:hidden}
+.hero-bg{position:absolute;inset:0;background:radial-gradient(ellipse 60% 50% at 50% 0%,rgba(124,58,237,.18) 0%,transparent 70%),radial-gradient(ellipse 40% 40% at 80% 80%,rgba(232,103,138,.1) 0%,transparent 60%);pointer-events:none}
+.hero-content{position:relative;z-index:1;max-width:760px}
+.hero-title .accent{color:var(--rosa)}
+.hero-sub{font-size:1.05rem;color:var(--grafito);max-width:560px;margin:0 auto 1rem;line-height:1.6}
+.hero-hook{font-size:1.1rem;color:var(--blanco);font-weight:500;max-width:540px;margin:0 auto 1.5rem;line-height:1.5}
+.hero-stats{display:flex;gap:2rem;justify-content:center;margin-bottom:2.5rem;flex-wrap:wrap}
+.stat-n{font-size:2rem;font-weight:600;color:var(--rosa);display:block}
+.stat-l{font-size:12px;color:var(--grafito);letter-spacing:.5px}
+.hero-btns{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+.scroll-hint{display:flex;flex-direction:column;align-items:center;gap:6px;color:var(--grafito);font-size:12px;animation:scrollBounce 2s ease-in-out infinite;margin-top:3rem}
+.scroll-hint-line{width:1px;height:36px;background:linear-gradient(to bottom,rgba(232,103,138,.6),transparent)}
+/* === SECTION LABELS === */
+.section-label{font-size:11px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:var(--rosa);margin-bottom:.75rem}
+/* === STATS BAR === */
+.stats-bar{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin:2rem 0}
+.stat-card{background:var(--surface);border:1px solid rgba(255,255,255,.08);border-radius:12px;padding:1.25rem;text-align:center}
+.stat-card-n{font-size:2.2rem;font-weight:700;margin-bottom:4px}
+.stat-card-l{font-size:12px;color:var(--grafito);line-height:1.5}
+/* === PATH SELECTOR === */
+.path-selector{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:2rem 0}
+.path-option{background:var(--surface);border:1.5px solid rgba(255,255,255,.1);border-radius:14px;padding:1.5rem;cursor:pointer;text-align:left;transition:border-color var(--dur-base),transform var(--dur-base),box-shadow var(--dur-base)}
+.path-option:hover{border-color:rgba(232,103,138,.4);transform:translateY(-2px)}
+.path-option.active{border-color:var(--rosa);box-shadow:0 0 30px rgba(232,103,138,.1)}
+.path-option.active .path-icon{background:rgba(232,103,138,.15)}
+.path-icon{font-size:1.5rem;width:48px;height:48px;border-radius:10px;background:rgba(255,255,255,.06);display:flex;align-items:center;justify-content:center;margin-bottom:.75rem;transition:background var(--dur-base)}
+.path-title{font-size:1rem;font-weight:600;margin-bottom:.25rem}
+.path-sub{font-size:13px;color:var(--grafito);line-height:1.4}
+/* === LEVEL TABS === */
+.level-tabs{display:flex;gap:6px;margin-bottom:1.5rem;flex-wrap:wrap}
+.level-tab{display:flex;align-items:center;gap:6px;padding:8px 16px;border-radius:8px;border:1px solid rgba(255,255,255,.1);background:var(--surface);cursor:pointer;font-size:13px;font-weight:500;color:var(--grafito);transition:all var(--dur-fast)}
+.level-tab:hover{border-color:rgba(255,255,255,.25);color:var(--blanco)}
+.level-tab.active{border-color:var(--rosa);background:rgba(232,103,138,.1);color:var(--blanco)}
+.level-tab-num{width:22px;height:22px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;background:rgba(255,255,255,.1);flex-shrink:0}
+.level-tab.active .level-tab-num{background:var(--rosa);color:#fff}
+.level-panel{display:none}.level-panel.active{display:block;animation:fadeIn .3s var(--ease-out)}
+.level-header{display:flex;align-items:center;gap:12px;margin-bottom:1.25rem;padding:.75rem 1rem;background:rgba(255,255,255,.03);border-radius:10px;border:1px solid rgba(255,255,255,.06)}
+.level-badge{width:40px;height:40px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:1rem;flex-shrink:0}
+.lb1{background:rgba(136,135,128,.15);color:var(--grafito);border:1px solid rgba(136,135,128,.3)}
+.lb2{background:rgba(16,185,129,.1);color:var(--teal);border:1px solid rgba(16,185,129,.3)}
+.lb3{background:rgba(245,158,11,.1);color:var(--amber);border:1px solid rgba(245,158,11,.3)}
+.lb4{background:rgba(124,58,237,.15);color:var(--lavanda);border:1px solid rgba(124,58,237,.3)}
+.lb5{background:rgba(232,103,138,.1);color:var(--rosa);border:1px solid rgba(232,103,138,.2);opacity:.6}
+/* === COURSE CARDS ACCORDION === */
+.courses-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:10px}
+.ccard{background:var(--surface);border:1px solid rgba(255,255,255,.08);border-radius:12px;padding:1.25rem;cursor:pointer;transition:border-color var(--dur-base),box-shadow var(--dur-base)}
+.ccard:hover{border-color:rgba(232,103,138,.25)}
+.ccard.open{border-color:var(--rosa);box-shadow:0 0 24px rgba(232,103,138,.1)}
+.ccard-top{display:flex;justify-content:space-between;align-items:flex-start;gap:10px;margin-bottom:8px}
+.ccard-num{font-size:10px;font-weight:600;color:var(--grafito);letter-spacing:.5px;margin-bottom:4px}
+.ccard-title{font-size:.95rem;font-weight:600;line-height:1.3}
+.ccard-hours{font-size:12px;font-weight:600;color:var(--rosa);background:rgba(232,103,138,.1);padding:3px 10px;border-radius:20px;white-space:nowrap;flex-shrink:0}
+.ccard-desc{font-size:12px;color:var(--grafito);line-height:1.4;margin-bottom:10px}
+.ccard-lbd{font-size:11px;color:var(--teal);margin-bottom:10px}
+.ccard-lbd::before{content:"◆ "}
+.ccard-toggle{font-size:12px;color:var(--lavanda);background:none;border:none;cursor:pointer;padding:0;font-family:"Space Grotesk",sans-serif;display:flex;align-items:center;gap:4px}
+.ccard-detail{display:none;margin-top:12px;padding-top:12px;border-top:1px solid rgba(255,255,255,.06)}
+.ccard.open .ccard-detail{display:block;animation:fadeIn .3s var(--ease-out)}
+.module-item{font-size:12px;color:rgba(255,255,255,.75);padding:5px 0;border-bottom:1px solid rgba(255,255,255,.04);display:flex;align-items:flex-start;gap:8px}
+.module-item:last-child{border-bottom:none}
+.module-item::before{content:"·";color:var(--rosa);flex-shrink:0}
+.outcomes{margin-top:12px;background:rgba(124,58,237,.08);border-radius:8px;padding:10px 12px}
+.outcomes-label{font-size:10px;font-weight:600;color:var(--lavanda);letter-spacing:.5px;margin-bottom:6px}
+.outcome-item{font-size:12px;color:rgba(255,255,255,.8);padding:3px 0;display:flex;gap:6px}
+.outcome-item::before{content:"✓";color:var(--teal);flex-shrink:0}
+.ccard-cta{margin-top:12px}
+/* === STATS AT EJECUTIVO === */
+.exec-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:1.25rem}
+.exec-stat{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.06);border-radius:10px;padding:1rem;text-align:center}
+.exec-stat-n{font-size:1.8rem;font-weight:700;margin-bottom:4px}
+.exec-stat-l{font-size:11px;color:var(--grafito);line-height:1.5}
+/* === CLAUDE CARD SPECIAL === */
+.claude-card{background:var(--surface);border:1.5px solid rgba(232,103,138,.3);border-radius:12px;padding:1.5rem;cursor:pointer;transition:border-color var(--dur-base)}
+.claude-card:hover{border-color:var(--rosa)}
+.claude-card.open{box-shadow:0 0 30px rgba(232,103,138,.12)}
+/* === MODULAR MODULES === */
+.modular-wrap{background:rgba(124,58,237,.06);border:1px solid rgba(124,58,237,.2);border-radius:12px;padding:1.5rem;margin-top:1.5rem}
+.modular-group{margin-bottom:1.25rem}
+.mod-group-label{font-size:11px;font-weight:600;letter-spacing:1px;text-transform:uppercase;color:var(--grafito);margin-bottom:8px;padding-bottom:8px;border-bottom:1px solid rgba(255,255,255,.06)}
+.mod-group-label.core{color:var(--lavanda)}
+.mods-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:7px}
+.mod-card{padding:10px 12px;border-radius:8px;border:1px solid rgba(124,58,237,.2);background:rgba(124,58,237,.08)}
+.mod-card.optional{background:rgba(136,135,128,.05);border-color:rgba(255,255,255,.08)}
+.mod-card.teal{background:rgba(16,185,129,.08);border-color:rgba(16,185,129,.2)}
+.mod-n{font-size:10px;color:var(--grafito);margin-bottom:3px}
+.mod-name{font-size:12px;font-weight:600;margin-bottom:3px;line-height:1.3}
+.mod-h{font-size:11px;color:var(--grafito)}
+.mod-lbd{font-size:10px;color:var(--teal);margin-top:4px}
+.mod-lbd::before{content:"◆ "}
+.path-cards{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:1.25rem}
+.path-c{border-radius:10px;padding:1rem;text-align:center}
+.path-c.core{background:rgba(136,135,128,.08);border:1px solid rgba(255,255,255,.1)}
+.path-c.full{background:rgba(124,58,237,.1);border:1px solid rgba(124,58,237,.3)}
+.path-c-title{font-size:14px;font-weight:600;margin-bottom:4px}
+.path-c-h{font-size:1.5rem;font-weight:700;color:var(--lavanda);margin-bottom:4px}
+.path-c-mods{font-size:11px;color:var(--grafito)}
+.path-c-for{font-size:11px;color:var(--grafito);margin-top:5px;font-style:italic}
+/* === CUSTOM BUILDER === */
+#path-custom{display:none}
+.builder-intro{background:var(--surface);border:1px solid rgba(255,255,255,.08);border-radius:12px;padding:1.25rem;margin-bottom:1.25rem}
+.builder-level{margin-bottom:1.25rem}
+.builder-level-hdr{font-size:12px;font-weight:600;color:var(--grafito);letter-spacing:.5px;text-transform:uppercase;margin-bottom:8px;padding-bottom:6px;border-bottom:1px solid rgba(255,255,255,.06);display:flex;align-items:center;gap:8px}
+.builder-items{display:flex;flex-direction:column;gap:6px}
+.builder-item{display:flex;align-items:flex-start;gap:10px;padding:10px 12px;border:1px solid rgba(255,255,255,.08);border-radius:8px;cursor:pointer;transition:border-color .2s,background .2s}
+.builder-item:hover{border-color:rgba(232,103,138,.3);background:rgba(232,103,138,.04)}
+.builder-item input[type=checkbox]{accent-color:var(--rosa);flex-shrink:0;margin-top:2px;width:16px;height:16px}
+.builder-item-info{flex:1}
+.builder-item-name{font-size:13px;font-weight:500}
+.builder-item-meta{font-size:12px;color:var(--grafito);margin-top:2px}
+.builder-summary{background:rgba(232,103,138,.08);border:1px solid rgba(232,103,138,.2);border-radius:12px;padding:1.25rem;margin-bottom:1.25rem;min-height:80px}
+.builder-summary-empty{font-size:13px;color:var(--grafito);font-style:italic}
+.builder-tags{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:10px}
+.builder-tag{display:inline-block;padding:3px 10px;border-radius:20px;font-size:11px;background:rgba(232,103,138,.15);color:var(--rosa);border:1px solid rgba(232,103,138,.25)}
+.builder-total{font-size:14px;font-weight:600;color:var(--blanco)}
+/* === SHARED PERSON FORM === */
+.person-form-box{background:var(--surface2);border:1px solid rgba(124,58,237,.2);border-radius:12px;padding:1.25rem;margin-bottom:1rem}
+.person-form-title{font-size:13px;font-weight:600;margin-bottom:4px;display:flex;align-items:center;gap:8px}
+.person-form-sub{font-size:12px;color:var(--grafito);margin-bottom:1rem}
+.pf-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.pf{display:flex;flex-direction:column;gap:4px}
+.pf label{font-size:12px;color:var(--grafito)}
+.pf input,.pf select{padding:9px 12px;border:1px solid rgba(255,255,255,.15);border-radius:8px;background:rgba(255,255,255,.05);color:var(--blanco);font-family:"Space Grotesk",sans-serif;font-size:14px;width:100%;transition:border-color .2s}
+.pf input:focus,.pf select:focus{outline:none;border-color:var(--rosa)}
+.pf input::placeholder{color:rgba(255,255,255,.25)}
+.pf select option{background:#1E1030;color:var(--blanco)}
+.pf-full{grid-column:1/-1}
+.pf-radios{display:flex;gap:10px;flex-wrap:wrap}
+.pf-radio{display:flex;align-items:center;gap:7px;cursor:pointer;padding:8px 12px;border:1px solid rgba(255,255,255,.1);border-radius:8px;font-size:13px;transition:border-color .2s}
+.pf-radio:hover{border-color:rgba(232,103,138,.3)}
+.pf-radio input{accent-color:var(--violeta);margin:0}
+.err-msg{font-size:12px;color:#F87171;margin-top:5px;display:none}
+/* === SIN/CON COMPARISON === */
+.comparison{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:1.25rem}
+.comp-col{border-radius:10px;padding:1.25rem}
+.comp-col.sin{background:rgba(248,113,113,.06);border:1px solid rgba(248,113,113,.2)}
+.comp-col.con{background:rgba(16,185,129,.06);border:1px solid rgba(16,185,129,.2)}
+.comp-title{font-size:11px;font-weight:600;letter-spacing:.5px;margin-bottom:8px}
+.comp-col.sin .comp-title{color:#F87171}
+.comp-col.con .comp-title{color:var(--teal)}
+.comp-item{font-size:12px;color:rgba(255,255,255,.75);display:flex;gap:6px;align-items:flex-start;padding:4px 0}
+.comp-icon{flex-shrink:0;font-size:11px;margin-top:2px}
+/* === PRICING === */
+.pricing-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:1.5rem}
+.price-card{border-radius:12px;padding:1.25rem}
+.price-card.std{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1)}
+.price-card.rec{background:rgba(232,103,138,.06);border:1.5px solid rgba(232,103,138,.3);position:relative}
+.price-badge{position:absolute;top:-10px;right:16px;background:var(--rosa);color:#fff;font-size:10px;font-weight:700;padding:3px 10px;border-radius:10px;letter-spacing:.5px}
+.price-type{font-size:11px;font-weight:600;color:var(--grafito);margin-bottom:6px;letter-spacing:.5px}
+.price-amount{font-size:1.5rem;font-weight:700;color:var(--blanco);margin-bottom:2px}
+.price-detail{font-size:12px;color:var(--grafito);margin-bottom:12px}
+.price-item{font-size:12px;color:rgba(255,255,255,.75);display:flex;gap:6px;margin-bottom:5px}
+.price-check{color:var(--teal);flex-shrink:0}
+/* === REGISTRATION CONFIRM === */
+.confirm-block{background:rgba(16,185,129,.08);border:1px solid rgba(16,185,129,.2);border-radius:12px;padding:1.5rem;text-align:center;display:none}
+.confirm-block.show{display:block;animation:fadeIn .4s var(--ease-out)}
+.confirm-icon{font-size:2rem;color:var(--teal);margin-bottom:6px}
+.confirm-title{font-size:1rem;font-weight:600;color:var(--teal);margin-bottom:5px}
+.confirm-sub{font-size:13px;color:var(--grafito);line-height:1.5}
+/* === METODOLOGÍA === */
+.meto-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px;margin-top:1.25rem}
+.meto-card{background:var(--surface);border:1px solid rgba(255,255,255,.08);border-radius:12px;padding:1.25rem}
+.meto-icon{font-size:1.8rem;margin-bottom:.75rem}
+.meto-title{font-size:.95rem;font-weight:600;margin-bottom:.5rem}
+.meto-desc{font-size:13px;color:var(--grafito);line-height:1.5}
+/* === CTA FINAL === */
+.cta-box{background:var(--surface);border:1px solid rgba(232,103,138,.2);border-radius:20px;padding:3rem 2rem;max-width:640px;margin:0 auto;text-align:center}
+.cta-box p{color:var(--grafito);margin:1rem 0 2rem;line-height:1.6}
+.cta-btns{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+/* === FOOTER === */
+footer{padding:3rem 0 0;border-top:1px solid rgba(255,255,255,.06);background:#fff}
+.footer-inner{display:flex;justify-content:space-between;align-items:flex-start;gap:2rem;flex-wrap:wrap;padding-bottom:2rem}
+.footer-left{display:flex;flex-direction:column;gap:.5rem;max-width:260px}
+.footer-tagline{font-size:13px;color:var(--rosa);letter-spacing:.5px;font-weight:500;margin-top:.25rem}
+.footer-sub{font-size:12px;color:#666;line-height:1.5}
+.footer-email{font-size:12px;color:#666;text-decoration:none;transition:color .2s}.footer-email:hover{color:#0D0D12}
+.footer-right{display:flex;flex-direction:column;align-items:flex-end;gap:.75rem}
+.footer-rrss-label{font-size:11px;font-weight:600;letter-spacing:1px;text-transform:uppercase;color:#999}
+.footer-rrss{display:flex;flex-direction:row;gap:8px}
+.rrss-icon-btn{display:flex;align-items:center;justify-content:center;width:38px;height:38px;border:1px solid rgba(0,0,0,.12);border-radius:8px;color:#444;text-decoration:none;transition:border-color .2s,color .2s}
+.rrss-icon-btn:hover{border-color:var(--rosa);color:var(--rosa)}
+.footer-bottom{border-top:1px solid rgba(0,0,0,.08);padding:1.25rem 0;display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px}
+.footer-bottom span{font-size:11px;color:#999}
+
+/* === FAQ === */
+.faq-item{background:var(--surface);border:1px solid rgba(255,255,255,.08);border-radius:12px;overflow:hidden;transition:border-color var(--dur-base)}
+.faq-item:hover{border-color:rgba(255,255,255,.15)}
+.faq-item.open{border-color:var(--rosa)}
+.faq-q{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:1.1rem 1.25rem;cursor:pointer;font-size:.95rem;font-weight:500;line-height:1.4}
+.faq-icon{font-size:1.3rem;color:var(--grafito);flex-shrink:0;transition:transform var(--dur-base),color var(--dur-base);line-height:1}
+.faq-item.open .faq-icon{transform:rotate(45deg);color:var(--rosa)}
+.faq-a{display:none;padding:0 1.25rem 1.1rem;font-size:13px;color:var(--grafito);line-height:1.7;border-top:1px solid rgba(255,255,255,.06)}
+.faq-item.open .faq-a{display:block;animation:fadeIn .3s var(--ease-out)}
+
+/* === RESPONSIVE === */
+@media(max-width:640px){
+  .path-selector{grid-template-columns:1fr}
+  .level-tabs{gap:4px}.level-tab{font-size:12px;padding:6px 10px}
+  .courses-grid{grid-template-columns:1fr}
+  .stats-bar,.exec-stats,.comparison,.pricing-grid,.path-cards{grid-template-columns:1fr}
+  .pf-grid{grid-template-columns:1fr}
+  .hero-btns,.cta-btns{flex-direction:column;align-items:center}.btn{width:100%;justify-content:center}
+  .footer-inner{flex-direction:column}.footer-right{align-items:flex-start}
+  .footer-bottom{flex-direction:column}
+  nav .nav-links .nav-link:not(.nav-link-cta):not(.active){display:none}
+}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms !important;transition-duration:.01ms !important}}
+</style>
+</head>
+<body>
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5G4MFF75" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+<!-- NAV -->
+<nav>
+  <a href="index.html" class="nav-logo"><img src="data:image/png;base64,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" alt="HEI01" style="height:40px;width:auto"></a>
+  <div class="nav-links">
+    <div class="person-badge" id="personBadge" onclick="scrollToPersonForm()">👤 <span id="personName"></span></div>
+    <a href="index.html#test" class="nav-link">Diagnóstico</a>
+    <a href="index.html#configurador" class="nav-link">Diseñar mi ruta</a>
+    <a href="aceleradores.html" class="nav-link">Aceleradores</a>
+    <a href="formaciones.html" class="nav-link active">Formaciones</a>
+    <a href="#cta-final" class="nav-link nav-link-cta">Cotizar →</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-content">
+    <div class="anim-up"><span class="tag tag-rosa">Formación corporativa en IA</span></div>
+    <h1 class="headline hero-title anim-up d1">¿Cuántos cursos de IA<br>tienes guardados en el <span class="accent">cajón?</span></h1>
+    <p class="hero-hook anim-up d2">El problema no es el contenido. Es que los ejercicios son de otro planeta, no del tuyo. Saliste del curso sabiendo más, pero sin saber qué hacer el lunes.</p>
+    <p class="hero-sub anim-up d3">En HEI01 diseñamos cada actividad con los procesos y problemas reales de tu organización. <strong style="color:var(--blanco)">Menos PPT. Más tu negocio.</strong> Al salir de cada sesión, ya aplicaste.</p>
+    <div class="hero-stats anim-up d3">
+      <div><span class="stat-n">5</span><span class="stat-l">niveles de aprendizaje</span></div>
+      <div><span class="stat-n">11+</span><span class="stat-l">programas disponibles</span></div>
+      <div><span class="stat-n">100%</span><span class="stat-l">learning by doing</span></div>
+    </div>
+    <div class="hero-btns anim-up d4">
+      <a href="#formaciones" class="btn btn-rosa">Ver programas →</a>
+      <a href="#cta-final" class="btn btn-outline">Cotizar para mi equipo</a>
+    </div>
+    <div class="scroll-hint anim-up d4"><div class="scroll-hint-line"></div><span>Elegir mi programa</span></div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- FORMACIONES SECTION -->
+<section id="formaciones" class="section">
+  <div class="container">
+    <div class="section-label animate-on-scroll">Programas de formación</div>
+    <h2 class="headline animate-on-scroll delay-1" style="margin-bottom:.75rem">¿Cómo quieres <span class="rosa">formarte?</span></h2>
+    <p class="muted animate-on-scroll delay-2" style="max-width:520px;margin-bottom:0">Elige el camino según lo que necesitas.</p>
+
+    <!-- PATH SELECTOR -->
+    <div class="path-selector animate-on-scroll delay-2">
+      <div class="path-option active" id="opt-paquetes" onclick="setPath('paquetes')">
+        <div class="path-icon">📦</div>
+        <div class="path-title">Ver paquetes predefinidos</div>
+        <div class="path-sub">Programas listos por nivel y perfil. Selecciona el que más se ajusta a tu equipo.</div>
+      </div>
+      <div class="path-option" id="opt-custom" onclick="setPath('custom')">
+        <div class="path-icon">🎯</div>
+        <div class="path-title">Armar mi propio curso</div>
+        <div class="path-sub">Elige exactamente los contenidos que necesitas, por nivel. Te armamos el presupuesto.</div>
+      </div>
+    </div>
+
+    <!-- ===== PATH A: PAQUETES ===== -->
+    <div id="path-paquetes">
+      <!-- LEVEL TABS -->
+      <div class="level-tabs" role="tablist">
+        <button class="level-tab active" onclick="setLevel(1)" role="tab">
+          <span class="level-tab-num">1</span> Neófito
+        </button>
+        <button class="level-tab" onclick="setLevel(2)" role="tab">
+          <span class="level-tab-num">2</span> Explorador
+        </button>
+        <button class="level-tab" onclick="setLevel(3)" role="tab">
+          <span class="level-tab-num">3</span> Practicante
+        </button>
+        <button class="level-tab" onclick="setLevel(4)" role="tab">
+          <span class="level-tab-num">4</span> Ejecutivo
+        </button>
+        <button class="level-tab" onclick="setLevel(5)" role="tab" style="opacity:.6">
+          <span class="level-tab-num">5</span> Especialista
+        </button>
+      </div>
+
+      <!-- PANEL 1: NEÓFITO -->
+      <div class="level-panel active" id="panel-1">
+        <div class="level-header">
+          <div class="level-badge lb1">1</div>
+          <div>
+            <h3 style="font-size:1rem;margin-bottom:2px">Neófito · Primer contacto con IA</h3>
+            <p style="font-size:13px;color:var(--grafito)">Para personas sin experiencia previa que quieren entender qué es la IA y cómo les afecta.</p>
+          </div>
+        </div>
+        <div class="courses-grid">
+          <div class="ccard" onclick="openCard(this)">
+            <div class="ccard-num">Curso 1 de 3</div>
+            <div class="ccard-top">
+              <div class="ccard-title">Workshop IA Generativa</div>
+              <span class="ccard-hours">1.5h</span>
+            </div>
+            <p class="ccard-desc">Primer contacto práctico. Aprenden interactuando, no escuchando.</p>
+            <div class="ccard-lbd">Prompts básicos con escenarios reales</div>
+            <button class="ccard-toggle">Ver detalles ↓</button>
+            <div class="ccard-detail">
+              <div class="module-item">Interacción con IA generativa a través de prompts básicos</div>
+              <div class="module-item">Escenarios reales para optimizar productividad</div>
+              <div class="module-item">Consejos prácticos para adoptar IA día a día</div>
+              <div class="module-item">Presencial o virtual · 100% interactivo</div>
+              <div class="outcomes">
+                <div class="outcomes-label">Al terminar podrás...</div>
+                <div class="outcome-item">Escribir tu primer prompt efectivo</div>
+                <div class="outcome-item">Generar un entregable real con IA ese mismo día</div>
+              </div>
+              <div class="ccard-cta" onclick="event.stopPropagation()">
+                <button class="btn btn-rosa" style="width:100%;justify-content:center;font-size:13px;padding:9px" onclick="openGlobalReg('Workshop IA Generativa · 1.5h')">Inscribir este curso →</button>
+              </div>
+            </div>
+          </div>
+          <div class="ccard" onclick="openCard(this)">
+            <div class="ccard-num">Curso 2 de 3</div>
+            <div class="ccard-top">
+              <div class="ccard-title">Formación Básica</div>
+              <span class="ccard-hours">6h</span>
+            </div>
+            <p class="ccard-desc">Fundamentos completos con aplicaciones prácticas desde el primer día.</p>
+            <div class="ccard-lbd">Prueba de herramientas generativas en vivo</div>
+            <button class="ccard-toggle">Ver detalles ↓</button>
+            <div class="ccard-detail">
+              <div class="module-item">Introducción a la IA y conceptos base</div>
+              <div class="module-item">IA generativa: ChatGPT, NotebookLM, Claude, Suno</div>
+              <div class="module-item">Prompt efectivo — cómo hablarle bien a la IA</div>
+              <div class="module-item">Generación de texto, imágenes, audio y video</div>
+              <div class="module-item">Ley de protección de datos y uso responsable</div>
+              <div class="outcomes">
+                <div class="outcomes-label">Al terminar podrás...</div>
+                <div class="outcome-item">Usar 3+ herramientas de IA generativa</div>
+                <div class="outcome-item">Crear contenido con IA para tu trabajo real</div>
+                <div class="outcome-item">Aplicar uso responsable desde el primer día</div>
+              </div>
+              <div class="ccard-cta" onclick="event.stopPropagation()">
+                <button class="btn btn-rosa" style="width:100%;justify-content:center;font-size:13px;padding:9px" onclick="openGlobalReg('Formación Básica · 6h')">Inscribir este curso →</button>
+              </div>
+            </div>
+          </div>
+          <div class="ccard" onclick="openCard(this)">
+            <div class="ccard-num">Curso 3 de 3</div>
+            <div class="ccard-top">
+              <div class="ccard-title">IA para Todos</div>
+              <span class="ccard-hours">8h</span>
+            </div>
+            <p class="ccard-desc">Programa integral. Tecnologías, casos de uso, ética y preparación para el futuro.</p>
+            <div class="ccard-lbd">Proyecto de IA desde el problema hasta la solución</div>
+            <button class="ccard-toggle">Ver detalles ↓</button>
+            <div class="ccard-detail">
+              <div class="module-item">Tecnologías esenciales en IA — experiencia práctica</div>
+              <div class="module-item">Aplicaciones y casos de éxito por industria</div>
+              <div class="module-item">Ciclo de vida de un proyecto de IA</div>
+              <div class="module-item">Ética, privacidad y sesgos en IA</div>
+              <div class="module-item">IA generativa y creatividad aplicada</div>
+              <div class="module-item">Primeros pasos para seguir aprendiendo</div>
+              <div class="outcomes">
+                <div class="outcomes-label">Al terminar podrás...</div>
+                <div class="outcome-item">Hablar de IA con criterio en reuniones ejecutivas</div>
+                <div class="outcome-item">Identificar casos de uso en tu área</div>
+                <div class="outcome-item">Usar IA con responsabilidad ética</div>
+              </div>
+              <div class="ccard-cta" onclick="event.stopPropagation()">
+                <button class="btn btn-rosa" style="width:100%;justify-content:center;font-size:13px;padding:9px" onclick="openGlobalReg('IA para Todos · 8h')">Inscribir este curso →</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- PANEL 2: EXPLORADOR -->
+      <div class="level-panel" id="panel-2">
+        <div class="level-header">
+          <div class="level-badge lb2">2</div>
+          <div>
+            <h3 style="font-size:1rem;margin-bottom:2px">Explorador · Profundizando con criterio</h3>
+            <p style="font-size:13px;color:var(--grafito)">Para quienes ya tienen base y quieren usar IA con más criterio.</p>
+          </div>
+        </div>
+        <div class="courses-grid">
+          <div class="ccard" onclick="openCard(this)">
+            <div class="ccard-num">Curso 1 de 2</div>
+            <div class="ccard-top">
+              <div class="ccard-title">Intermedia 1</div>
+              <span class="ccard-hours">4h</span>
+            </div>
+            <p class="ccard-desc">Tipos de IA, herramientas avanzadas y generación en múltiples formatos.</p>
+            <div class="ccard-lbd">Exploración práctica de herramientas avanzadas</div>
+            <button class="ccard-toggle">Ver detalles ↓</button>
+            <div class="ccard-detail">
+              <div class="module-item">Tipos y criterios para elegir la IA correcta</div>
+              <div class="module-item">Aplicaciones de IA por área y rol</div>
+              <div class="module-item">Entrenamiento de redes neuronales — qué es y por qué importa</div>
+              <div class="module-item">Herramientas: Crystal, Hey Gen, Kling IA, Claude</div>
+              <div class="module-item">Generación en tipos de formatos: texto, imágenes, infografías, videos</div>
+              <div class="module-item">Construcción de Gemas personalizadas (Gemini)</div>
+              <div class="module-item">Creación de asistentes propios (ChatGPT)</div>
+              <div class="outcomes">
+                <div class="outcomes-label">Al terminar podrás...</div>
+                <div class="outcome-item">Crear tu propio asistente IA personalizado</div>
+                <div class="outcome-item">Generar contenido en múltiples formatos con IA</div>
+                <div class="outcome-item">Elegir la herramienta correcta para cada tarea</div>
+              </div>
+              <div class="ccard-cta" onclick="event.stopPropagation()">
+                <button class="btn btn-rosa" style="width:100%;justify-content:center;font-size:13px;padding:9px" onclick="openGlobalReg('Intermedia 1 · 4h')">Inscribir este curso →</button>
+              </div>
+            </div>
+          </div>
+          <div class="ccard" onclick="openCard(this)">
+            <div class="ccard-num">Curso 2 de 2</div>
+            <div class="ccard-top">
+              <div class="ccard-title">Intermedia 2</div>
+              <span class="ccard-hours">4h</span>
+            </div>
+            <p class="ccard-desc">Ética, futuro del trabajo y construcción de un path de carrera con IA.</p>
+            <div class="ccard-lbd">Diseño de mi rol como promotor de IA</div>
+            <button class="ccard-toggle">Ver detalles ↓</button>
+            <div class="ccard-detail">
+              <div class="module-item">Ética y regulación de la IA</div>
+              <div class="module-item">Sesgos — cómo identificarlos y gestionarlos</div>
+              <div class="module-item">Futuro del trabajo — qué cambia y qué no</div>
+              <div class="module-item">Emociones y miedos frente a la IA</div>
+              <div class="module-item">Construyendo mi path de carrera con IA</div>
+              <div class="module-item">Mi rol como promotor de IA en la organización</div>
+              <div class="outcomes">
+                <div class="outcomes-label">Al terminar podrás...</div>
+                <div class="outcome-item">Liderar conversaciones difíciles sobre IA en tu equipo</div>
+                <div class="outcome-item">Definir tu rol como promotor de adopción interna</div>
+                <div class="outcome-item">Tener criterio ético para evaluar usos de IA</div>
+              </div>
+              <div class="ccard-cta" onclick="event.stopPropagation()">
+                <button class="btn btn-rosa" style="width:100%;justify-content:center;font-size:13px;padding:9px" onclick="openGlobalReg('Intermedia 2 · 4h')">Inscribir este curso →</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- PANEL 3: PRACTICANTE -->
+      <div class="level-panel" id="panel-3">
+        <div class="level-header">
+          <div class="level-badge lb3">3</div>
+          <div>
+            <h3 style="font-size:1rem;margin-bottom:2px">Practicante · Aplicando con impacto</h3>
+            <p style="font-size:13px;color:var(--grafito)">Para equipos y líderes que quieren resultados concretos, no solo comprensión teórica.</p>
+          </div>
+        </div>
+        <div class="courses-grid">
+          <div class="ccard" onclick="openCard(this)">
+            <div class="ccard-num">Curso 1 de 4</div>
+            <div class="ccard-top">
+              <div class="ccard-title">Avanzada Operativa</div>
+              <span class="ccard-hours">4h</span>
+            </div>
+            <p class="ccard-desc">Del problema al caso de uso en una sesión. Con tus procesos reales.</p>
+            <div class="ccard-lbd">Diseño de aplicaciones para el área propia</div>
+            <button class="ccard-toggle">Ver detalles ↓</button>
+            <div class="ccard-detail">
+              <div class="module-item">Experimentación con IA en procesos propios</div>
+              <div class="module-item">Diseño de aplicaciones específicas para el área</div>
+              <div class="module-item">Generación de casos de uso aplicables inmediatamente</div>
+              <div class="outcomes">
+                <div class="outcomes-label">Al terminar podrás...</div>
+                <div class="outcome-item">Diseñar un caso de uso de IA para tu área</div>
+                <div class="outcome-item">Aplicar IA en al menos 2 procesos propios</div>
+              </div>
+              <div class="ccard-cta" onclick="event.stopPropagation()">
+                <button class="btn btn-rosa" style="width:100%;justify-content:center;font-size:13px;padding:9px" onclick="openGlobalReg('Avanzada Operativa · 4h')">Inscribir este curso →</button>
+              </div>
+            </div>
+          </div>
+          <div class="ccard" onclick="openCard(this)">
+            <div class="ccard-num">Curso 2 de 4</div>
+            <div class="ccard-top">
+              <div class="ccard-title">IA para Líderes</div>
+              <span class="ccard-hours">12h</span>
+            </div>
+            <p class="ccard-desc">El mayor obstáculo no es la tecnología: es la resistencia cultural. Este programa convierte líderes en agentes de adopción.</p>
+            <div class="ccard-lbd">Actividad práctica en cada uno de los 7 módulos</div>
+            <button class="ccard-toggle">Ver módulos ↓</button>
+            <div class="ccard-detail">
+              <div class="module-item">M1 · Comprender la IA — fundamentos e integración</div>
+              <div class="module-item">M2 · Mentalidad de experimentación y aprendizaje rápido</div>
+              <div class="module-item">M3 · Quick Wins — alto impacto, baja fricción</div>
+              <div class="module-item">M4 · Ética, legal y gobernanza responsable</div>
+              <div class="module-item">M5 · Gestión del cambio — marcos para liderar la transición</div>
+              <div class="module-item">M6 · IA y futuro del trabajo — impacto en roles</div>
+              <div class="module-item">M7 · IA generativa y productividad cotidiana</div>
+              <div class="outcomes">
+                <div class="outcomes-label">Al terminar podrás...</div>
+                <div class="outcome-item">Liderar la adopción de IA en tu equipo con método</div>
+                <div class="outcome-item">Identificar y ejecutar Quick Wins en menos de 30 días</div>
+                <div class="outcome-item">Gestionar la resistencia cultural con criterio</div>
+              </div>
+              <div class="ccard-cta" onclick="event.stopPropagation()">
+                <button class="btn btn-rosa" style="width:100%;justify-content:center;font-size:13px;padding:9px" onclick="openGlobalReg('IA para Líderes · 12h')">Inscribir este curso →</button>
+              </div>
+            </div>
+          </div>
+          <div class="ccard" onclick="openCard(this)">
+            <div class="ccard-num">Curso 3 de 4</div>
+            <div class="ccard-top">
+              <div class="ccard-title">IA para Ventas</div>
+              <span class="ccard-hours">8h</span>
+            </div>
+            <p class="ccard-desc">IA en todo el ciclo comercial: prospección, personalización, cierre y fidelización.</p>
+            <div class="ccard-lbd">Simulación de negociación apoyada por IA</div>
+            <button class="ccard-toggle">Ver módulos ↓</button>
+            <div class="ccard-detail">
+              <div class="module-item">M1 · IA en el ciclo de ventas — impacto real</div>
+              <div class="module-item">M2 · Prospección inteligente con analítica predictiva</div>
+              <div class="module-item">M3 · Personalización — NLP para propuestas a medida</div>
+              <div class="module-item">M4 · Negociación con datos en tiempo real</div>
+              <div class="module-item">M5 · Ética y confianza del cliente con IA</div>
+              <div class="module-item">M6 · Estrategia IA para todo el embudo TOFU-MOFU-BOFU</div>
+              <div class="outcomes">
+                <div class="outcomes-label">Al terminar podrás...</div>
+                <div class="outcome-item">Prospectar con IA predictiva y scoring de leads</div>
+                <div class="outcome-item">Personalizar propuestas con NLP en tiempo real</div>
+                <div class="outcome-item">Construir tu roadmap de IA para ventas</div>
+              </div>
+              <div class="ccard-cta" onclick="event.stopPropagation()">
+                <button class="btn btn-rosa" style="width:100%;justify-content:center;font-size:13px;padding:9px" onclick="openGlobalReg('IA para Ventas · 8h')">Inscribir este curso →</button>
+              </div>
+            </div>
+          </div>
+          <div class="ccard" onclick="openCard(this)">
+            <div class="ccard-num">Curso 4 de 4</div>
+            <div class="ccard-top">
+              <div class="ccard-title">Laboratorio de Innovación</div>
+              <span class="ccard-hours">8h</span>
+            </div>
+            <p class="ccard-desc">Despiertan creatividad, activan curiosidad, generan ideas aplicables. De la idea al prototipo en un día.</p>
+            <div class="ccard-lbd">Experimentos de IA con casos del negocio real</div>
+            <button class="ccard-toggle">Ver módulos ↓</button>
+            <div class="ccard-detail">
+              <div class="module-item">M1 · Primeros pasos — base sólida para actuar</div>
+              <div class="module-item">M2 · Tecnologías esenciales al alcance del equipo</div>
+              <div class="module-item">M3 · Mentalidad de experimentación</div>
+              <div class="module-item">M4 · Creatividad aumentada con IA generativa</div>
+              <div class="module-item">M5 · Ética, privacidad y sesgos — criterio aplicado</div>
+              <div class="module-item">M6 · Prepararse para el futuro con IA</div>
+              <div class="outcomes">
+                <div class="outcomes-label">Al terminar podrás...</div>
+                <div class="outcome-item">Diseñar soluciones de IA para tu área desde cero</div>
+                <div class="outcome-item">Facilitar una sesión de ideación con IA en tu equipo</div>
+              </div>
+              <div class="ccard-cta" onclick="event.stopPropagation()">
+                <button class="btn btn-rosa" style="width:100%;justify-content:center;font-size:13px;padding:9px" onclick="openGlobalReg('Laboratorio de Innovación · 8h')">Inscribir este curso →</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- PANEL 4: EJECUTIVO -->
+      <div class="level-panel" id="panel-4">
+        <!-- STATS DE EJECUTIVOS -->
+        <div class="exec-stats">
+          <div class="exec-stat">
+            <div class="exec-stat-n" style="color:var(--rosa)">73%</div>
+            <div class="exec-stat-l">de los gerentes ya usaron IA este año, en su mayoría sin guía corporativa</div>
+          </div>
+          <div class="exec-stat">
+            <div class="exec-stat-n" style="color:var(--lavanda)">1 de 4</div>
+            <div class="exec-stat-l">iniciativas de IA llegan a producción cuando no hay método de adopción</div>
+          </div>
+          <div class="exec-stat">
+            <div class="exec-stat-n" style="color:var(--teal)">15–50%</div>
+            <div class="exec-stat-l">de eficiencia operativa cuando la adopción se ordena (rango en 6 meses)</div>
+          </div>
+        </div>
+        <div style="background:rgba(124,58,237,.08);border:1px solid rgba(124,58,237,.15);border-radius:10px;padding:1rem 1.25rem;margin-bottom:1.25rem">
+          <p style="font-size:14px;font-weight:500;color:var(--lavanda);margin-bottom:4px">La IA no necesita urgencia. Necesita método.</p>
+          <p style="font-size:13px;color:var(--grafito)">Diseñado para quienes deciden, no para quienes programan. Gerentes de área, Directores, C-Level y Comité ejecutivo.</p>
+        </div>
+        <div class="level-header">
+          <div class="level-badge lb4">4</div>
+          <div>
+            <h3 style="font-size:1rem;margin-bottom:2px">Ejecutivo · Estrategia, ROI y gobernanza</h3>
+            <p style="font-size:13px;color:var(--grafito)">Para directivos y C-Level que necesitan criterio ejecutivo, no comprensión técnica.</p>
+          </div>
+        </div>
+                <div style="display:flex;flex-direction:column;gap:12px">
+          <!-- CLAUDE PARA GERENTES -->
+          <div class="ccard claude-card" id="claudeCard" onclick="openCard(this)">
+            <div class="ccard-num" style="display:flex;gap:6px;align-items:center;flex-wrap:wrap">
+              Curso 1 de 3 <span class="tag tag-rosa" style="font-size:9px;padding:2px 8px">Nuevo</span><span class="tag tag-violeta" style="font-size:9px;padding:2px 8px">Próximas fechas</span>
+            </div>
+            <div class="ccard-top">
+              <div class="ccard-title">Claude para Gerentes & Cowork</div>
+              <span class="ccard-hours">4h</span>
+            </div>
+            <p class="ccard-desc">Para líderes que deciden con criterio. Sus equipos ya usan IA. La pregunta es con qué método.</p>
+            <div class="ccard-lbd">70% práctica · 30% teoría · Entregable real al terminar</div>
+            <button class="ccard-toggle">Ver programa completo ↓</button>
+            <div class="ccard-detail">
+              <!-- SIN/CON -->
+              <div class="comparison" style="margin-bottom:1.25rem">
+                <div class="comp-col sin">
+                  <div class="comp-title">SIN MÉTODO</div>
+                  <div class="comp-item"><span class="comp-icon" style="color:#F87171">✗</span>Prompts a ciegas, resultados mediocres</div>
+                  <div class="comp-item"><span class="comp-icon" style="color:#F87171">✗</span>Conocimiento se pierde entre chats</div>
+                  <div class="comp-item"><span class="comp-icon" style="color:#F87171">✗</span>Inversión sin criterio ni gobernanza</div>
+                  <div class="comp-item"><span class="comp-icon" style="color:#F87171">✗</span>Equipos sobrecargados, no eficientes</div>
+                </div>
+                <div class="comp-col con">
+                  <div class="comp-title">CON MÉTODO HEI01</div>
+                  <div class="comp-item"><span class="comp-icon" style="color:var(--teal)">✓</span>Megaprompts estandarizados por rol</div>
+                  <div class="comp-item"><span class="comp-icon" style="color:var(--teal)">✓</span>Proyectos = base de conocimiento</div>
+                  <div class="comp-item"><span class="comp-icon" style="color:var(--teal)">✓</span>Cowork ejecuta procesos sin supervisión</div>
+                  <div class="comp-item"><span class="comp-icon" style="color:var(--teal)">✓</span>Decisiones más rápidas, menos ruido</div>
+                </div>
+              </div>
+              <!-- SCHEDULE -->
+              <div style="background:rgba(255,255,255,.04);border-radius:10px;overflow:hidden;margin-bottom:1.25rem;border:1px solid rgba(255,255,255,.06)">
+                <div style="display:grid;grid-template-columns:100px 1fr">
+                  <div style="padding:10px 12px;border-bottom:1px solid rgba(255,255,255,.06);background:rgba(255,255,255,.03);font-size:11px;font-weight:600;color:var(--grafito)">0:00–1:00</div>
+                  <div style="padding:10px 12px;border-bottom:1px solid rgba(255,255,255,.06);border-left:1px solid rgba(255,255,255,.06);font-size:12px"><span style="color:var(--rosa);font-weight:600">M1 · FUNDAMENTOS</span> — Claude esencial · primer artefacto</div>
+                  <div style="padding:10px 12px;border-bottom:1px solid rgba(255,255,255,.06);background:rgba(255,255,255,.03);font-size:11px;font-weight:600;color:var(--grafito)">1:00–2:00</div>
+                  <div style="padding:10px 12px;border-bottom:1px solid rgba(255,255,255,.06);border-left:1px solid rgba(255,255,255,.06);font-size:12px"><span style="color:var(--rosa);font-weight:600">M2 · MEGAPROMPTING</span> — FORMATO + pensamiento extendido</div>
+                  <div style="padding:10px 12px;border-bottom:1px solid rgba(255,255,255,.06);background:rgba(255,255,255,.03);font-size:11px;font-weight:600;color:var(--grafito)">2:00–3:00</div>
+                  <div style="padding:10px 12px;border-bottom:1px solid rgba(255,255,255,.06);border-left:1px solid rgba(255,255,255,.06);font-size:12px"><span style="color:var(--rosa);font-weight:600">M3 · SISTEMATIZACIÓN</span> — Proyectos · Estilos · Skills · MCP</div>
+                  <div style="padding:10px 12px;background:rgba(255,255,255,.03);font-size:11px;font-weight:600;color:var(--grafito)">3:00–4:00</div>
+                  <div style="padding:10px 12px;border-left:1px solid rgba(255,255,255,.06);font-size:12px"><span style="color:var(--rosa);font-weight:600">M4 · COWORK</span> — Agente que ejecuta sobre archivos locales</div>
+                </div>
+              </div>
+              <!-- PRICING -->
+              <div class="pricing-grid">
+                <div class="price-card std">
+                  <div class="price-type">MODALIDAD ABIERTA</div>
+                  <div class="price-amount">$500.000</div>
+                  <div class="price-detail">CLP + IVA · hasta 5 personas</div>
+                  <div class="price-item"><span class="price-check">✓</span>4h presenciales</div>
+                  <div class="price-item"><span class="price-check">✓</span>Material HEI01</div>
+                  <div class="price-item"><span class="price-check">✓</span>Cuadernillo digital</div>
+                </div>
+                <div class="price-card rec">
+                  <div class="price-badge">RECOMENDADO</div>
+                  <div class="price-type">IN COMPANY</div>
+                  <div class="price-amount">$600.000</div>
+                  <div class="price-detail">CLP + IVA · hasta 5 personas</div>
+                  <div class="price-item"><span class="price-check">✓</span>Todo lo anterior</div>
+                  <div class="price-item"><span class="price-check">✓</span>Descubrimiento previo (60 min)</div>
+                  <div class="price-item"><span class="price-check">✓</span>Banco de prompts a medida</div>
+                </div>
+              </div>
+              <div class="ccard-cta" onclick="event.stopPropagation()">
+                <button class="btn btn-rosa" style="width:100%;justify-content:center;font-size:13px;padding:10px;margin-top:.5rem" onclick="openGlobalReg('Claude para Gerentes & Cowork · 4h', true)">Inscribir este curso →</button>
+              </div>
+            </div>
+          </div>
+          <!-- AVANZADA EXEC -->
+          <div class="ccard" onclick="openCard(this)">
+            <div class="ccard-num">Curso 2 de 3</div>
+            <div class="ccard-top">
+              <div class="ccard-title">Avanzada para Ejecutivos</div>
+              <span class="ccard-hours">6h</span>
+            </div>
+            <p class="ccard-desc">Estrategia de IA, portafolio, ROI y gestión del cambio. Para decidir con datos.</p>
+            <div class="ccard-lbd">Construcción de AI Canvas de su organización</div>
+            <button class="ccard-toggle">Ver detalles ↓</button>
+            <div class="ccard-detail">
+              <div class="module-item">Estrategia de IA — dónde y cómo apostar</div>
+              <div class="module-item">Portafolio de IA — priorización y gestión</div>
+              <div class="module-item">AI Canvas y AI Business Case</div>
+              <div class="module-item">ROI de la IA — cómo medirlo y defenderlo ante el comité</div>
+              <div class="module-item">Estructuras organizacionales para IA</div>
+              <div class="module-item">Gestión del cambio — upskilling y reskilling</div>
+              <div class="outcomes">
+                <div class="outcomes-label">Al terminar podrás...</div>
+                <div class="outcome-item">Construir y presentar un business case de IA</div>
+                <div class="outcome-item">Defender el ROI de iniciativas de IA ante el directorio</div>
+                <div class="outcome-item">Diseñar el roadmap de adopción de tu organización</div>
+              </div>
+              <div class="ccard-cta" onclick="event.stopPropagation()">
+                <button class="btn btn-rosa" style="width:100%;justify-content:center;font-size:13px;padding:9px" onclick="openGlobalReg('Avanzada para Ejecutivos · 6h')">Inscribir este curso →</button>
+              </div>
+            </div>
+          </div>
+          <!-- IA EJECUTIVOS MODULAR -->
+          <div class="ccard" onclick="openCard(this)">
+            <div class="ccard-num">Curso 3 de 3</div>
+            <div class="ccard-top">
+              <div class="ccard-title">IA para Ejecutivos — modular</div>
+              <div style="display:flex;gap:6px"><span class="ccard-hours">10h Core</span><span class="ccard-hours" style="background:rgba(124,58,237,.15);color:var(--lavanda)">16h Completo</span></div>
+            </div>
+            <p class="ccard-desc">8 módulos de 2h. Elige tu ruta según tu nivel de base.</p>
+            <div class="ccard-lbd">Actividad práctica en cada módulo · Co-diseño real en M8</div>
+            <button class="ccard-toggle">Ver módulos ↓</button>
+            <div class="ccard-detail">
+              <div class="modular-wrap" style="margin-top:0;margin-bottom:1.25rem">
+                <div class="modular-group">
+                  <div class="mod-group-label">Fundamentos — omitir si ya tienes base en IA</div>
+                  <div class="mods-grid">
+                    <div class="mod-card optional"><div class="mod-n">M1</div><div class="mod-name">Fundamentos IA</div><div class="mod-h">2h</div><div class="mod-lbd">Actividad práctica</div></div>
+                    <div class="mod-card optional"><div class="mod-n">M2</div><div class="mod-name">Tecnologías IA</div><div class="mod-h">2h</div><div class="mod-lbd">Actividad práctica</div></div>
+                    <div class="mod-card optional"><div class="mod-n">M6</div><div class="mod-name">IA y futuro del trabajo</div><div class="mod-h">2h</div><div class="mod-lbd">Actividad práctica</div></div>
+                  </div>
+                </div>
+                <div class="modular-group" style="margin-bottom:0">
+                  <div class="mod-group-label core">Core ejecutivo — siempre incluidos</div>
+                  <div class="mods-grid">
+                    <div class="mod-card"><div class="mod-n">M3</div><div class="mod-name">Estrategia IA</div><div class="mod-h">2h · ROI y decisiones</div><div class="mod-lbd">Actividad práctica</div></div>
+                    <div class="mod-card"><div class="mod-n">M4</div><div class="mod-name">Ética y gobernanza</div><div class="mod-h">2h · legal y privacidad</div><div class="mod-lbd">Actividad práctica</div></div>
+                    <div class="mod-card"><div class="mod-n">M5</div><div class="mod-name">Gestión proyectos IA</div><div class="mod-h">2h · liderazgo</div><div class="mod-lbd">Actividad práctica</div></div>
+                    <div class="mod-card"><div class="mod-n">M7</div><div class="mod-name">Aplicaciones por área</div><div class="mod-h">2h · finanzas, mkt, ventas</div><div class="mod-lbd">Actividad práctica</div></div>
+                    <div class="mod-card teal"><div class="mod-n">M8</div><div class="mod-name">Taller integrador</div><div class="mod-h">2h · co-diseño real</div><div class="mod-lbd">Co-diseño con casos propios</div></div>
+                  </div>
+                </div>
+              </div>
+              <div class="path-cards">
+                <div class="path-c core"><div class="path-c-title">Core ejecutivo</div><div class="path-c-h">10h</div><div class="path-c-mods">M3 · M4 · M5 · M7 · M8</div><div class="path-c-for">Para ejecutivos con base en IA</div></div>
+                <div class="path-c full"><div class="path-c-title">Programa completo</div><div class="path-c-h">16h</div><div class="path-c-mods">M1 al M8 — todos los módulos</div><div class="path-c-for">Para ejecutivos que parten de cero</div></div>
+              </div>
+              <div class="ccard-cta" onclick="event.stopPropagation()">
+                <button class="btn btn-rosa" style="width:100%;justify-content:center;font-size:13px;padding:9px;margin-top:.75rem" onclick="openGlobalReg('IA para Ejecutivos Modular')">Cotizar este programa →</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- PANEL 5: ESPECIALISTA -->
+      <div class="level-panel" id="panel-5">
+        <div class="level-header" style="opacity:.7">
+          <div class="level-badge lb5">5</div>
+          <div>
+            <h3 style="font-size:1rem;margin-bottom:2px">Especialista · Próximamente</h3>
+            <p style="font-size:13px;color:var(--grafito)">Programas de especialización profunda en herramientas y automatización.</p>
+          </div>
+        </div>
+        <div class="courses-grid" style="opacity:.6;pointer-events:none">
+          <div class="ccard">
+            <div class="ccard-num">Curso 1 de 2</div>
+            <div class="ccard-top"><div class="ccard-title">Claude para Gerentes & Cowork</div><span class="ccard-hours">4h</span></div>
+            <p class="ccard-desc">Uso estratégico de Claude como herramienta ejecutiva diaria.</p>
+            <div class="ccard-lbd">⏳ En desarrollo</div>
+          </div>
+          <div class="ccard">
+            <div class="ccard-num">Curso 2 de 2</div>
+            <div class="ccard-top"><div class="ccard-title">Automatización IA · Google Apps Script</div><span class="ccard-hours">TBD</span></div>
+            <p class="ccard-desc">Automatización de flujos con IA y Google Workspace. Sin programar.</p>
+            <div class="ccard-lbd">⏳ En desarrollo</div>
+          </div>
+        </div>
+      </div>
+    </div><!-- /path-paquetes -->
+
+    <!-- ===== PATH B: CUSTOM BUILDER ===== -->
+    <div id="path-custom">
+      <div class="builder-intro">
+        <h3 style="margin-bottom:6px">Elige exactamente lo que necesitas</h3>
+        <p style="font-size:13px;color:var(--grafito)">Selecciona los contenidos que quieres incluir en tu programa. Te generamos el presupuesto a medida.</p>
+      </div>
+
+      <div id="builder-levels"></div>
+
+      <div style="margin-bottom:1.25rem">
+        <div style="font-size:13px;font-weight:600;margin-bottom:.5rem">Tu programa personalizado</div>
+        <div class="builder-summary" id="builderSummary">
+          <div class="builder-summary-empty">Selecciona contenidos para ver el resumen.</div>
+        </div>
+      </div>
+
+      <button class="btn btn-rosa" id="builderSubmit" disabled onclick="openGlobalReg(null, false, true)" style="width:100%;justify-content:center">Solicitar presupuesto de mi programa →</button>
+    </div><!-- /path-custom -->
+
+    <!-- GLOBAL REGISTRATION FORM (shared, hidden by default) -->
+    <div id="global-reg-form" style="display:none;margin-top:1.5rem">
+      <div class="person-form-box">
+        <div class="person-form-title">
+          <span>Tu información</span>
+          <span id="reg-course-label" class="tag tag-rosa" style="font-size:10px"></span>
+        </div>
+        <div class="person-form-sub">Datos guardados automáticamente para próximas acciones.</div>
+        <div class="pf-grid">
+          <div class="pf"><label>Nombre *</label><input type="text" data-field="nombre" id="gf-nombre" placeholder="Tu nombre" oninput="autoSavePerson()"></div>
+          <div class="pf"><label>Cargo *</label><input type="text" data-field="cargo" id="gf-cargo" placeholder="Tu cargo" oninput="autoSavePerson()"></div>
+          <div class="pf pf-full"><label>Correo *</label><input type="email" data-field="email" id="gf-email" placeholder="nombre@empresa.com" oninput="autoSavePerson()"></div>
+          <div class="pf"><label>Empresa</label><input type="text" data-field="empresa" id="gf-empresa" placeholder="Nombre de la empresa" oninput="autoSavePerson()"></div>
+          <div class="pf"><label>País</label><input type="text" data-field="pais" id="gf-pais" placeholder="Chile / México..." oninput="autoSavePerson()"></div>
+        </div>
+
+        <div id="claude-dates-section" style="display:none;margin-top:1rem">
+          <div style="font-size:12px;color:var(--grafito);margin-bottom:8px;font-weight:500">Fecha preferida</div>
+          <div class="pf-radios">
+            <label class="pf-radio"><input type="radio" name="gf-fecha" value="Viernes 17 julio 09:00–13:00"> Viernes 17 julio</label>
+            <label class="pf-radio"><input type="radio" name="gf-fecha" value="Sábado 18 julio 09:00–13:00"> Sábado 18 julio</label>
+          </div>
+          <div style="font-size:12px;color:var(--grafito);margin-bottom:8px;margin-top:12px;font-weight:500">Tipo de inscripción</div>
+          <div class="pf-radios">
+            <label class="pf-radio"><input type="radio" name="gf-tipo" value="Curso abierto"> Abierto</label>
+            <label class="pf-radio"><input type="radio" name="gf-tipo" value="Curso individual"> Individual</label>
+            <label class="pf-radio"><input type="radio" name="gf-tipo" value="In Company"> In Company</label>
+            <label class="pf-radio"><input type="radio" name="gf-tipo" value="WIF"> WIF</label>
+          </div>
+          <div style="font-size:12px;color:var(--grafito);margin-bottom:8px;margin-top:12px;font-weight:500">Facturación</div>
+          <div class="pf-radios">
+            <label class="pf-radio"><input type="radio" name="gf-fact" value="Boleta"> Boleta</label>
+            <label class="pf-radio"><input type="radio" name="gf-fact" value="Factura"> Factura</label>
+          </div>
+        </div>
+
+        <button class="btn btn-rosa" id="gf-submit" onclick="submitGlobalForm()" style="width:100%;justify-content:center;margin-top:1.25rem">
+          <span id="gf-lbl">Confirmar →</span>
+        </button>
+        <div class="err-msg" id="gf-err">Por favor ingresa al menos tu nombre y correo.</div>
+        <div style="text-align:center;margin-top:8px">
+          <button onclick="closeGlobalReg()" style="background:none;border:none;font-size:12px;color:var(--grafito);cursor:pointer;text-decoration:underline;font-family:'Space Grotesk',sans-serif">← Cancelar</button>
+        </div>
+      </div>
+      <div class="confirm-block" id="gf-confirm">
+        <div class="confirm-icon">✦</div>
+        <div class="confirm-title">¡Recibido!</div>
+        <div class="confirm-sub">Hei o alguien de su equipo te contacta en las próximas 24 horas para confirmar los detalles y próximos pasos.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- METODOLOGÍA -->
+<section class="section" id="metodologia">
+  <div class="container">
+    <div class="section-label animate-on-scroll">Cómo aprendemos</div>
+    <h2 class="headline animate-on-scroll delay-1" style="margin-bottom:.75rem">La metodología que <span class="rosa">hace la diferencia</span></h2>
+    <p class="muted animate-on-scroll delay-2" style="max-width:520px;margin-bottom:0">No entregamos teoría y desaparecemos. Cada sesión está diseñada para que las personas salgan habiendo hecho algo real con sus propios casos de negocio.</p>
+    <div class="meto-grid animate-on-scroll delay-2">
+      <div class="meto-card"><div class="meto-icon">🎯</div><div class="meto-title">Learning by doing</div><div class="meto-desc">Todos los módulos incluyen una actividad práctica. Las personas aprenden haciendo, no escuchando. El conocimiento que no se practica en la misma sesión, no persiste.</div></div>
+      <div class="meto-card"><div class="meto-icon">🧩</div><div class="meto-title">Casos reales del negocio</div><div class="meto-desc">Diseñamos escenarios de la industria del cliente. Nada genérico — cada ejercicio parte de los problemas reales que el equipo enfrenta en su trabajo cotidiano.</div></div>
+      <div class="meto-card"><div class="meto-icon">⚡</div><div class="meto-title">Lúdico y colaborativo</div><div class="meto-desc">Creamos un ambiente de confianza donde aprender es seguro. Las personas descubren, preguntan, se equivocan y mejoran. Sin presión, con resultado medible.</div></div>
+      <div class="meto-card"><div class="meto-icon">🎙️</div><div class="meto-title">Facilitación experta</div><div class="meto-desc">Facilitado por Hei o su equipo. No es contenido grabado ni un relator sin contexto — es acompañamiento real con experiencia organizacional en Latam y España.</div></div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- FAQ -->
+<section class="section" id="faq">
+  <div class="container">
+    <div class="section-label animate-on-scroll">Preguntas frecuentes</div>
+    <h2 class="headline animate-on-scroll delay-1" style="margin-bottom:.75rem">Lo que nos preguntan <span class="rosa">antes de decidir</span></h2>
+    <p class="muted animate-on-scroll delay-2" style="max-width:520px;margin-bottom:2rem">Si tienes una pregunta que no está aquí, escríbenos a <a href="mailto:hei@hei01.com" style="color:var(--rosa);text-decoration:none">hei@hei01.com</a></p>
+    <div id="faq-list" class="animate-on-scroll delay-2" style="display:flex;flex-direction:column;gap:8px">
+
+      <div class="faq-item" onclick="toggleFaq(this)">
+        <div class="faq-q"><span>¿Necesito experiencia previa en IA para inscribirme?</span><span class="faq-icon">+</span></div>
+        <div class="faq-a">No. Los programas están segmentados por nivel de partida. Si es tu primer contacto con la IA, comenzamos desde cero con el Nivel 1. Si ya tienes base, elegimos el nivel que corresponde. El <a href="index.html#test" style="color:var(--rosa)">Test SCALA</a> (gratuito, en esta página) te ayuda a identificar exactamente dónde estás antes de decidir.</div>
+      </div>
+
+      <div class="faq-item" onclick="toggleFaq(this)">
+        <div class="faq-q"><span>¿Las formaciones son presenciales o virtuales?</span><span class="faq-icon">+</span></div>
+        <div class="faq-a">Presenciales por defecto. La metodología — con casos reales, ejercicios en vivo y conversaciones entre participantes — funciona significativamente mejor en sala. Evaluamos excepciones en formato virtual o híbrido dependiendo del contexto geográfico de la organización.</div>
+      </div>
+
+      <div class="faq-item" onclick="toggleFaq(this)">
+        <div class="faq-q"><span>¿Cuántas personas pueden participar por sesión?</span><span class="faq-icon">+</span></div>
+        <div class="faq-a">El formato recomendado es entre 5 y 20 personas. Grupos más pequeños permiten mayor práctica individual y personalización de ejercicios. Para grupos más grandes evaluamos formatos de co-facilitación o sesiones paralelas sin perder la calidad del aprendizaje.</div>
+      </div>
+
+      <div class="faq-item" onclick="toggleFaq(this)">
+        <div class="faq-q"><span>¿Los contenidos se adaptan a nuestra industria?</span><span class="faq-icon">+</span></div>
+        <div class="faq-a">Sí, esa es la diferencia central. No entregamos material genérico. Antes de cada formación hacemos un levantamiento (Discovery de 60 min) para entender los procesos, problemas y lenguaje de tu organización. Los ejercicios se diseñan con casos concretos de tu negocio. El participante no practica con algo inventado — practica con lo que tiene que resolver el lunes.</div>
+      </div>
+
+      <div class="faq-item" onclick="toggleFaq(this)">
+        <div class="faq-q"><span>¿Cómo sé qué nivel necesita mi equipo?</span><span class="faq-icon">+</span></div>
+        <div class="faq-a">Tienes dos opciones: el <a href="index.html#test" style="color:var(--rosa)">Test SCALA</a> (6 preguntas, resultado inmediato) da una lectura de la madurez percibida. La segunda opción es una sesión ejecutiva de 60 minutos — sin costo — donde evaluamos juntos el punto de partida, los objetivos y el programa más adecuado para el perfil y momento de tu equipo.</div>
+      </div>
+
+      <div class="faq-item" onclick="toggleFaq(this)">
+        <div class="faq-q"><span>¿El mismo día del curso se puede aplicar algo?</span><span class="faq-icon">+</span></div>
+        <div class="faq-a">Sí, esa es la promesa. Cada módulo incluye una actividad práctica con casos reales. Al terminar la jornada, cada participante tiene al menos un entregable concreto producido con IA — no un ejercicio de práctica, sino algo que puede usar en su trabajo real. "Al salir, ya aplicaste" no es un slogan: es el criterio de diseño de cada sesión.</div>
+      </div>
+
+      <div class="faq-item" onclick="toggleFaq(this)">
+        <div class="faq-q"><span>¿Qué diferencia a HEI01 de otras formaciones en IA del mercado?</span><span class="faq-icon">+</span></div>
+        <div class="faq-a">Tres diferencias concretas: <strong style="color:var(--blanco)">1) Casos reales de tu negocio</strong> — no ejemplos genéricos de manuales. <strong style="color:var(--blanco)">2) Presencial e intensivo</strong> — aprendes en una jornada, no en 8 semanas online donde nadie completa el curso. <strong style="color:var(--blanco)">3) Facilitación con experiencia organizacional real en Latam</strong> — no un relator externo que conoce la teoría pero no sabe cómo se toman decisiones en tu industria.</div>
+      </div>
+
+      <div class="faq-item" onclick="toggleFaq(this)">
+        <div class="faq-q"><span>¿Los participantes reciben certificado al finalizar?</span><span class="faq-icon">+</span></div>
+        <div class="faq-a">Sí. Al completar cada programa se entrega un certificado digital de HEI01 con nombre del participante, programa cursado y horas completadas. Para los programas de nivel Ejecutivo se entrega adicionalmente un resumen con los entregables generados durante la formación.</div>
+      </div>
+
+      <div class="faq-item" onclick="toggleFaq(this)">
+        <div class="faq-q"><span>¿Cuáles son los precios de los programas?</span><span class="faq-icon">+</span></div>
+        <div class="faq-a">No publicamos precios en el sitio porque dependen del programa, la modalidad (abierta o in company), la cantidad de personas y el contexto de la organización. En la sesión ejecutiva de 60 minutos — sin costo — entregamos la propuesta con valores reales adaptados a tu caso. El único precio visible: <strong style="color:var(--blanco)">Claude para Gerentes & Cowork</strong> parte desde $500.000 CLP + IVA (hasta 5 personas).</div>
+      </div>
+
+      <div class="faq-item" onclick="toggleFaq(this)">
+        <div class="faq-q"><span>¿Puedo combinar módulos de diferentes niveles en un solo programa?</span><span class="faq-icon">+</span></div>
+        <div class="faq-a">Sí. El Constructor de curso en esta página te permite seleccionar exactamente los contenidos que necesitas, de cualquier nivel. Al solicitar presupuesto, diseñamos juntos la secuencia, duración y objetivos del programa personalizado para tu organización.</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<div class="divider"></div>
+
+<!-- CTA FINAL -->
+<section class="section" id="cta-final">
+  <div class="container">
+    <div class="cta-box animate-on-scroll">
+      <span class="tag tag-rosa" style="margin-bottom:1rem;display:inline-block">Diseña la formación para tu equipo</span>
+      <h2 class="headline" style="margin-bottom:.5rem">¿Cuál es el <span class="rosa">primer paso</span><br>para tu organización?</h2>
+      <p>En una sesión de 60 min diseñamos juntos el programa: nivel, modalidad, cantidad de personas y foco en los casos reales de tu negocio.</p>
+      <div class="cta-btns">
+        <a href="https://calendar.app.google/8w3sut8DU4kk4MUR6" target="_blank" class="btn btn-rosa">Agendar sesión ejecutiva →</a>
+        <a href="index.html#test" class="btn btn-outline">Hacer el diagnóstico SCALA</a>
+      </div>
+      <p style="font-size:12px;color:var(--grafito);margin-top:1rem">Sin precios en el sitio — los valores se entregan en la sesión, adaptados a tu organización e industria.</p>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div class="footer-inner">
+      <div class="footer-left">
+        <a href="index.html"><img src="data:image/png;base64,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" alt="HEI01" style="height:44px;width:auto"></a>
+        <div class="footer-tagline">IA que deja huella.</div>
+        <div class="footer-sub">Human Empowered Intelligence<br>Santiago, Chile · Latam + España</div>
+        <a href="mailto:hei@hei01.com" class="footer-email">hei@hei01.com</a>
+      </div>
+      <div class="footer-right">
+        <div class="footer-rrss-label">Sígueme en</div>
+        <div class="footer-rrss">
+          <a href="https://linkedin.com/in/heileengoodson" target="_blank" class="rrss-icon-btn" aria-label="LinkedIn"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></a>
+          <a href="https://youtube.com/@heileengoodson" target="_blank" class="rrss-icon-btn" aria-label="YouTube"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 00.502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 002.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 002.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg></a>
+          <a href="https://instagram.com/heileengoodson" target="_blank" class="rrss-icon-btn" aria-label="Instagram"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg></a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2025 HEI01 · Human Empowered Intelligence</span>
+      <span>Todos los derechos reservados</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+/* ===== CONSTANTS ===== */
+const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxKpZi5hCgNXvbgiS_iIbmJpx5_v2i7NYtjLsXhv1LW9D6jnZD7WjtMN_tpLo_YnS2g/exec';
+const PERSON_KEYS = ['nombre','cargo','email','empresa','pais'];
+
+/* ===== PERSISTENT PERSON DATA ===== */
+function loadPersonData() {
+  PERSON_KEYS.forEach(k => {
+    const val = localStorage.getItem('hei01_' + k);
+    const el = document.getElementById('gf-' + k);
+    if (el && val) el.value = val;
+  });
+  updatePersonBadge();
+}
+function autoSavePerson() {
+  PERSON_KEYS.forEach(k => {
+    const el = document.getElementById('gf-' + k);
+    if (el) localStorage.setItem('hei01_' + k, el.value);
+  });
+  updatePersonBadge();
+}
+function updatePersonBadge() {
+  const nombre = localStorage.getItem('hei01_nombre') || '';
+  const badge = document.getElementById('personBadge');
+  const nameEl = document.getElementById('personName');
+  if (badge && nombre) {
+    nameEl.textContent = nombre;
+    badge.style.display = 'inline-flex';
+  }
+}
+function getPersonData() {
+  const d = {};
+  PERSON_KEYS.forEach(k => { d[k] = localStorage.getItem('hei01_' + k) || ''; });
+  return d;
+}
+function scrollToPersonForm() {
+  document.getElementById('global-reg-form').scrollIntoView({behavior:'smooth'});
+}
+
+/* ===== PATH TOGGLE ===== */
+function setPath(path) {
+  document.getElementById('path-paquetes').style.display = path === 'paquetes' ? 'block' : 'none';
+  document.getElementById('path-custom').style.display   = path === 'custom'   ? 'block' : 'none';
+  document.getElementById('opt-paquetes').classList.toggle('active', path === 'paquetes');
+  document.getElementById('opt-custom').classList.toggle('active',   path === 'custom');
+  localStorage.setItem('hei01_form_path', path);
+  document.getElementById('global-reg-form').style.display = 'none';
+}
+
+/* ===== LEVEL TABS ===== */
+function setLevel(n) {
+  document.querySelectorAll('.level-tab').forEach((t, i) => t.classList.toggle('active', i + 1 === n));
+  document.querySelectorAll('.level-panel').forEach((p, i) => p.classList.toggle('active', i + 1 === n));
+  // Close all cards when switching levels
+  document.querySelectorAll('.ccard.open').forEach(c => closeCard(c));
+  document.getElementById('global-reg-form').style.display = 'none';
+}
+
+/* ===== ACCORDION CARDS (one at a time) ===== */
+function openCard(card) {
+  if (card.classList.contains('open')) {
+    closeCard(card);
+    return;
+  }
+  // Close siblings
+  const panel = card.closest('.level-panel, #path-custom');
+  if (panel) panel.querySelectorAll('.ccard.open').forEach(c => closeCard(c));
+  card.classList.add('open');
+  const btn = card.querySelector('.ccard-toggle');
+  if (btn) btn.textContent = 'Cerrar ↑';
+  card.scrollIntoView({behavior:'smooth', block:'nearest'});
+}
+function closeCard(card) {
+  card.classList.remove('open');
+  const btn = card.querySelector('.ccard-toggle');
+  if (btn) btn.textContent = btn.textContent.includes('módulo') ? 'Ver módulos ↓' : 'Ver detalles ↓';
+}
+
+/* ===== GLOBAL REGISTRATION FORM ===== */
+let currentCourse = '';
+let isClaude = false;
+let isBuilder = false;
+
+function openGlobalReg(courseName, claudeDates = false, builder = false) {
+  currentCourse = courseName || '';
+  isClaude = claudeDates;
+  isBuilder = builder;
+
+  const form = document.getElementById('global-reg-form');
+  const label = document.getElementById('reg-course-label');
+  const datesSection = document.getElementById('claude-dates-section');
+  const confirm = document.getElementById('gf-confirm');
+  const submitBtn = document.getElementById('gf-submit');
+  const lbl = document.getElementById('gf-lbl');
+
+  label.textContent = currentCourse || 'Programa personalizado';
+  label.style.display = currentCourse ? 'inline-block' : 'none';
+  datesSection.style.display = claudeDates ? 'block' : 'none';
+  confirm.classList.remove('show');
+  submitBtn.disabled = false;
+  lbl.textContent = builder ? 'Solicitar presupuesto →' : claudeDates ? 'Confirmar inscripción →' : 'Solicitar información →';
+
+  document.getElementById('gf-err').style.display = 'none';
+  form.style.display = 'block';
+  loadPersonData();
+  form.scrollIntoView({behavior:'smooth', block:'start'});
+}
+function closeGlobalReg() {
+  document.getElementById('global-reg-form').style.display = 'none';
+}
+
+let gfSending = false;
+async function submitGlobalForm() {
+  if (gfSending) return;
+  const nombre = document.getElementById('gf-nombre').value.trim();
+  const email  = document.getElementById('gf-email').value.trim();
+  const err = document.getElementById('gf-err');
+
+  if (!nombre || !email) { err.style.display = 'block'; return; }
+  err.style.display = 'none';
+  gfSending = true;
+
+  const submitBtn = document.getElementById('gf-submit');
+  const lbl = document.getElementById('gf-lbl');
+  submitBtn.disabled = true;
+  lbl.textContent = '↻ Enviando...';
+
+  const person = getPersonData();
+
+  let payload = {
+    ...person,
+    origen: isClaude ? 'Inscripción Claude para Gerentes' :
+            isBuilder ? 'Constructor de curso personalizado' :
+            'Inscripción curso formaciones'
+  };
+
+  if (isClaude) {
+    payload.tipo_curso = document.querySelector('input[name="gf-tipo"]:checked')?.value || '';
+    payload.facturacion = document.querySelector('input[name="gf-fact"]:checked')?.value || '';
+    payload.fecha_curso = document.querySelector('input[name="gf-fecha"]:checked')?.value || '';
+    payload.cursos_seleccionados = [currentCourse];
+  } else if (isBuilder) {
+    const selected = JSON.parse(localStorage.getItem('hei01_selected_courses') || '[]');
+    payload.cursos_seleccionados = selected.map(s => s.name);
+    payload.horas_totales = localStorage.getItem('hei01_total_hours') || 0;
+    payload.origen = 'Constructor de curso personalizado';
+  } else {
+    payload.cursos_seleccionados = [currentCourse];
+  }
+
+  try {
+    await fetch(SCRIPT_URL, {
+      method:'POST', mode:'no-cors',
+      headers:{'Content-Type':'application/json'},
+      body: JSON.stringify(payload)
+    });
+  } catch(e) {}
+
+  gfSending = false;
+  document.getElementById('gf-confirm').classList.add('show');
+  submitBtn.style.display = 'none';
+}
+
+/* ===== CUSTOM BUILDER ===== */
+const BUILDER_DATA = [
+  { level:1, name:'Neófito', color:'rgba(136,135,128,.15)', courses:[
+    { id:'w1', name:'Workshop IA Generativa', hours:1.5, desc:'Primer contacto práctico con IA generativa' },
+    { id:'b1', name:'Formación Básica', hours:6, desc:'Fundamentos completos con herramientas y prompting' },
+    { id:'t1', name:'IA para Todos', hours:8, desc:'Programa integral: tecnologías, casos, ética y futuro' }
+  ]},
+  { level:2, name:'Explorador', color:'rgba(16,185,129,.1)', courses:[
+    { id:'i1', name:'Intermedia 1', hours:4, desc:'Tipos de IA, formatos, Gemas y asistentes propios' },
+    { id:'i2', name:'Intermedia 2', hours:4, desc:'Ética, futuro del trabajo y path de carrera con IA' }
+  ]},
+  { level:3, name:'Practicante', color:'rgba(245,158,11,.1)', courses:[
+    { id:'ao', name:'Avanzada Operativa', hours:4, desc:'IA aplicada a procesos propios del área' },
+    { id:'li', name:'IA para Líderes', hours:12, desc:'Gestión del cambio, Quick Wins y liderazgo de adopción' },
+    { id:'ve', name:'IA para Ventas', hours:8, desc:'Ciclo comercial completo con IA: TOFU-MOFU-BOFU' },
+    { id:'la', name:'Laboratorio de Innovación', hours:8, desc:'De la idea al prototipo de IA en un día' }
+  ]},
+  { level:4, name:'Ejecutivo', color:'rgba(124,58,237,.1)', courses:[
+    { id:'ae', name:'Avanzada para Ejecutivos', hours:6, desc:'AI Canvas, ROI, gobernanza y roadmap estratégico' },
+    { id:'cg', name:'Claude para Gerentes & Cowork', hours:4, desc:'Megaprompts, Proyectos y agentes para decisores' },
+    { id:'m3', name:'IA Ejecutivos · Core (M3-M8)', hours:10, desc:'Estrategia, gobernanza, proyectos y taller integrador' },
+    { id:'m8', name:'IA Ejecutivos · Completo (M1-M8)', hours:16, desc:'Todos los módulos desde fundamentos hasta co-diseño' }
+  ]}
+];
+
+function buildBuilder() {
+  const container = document.getElementById('builder-levels');
+  container.innerHTML = BUILDER_DATA.map(lvl => `
+    <div class="builder-level" style="margin-bottom:1.5rem">
+      <div class="builder-level-hdr">
+        <span style="display:inline-flex;align-items:center;justify-content:center;width:24px;height:24px;border-radius:50%;background:${lvl.color};font-size:11px;font-weight:700">${lvl.level}</span>
+        Nivel ${lvl.level} · ${lvl.name}
+      </div>
+      <div class="builder-items">
+        ${lvl.courses.map(c => `
+          <label class="builder-item">
+            <input type="checkbox" class="builder-check" data-id="${c.id}" data-name="${c.name}" data-hours="${c.hours}" onchange="updateBuilder()">
+            <div class="builder-item-info">
+              <div class="builder-item-name">${c.name}</div>
+              <div class="builder-item-meta">${c.hours}h · ${c.desc}</div>
+            </div>
+          </label>`).join('')}
+      </div>
+    </div>
+  `).join('');
+}
+
+function updateBuilder() {
+  const selected = [];
+  let totalHours = 0;
+  document.querySelectorAll('.builder-check:checked').forEach(cb => {
+    selected.push({ name: cb.dataset.name, hours: parseFloat(cb.dataset.hours) });
+    totalHours += parseFloat(cb.dataset.hours);
+  });
+
+  localStorage.setItem('hei01_selected_courses', JSON.stringify(selected));
+  localStorage.setItem('hei01_total_hours', totalHours);
+
+  const summary = document.getElementById('builderSummary');
+  const submitBtn = document.getElementById('builderSubmit');
+
+  if (selected.length === 0) {
+    summary.innerHTML = '<div class="builder-summary-empty">Selecciona contenidos para ver el resumen.</div>';
+    submitBtn.disabled = true;
+    return;
+  }
+
+  submitBtn.disabled = false;
+  summary.innerHTML = `
+    <div class="builder-tags">
+      ${selected.map(s => `<span class="builder-tag">${s.name} (${s.hours}h)</span>`).join('')}
+    </div>
+    <div class="builder-total">${selected.length} módulo${selected.length > 1 ? 's' : ''} seleccionado${selected.length > 1 ? 's' : ''} · Total: <strong>${totalHours}h</strong></div>
+  `;
+}
+
+/* ===== INTERSECTION OBSERVER ===== */
+const io = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+}, {threshold: 0.1});
+document.querySelectorAll('.animate-on-scroll').forEach(el => io.observe(el));
+
+/* ===== INIT ===== */
+window.addEventListener('DOMContentLoaded', () => {
+  loadPersonData();
+  buildBuilder();
+  // Restore path if saved
+  const savedPath = localStorage.getItem('hei01_form_path');
+  if (savedPath === 'custom') setPath('custom');
+});
+
+
+/* FAQ toggle */
+function toggleFaq(item) {
+  const wasOpen = item.classList.contains('open');
+  document.querySelectorAll('.faq-item.open').forEach(i => i.classList.remove('open'));
+  if (!wasOpen) item.classList.add('open');
+}
+
+/* ===== NAV SCROLL ===== */
+window.addEventListener('scroll', () => {
+  document.querySelector('nav').style.boxShadow =
+    window.scrollY > 20 ? '0 2px 16px rgba(0,0,0,.1)' : '0 1px 12px rgba(0,0,0,.06)';
+}, {passive: true});
+</script>
+</body>
+</html>
