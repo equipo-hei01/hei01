@@ -1,0 +1,798 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <title>Taller Práctico: Agentes de IA y Automatizaciones con Google Workspace Studio</title>
+    <!-- Tailwind CSS vía CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            blue: '#1D4ED8',      /* Azul Rey Principal */
+                            blueDark: '#1E3A8A',  /* Azul Rey Oscuro */
+                            blueLight: '#EFF6FF', /* Fondo Azul Muy Claro */
+                            purple: '#7E22CE',    /* Morado Secundario */
+                            purpleLight: '#F3E8FF'/* Fondo Morado Claro */
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <!-- Vue 3 vía CDN -->
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <style>
+        [v-cloak] { display: none; }
+        html { -webkit-text-size-adjust: 100%; scroll-padding-top: 5.5rem; }
+        html, body { overflow-x: hidden; max-width: 100%; }
+        img, svg, video { max-width: 100%; height: auto; }
+        section[id] { scroll-margin-top: 5.5rem; }
+
+        .demo-caret {
+            display: inline-block;
+            width: 2px;
+            height: 1em;
+            margin-left: 1px;
+            background: #1D4ED8;
+            animation: demo-blink 1s step-end infinite;
+            vertical-align: -2px;
+        }
+        @keyframes demo-blink { 50% { opacity: 0; } }
+        @keyframes demo-in {
+            from { opacity: 0; transform: translateY(8px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .demo-enter { animation: demo-in 0.4s ease forwards; }
+        @keyframes demo-pulse-ring {
+            0% { box-shadow: 0 0 0 0 rgba(29, 78, 216, 0.35); }
+            100% { box-shadow: 0 0 0 10px rgba(29, 78, 216, 0); }
+        }
+        .demo-live { animation: demo-pulse-ring 1.5s ease-out infinite; }
+        @keyframes demo-scan {
+            0% { transform: translateY(-120%); }
+            100% { transform: translateY(220%); }
+        }
+        .demo-scan::after {
+            content: '';
+            position: absolute;
+            left: 0; right: 0;
+            height: 40%;
+            background: linear-gradient(to bottom, transparent, rgba(126, 34, 206, 0.12), transparent);
+            animation: demo-scan 1.6s ease-in-out infinite;
+            pointer-events: none;
+        }
+        @keyframes demo-check {
+            from { transform: scale(0.6); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+        .demo-check { animation: demo-check 0.35s cubic-bezier(0.22, 1, 0.36, 1) forwards; }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800 font-sans antialiased selection:bg-brand-purple selection:text-white" id="app" v-cloak>
+
+    <!-- HEADER / NAVIGATION -->
+    <header class="fixed top-0 w-full z-50 bg-white/90 backdrop-blur-md border-b border-slate-200 shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 md:h-20 flex items-center justify-between gap-2">
+            <div class="flex items-center space-x-2 sm:space-x-3 min-w-0">
+                <div class="w-9 h-9 sm:w-10 sm:h-10 rounded-lg bg-gradient-to-tr from-brand-blue to-brand-purple flex items-center justify-center font-bold text-lg sm:text-xl text-white shadow-md shadow-brand-blue/20 shrink-0">
+                    HE
+                </div>
+                <div class="min-w-0">
+                    <span class="text-sm sm:text-lg font-bold tracking-tight text-slate-900 block truncate">Productividad Ejecutiva con IA</span>
+                    <span class="text-[10px] sm:text-xs text-brand-purple uppercase tracking-widest block font-bold truncate">Executive Workshop</span>
+                </div>
+            </div>
+            
+            <nav class="hidden md:flex items-center space-x-8 text-sm font-semibold text-slate-600">
+                <a href="#demo" class="hover:text-brand-blue transition-colors">Demo</a>
+                <a href="#metodologia" class="hover:text-brand-blue transition-colors">Metodología</a>
+                <a href="#temario" class="hover:text-brand-blue transition-colors">Plan de Estudios</a>
+                <a href="#calculadora" class="hover:text-brand-blue transition-colors">Simulador ROI</a>
+                <a href="#inversion" class="hover:text-brand-blue transition-colors">Inversión</a>
+            </nav>
+
+            <div class="flex items-center gap-2 shrink-0">
+                <a href="https://forms.gle/BTqtQtU5KLZSUWth7" target="_blank" rel="noopener noreferrer" class="hidden md:inline-flex px-5 py-2.5 rounded-lg bg-gradient-to-r from-brand-blue to-brand-purple text-white text-sm font-bold hover:opacity-95 transition-all shadow-md shadow-brand-blue/20">
+                    Inscribirme Ahora
+                </a>
+                <button type="button" class="md:hidden p-2 rounded-lg text-slate-700 hover:bg-slate-100" @click="menuOpen = !menuOpen" :aria-expanded="menuOpen ? 'true' : 'false'" :aria-label="menuOpen ? 'Cerrar menú' : 'Abrir menú'">
+                    <svg v-if="!menuOpen" xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/></svg>
+                    <svg v-else xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
+                </button>
+            </div>
+        </div>
+        <nav v-show="menuOpen" class="md:hidden border-t border-slate-200 bg-white px-4 py-3 space-y-1 text-sm font-semibold text-slate-700">
+            <a href="#demo" @click="menuOpen = false" class="block px-3 py-2.5 rounded-lg hover:bg-slate-50">Demo</a>
+            <a href="#metodologia" @click="menuOpen = false" class="block px-3 py-2.5 rounded-lg hover:bg-slate-50">Metodología</a>
+            <a href="#temario" @click="menuOpen = false" class="block px-3 py-2.5 rounded-lg hover:bg-slate-50">Plan de Estudios</a>
+            <a href="#calculadora" @click="menuOpen = false" class="block px-3 py-2.5 rounded-lg hover:bg-slate-50">Simulador ROI</a>
+            <a href="https://forms.gle/BTqtQtU5KLZSUWth7" target="_blank" rel="noopener noreferrer" @click="menuOpen = false" class="block px-3 py-2.5 rounded-lg bg-gradient-to-r from-brand-blue to-brand-purple text-white text-center">Inscribirme Ahora</a>
+        </nav>
+    </header>
+
+    <!-- HERO SECTION -->
+    <section class="pt-24 pb-14 sm:pt-32 sm:pb-20 md:pt-40 md:pb-28 relative overflow-hidden bg-gradient-to-b from-brand-blueLight via-white to-white">
+        <!-- Elementos decorativos de fondo -->
+        <div class="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-72 h-72 sm:w-[600px] sm:h-[600px] bg-brand-purple/10 rounded-full blur-3xl pointer-events-none"></div>
+        
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="max-w-3xl mx-auto text-center space-y-5 sm:space-y-6">
+                
+                <div class="inline-flex max-w-full items-center gap-2 px-3 py-1.5 rounded-full bg-brand-purpleLight border border-brand-purple/20 text-brand-purple text-[11px] sm:text-xs font-bold tracking-wide sm:uppercase sm:tracking-wider">
+                    <i data-lucide="sparkles" class="w-4 h-4 shrink-0"></i>
+                    <span class="text-left leading-snug">Taller Práctico de Alto Valor — 4 Horas Intensivas</span>
+                </div>
+
+                <h1 class="text-[1.75rem] leading-tight sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-slate-900 sm:leading-tight">
+                    Agentes de IA y Automatizaciones con <span class="bg-gradient-to-r from-brand-blue via-brand-purple to-purple-800 bg-clip-text text-transparent">Google Workspace Studio</span>
+                </h1>
+
+                <p class="text-base sm:text-xl text-slate-600 font-normal leading-relaxed">
+                    Construye tu primer asistente inteligente capaz de procesar correos, generar minutas de reuniones y agendar compromisos automáticos en Google Calendar sin escribir código complejo ni pagar licencias adicionales.
+                </p>
+
+                <!-- STATS STRIP -->
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4 px-2 sm:px-0 border-y border-slate-200 my-6 sm:my-8 py-5 sm:py-6 bg-white/60 rounded-2xl">
+                    <div>
+                        <p class="text-2xl sm:text-3xl font-extrabold text-slate-900">4 Hrs</p>
+                        <p class="text-[10px] sm:text-xs text-slate-500 font-semibold uppercase mt-1 leading-snug">Formación Práctica</p>
+                    </div>
+                    <div>
+                        <p class="text-2xl sm:text-3xl font-extrabold text-brand-purple">2</p>
+                        <p class="text-[10px] sm:text-xs text-slate-500 font-semibold uppercase mt-1 leading-snug">Agentes Listos para Usar</p>
+                    </div>
+                    <div>
+                        <p class="text-2xl sm:text-3xl font-extrabold text-slate-900">10</p>
+                        <p class="text-[10px] sm:text-xs text-slate-500 font-semibold uppercase mt-1 leading-snug">Cupos Disponibles</p>
+                    </div>
+                    <div>
+                        <p class="text-2xl sm:text-3xl font-extrabold text-brand-blue">100%</p>
+                        <p class="text-[10px] sm:text-xs text-slate-500 font-semibold uppercase mt-1 leading-snug">Ecosistema Google</p>
+                    </div>
+                </div>
+
+                <div class="flex flex-col sm:flex-row items-center justify-center gap-4 pt-2">
+                    <a href="https://forms.gle/BTqtQtU5KLZSUWth7" target="_blank" rel="noopener noreferrer" class="w-full sm:w-auto px-8 py-4 rounded-xl bg-gradient-to-r from-brand-blue to-brand-purple text-white font-bold text-base hover:opacity-95 transition-all shadow-lg shadow-brand-blue/25 flex items-center justify-center space-x-2">
+                        <span>Asegurar mi Cupo</span>
+                        <i data-lucide="arrow-right" class="w-5 h-5"></i>
+                    </a>
+                    <a href="#demo" class="w-full sm:w-auto px-8 py-4 rounded-xl bg-white border border-slate-300 text-slate-700 font-semibold text-base hover:bg-slate-50 transition-all shadow-sm flex items-center justify-center">
+                        Ver demo del agente
+                    </a>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- DEMO ANIMADA: GOOGLE WORKSPACE STUDIO -->
+    <section id="demo" class="py-12 sm:py-20 bg-white border-t border-slate-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-2xl mx-auto mb-10 sm:mb-12">
+                <h2 class="text-xs font-bold text-brand-purple uppercase tracking-widest mb-2">Así se usa en el día a día</h2>
+                <p class="text-2xl sm:text-3xl font-bold text-slate-900 leading-snug">Del pedido en lenguaje natural al agente trabajando en Gmail</p>
+                <p class="text-slate-600 text-sm mt-3 leading-relaxed">
+                    En el taller construyes esto en tu propia cuenta: describes lo que necesitas, Workspace Studio arma los pasos con Gemini y el agente actúa solo cuando llega un correo.
+                </p>
+            </div>
+
+            <!-- Indicador de fases -->
+            <div class="flex flex-wrap items-center justify-center gap-2 sm:gap-3 mb-8 text-xs font-bold uppercase tracking-wider">
+                <span :class="demoPhase === 'typing' ? 'bg-brand-blue text-white' : 'bg-slate-100 text-slate-500'" class="px-3 py-1.5 rounded-full transition-colors">1. Pedido</span>
+                <span class="text-slate-300 hidden sm:inline">→</span>
+                <span :class="demoPhase === 'building' ? 'bg-brand-purple text-white' : 'bg-slate-100 text-slate-500'" class="px-3 py-1.5 rounded-full transition-colors">2. Diseño del agente</span>
+                <span class="text-slate-300 hidden sm:inline">→</span>
+                <span :class="demoPhase === 'running' || demoPhase === 'result' || demoPhase === 'done' ? 'bg-emerald-600 text-white' : 'bg-slate-100 text-slate-500'" class="px-3 py-1.5 rounded-full transition-colors">3. Ejecución real</span>
+            </div>
+
+            <!-- Ventana tipo producto -->
+            <div class="relative max-w-5xl mx-auto rounded-2xl border border-slate-200 shadow-2xl shadow-slate-300/40 overflow-hidden bg-white">
+                <div v-if="demoPhase === 'idle' || demoPhase === 'done'" class="absolute inset-0 z-20 flex flex-col items-center justify-center gap-4 px-6 text-center bg-white/80 backdrop-blur-sm">
+                    <p class="text-sm sm:text-base font-semibold text-slate-700 max-w-md">{{ demoPhase === 'done' ? 'Así queda el agente listo para tu revisión. ¿Quieres ver el flujo otra vez?' : 'Mira cómo el agente clasifica un correo y deja un borrador listo para tu aprobación.' }}</p>
+                    <button type="button" @click="replayDemo" class="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl bg-gradient-to-r from-brand-blue to-brand-purple text-white font-bold text-sm sm:text-base hover:opacity-95 transition-all shadow-lg shadow-brand-blue/25">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5.14v13.72a1 1 0 0 0 1.5.86l11-6.86a1 1 0 0 0 0-1.72l-11-6.86a1 1 0 0 0-1.5.86Z"/></svg>
+                        <span>{{ demoPhase === 'done' ? 'Volver a reproducir' : 'Reproducir demo' }}</span>
+                    </button>
+                </div>
+                <!-- Chrome -->
+                <div class="flex items-center gap-2 sm:gap-3 px-3 sm:px-4 py-3 bg-slate-100 border-b border-slate-200">
+                    <div class="flex gap-1.5 shrink-0">
+                        <span class="w-2.5 h-2.5 rounded-full bg-red-400"></span>
+                        <span class="w-2.5 h-2.5 rounded-full bg-amber-400"></span>
+                        <span class="w-2.5 h-2.5 rounded-full bg-emerald-400"></span>
+                    </div>
+                    <div class="flex-1 min-w-0 bg-white border border-slate-200 rounded-lg px-2 sm:px-3 py-1 text-[11px] text-slate-500 font-medium truncate">
+                        studio.google.com · Clasificador de clientes
+                    </div>
+                </div>
+
+                <div class="grid lg:grid-cols-12 lg:min-h-[420px]">
+                    <!-- Sidebar Studio -->
+                    <aside class="hidden lg:flex lg:col-span-3 flex-col bg-slate-50 border-r border-slate-200 p-4">
+                        <p class="text-[10px] font-bold uppercase tracking-widest text-slate-400 mb-3">Workspace Studio</p>
+                        <div class="space-y-1 text-sm">
+                            <div class="flex items-center gap-2 px-3 py-2 rounded-lg bg-white border border-brand-blue/20 shadow-sm">
+                                <span class="w-2 h-2 rounded-full bg-brand-purple demo-live"></span>
+                                <span class="font-semibold text-slate-800">Clasificador Gmail</span>
+                            </div>
+                            <div class="flex items-center gap-2 px-3 py-2 rounded-lg text-slate-400">
+                                <span class="w-2 h-2 rounded-full bg-slate-300"></span>
+                                <span>Minutas Meet</span>
+                            </div>
+                            <div class="flex items-center gap-2 px-3 py-2 rounded-lg text-slate-400">
+                                <span class="w-2 h-2 rounded-full bg-slate-300"></span>
+                                <span>Agenda Calendar</span>
+                            </div>
+                        </div>
+                        <p class="mt-auto pt-6 text-[10px] text-slate-400 leading-relaxed">Gemini · Gmail · Docs · Calendar</p>
+                    </aside>
+
+                    <!-- Lienzo principal -->
+                    <div class="lg:col-span-9 p-4 sm:p-6 bg-gradient-to-br from-white to-slate-50 min-h-[320px] sm:min-h-[380px]">
+                        <!-- FASE 1: prompt -->
+                        <div v-show="demoPhase === 'idle' || demoPhase === 'typing'" class="space-y-4">
+                            <p class="text-xs font-bold text-slate-500 uppercase tracking-wider">Nuevo agente · Describe lo que necesitas</p>
+                            <div class="bg-white border border-slate-200 rounded-2xl p-4 shadow-sm min-h-[140px]">
+                                <p class="text-sm text-slate-800 leading-relaxed font-medium">
+                                    {{ demoTyped }}<span v-if="demoPhase === 'typing' && demoTyped.length < demoPrompt.length" class="demo-caret"></span>
+                                </p>
+                            </div>
+                            <div class="flex items-center gap-2 text-xs text-slate-500">
+                                <span class="inline-flex items-center gap-1 px-2 py-1 rounded-md bg-red-50 text-red-600 font-semibold">Gmail</span>
+                                <span class="inline-flex items-center gap-1 px-2 py-1 rounded-md bg-blue-50 text-blue-700 font-semibold">Gemini</span>
+                                <span>Herramientas sugeridas</span>
+                            </div>
+                        </div>
+
+                        <!-- FASE 2: construcción de pasos -->
+                        <div v-show="demoPhase === 'building'" class="space-y-4">
+                            <p class="text-xs font-bold text-brand-purple uppercase tracking-wider">Gemini está armando el flujo</p>
+                            <ol class="space-y-3">
+                                <template v-for="(step, i) in demoBuildSteps" :key="demoCycle + '-b-' + i">
+                                <li v-if="demoBuildIndex >= i"
+                                    class="demo-enter flex items-start gap-3 bg-white border border-slate-200 rounded-xl p-3 shadow-sm">
+                                    <span class="w-8 h-8 rounded-lg flex items-center justify-center text-white text-xs font-bold shrink-0"
+                                          :class="step.tone">{{ i + 1 }}</span>
+                                    <div class="min-w-0 flex-1">
+                                        <div class="flex flex-wrap items-center gap-2">
+                                            <p class="text-sm font-bold text-slate-900">{{ step.title }}</p>
+                                            <span class="text-[10px] font-bold uppercase tracking-wide px-2 py-1 rounded-md bg-slate-100 text-slate-500">{{ step.tool }}</span>
+                                        </div>
+                                        <p class="text-xs text-slate-500 mt-0.5">{{ step.desc }}</p>
+                                    </div>
+                                </li>
+                                </template>
+                            </ol>
+                        </div>
+
+                        <!-- FASE 3 y 4: ejecución -->
+                        <div v-show="demoPhase === 'running' || demoPhase === 'result' || demoPhase === 'done'" class="space-y-4">
+                            <div class="flex flex-wrap items-center justify-between gap-2">
+                                <p class="text-xs font-bold text-emerald-700 uppercase tracking-wider">Agente en ejecución</p>
+                                <span class="text-[10px] font-bold px-2 py-1 rounded-full bg-emerald-50 text-emerald-700">Trigger: nuevo correo</span>
+                            </div>
+
+                            <div class="grid sm:grid-cols-2 gap-4">
+                                <!-- Correo entrante -->
+                                <div class="relative overflow-hidden bg-white border border-slate-200 rounded-xl p-4 shadow-sm" :class="{'demo-scan': demoPhase === 'running' && demoRunIndex < 2}">
+                                    <div class="flex items-center gap-2 mb-3">
+                                        <span class="w-8 h-8 rounded-full bg-red-500 text-white text-xs font-bold flex items-center justify-center">G</span>
+                                        <div>
+                                            <p class="text-xs font-bold text-slate-900">Gmail · Bandeja de entrada</p>
+                                            <p class="text-[10px] text-slate-400">hace 12 segundos</p>
+                                        </div>
+                                    </div>
+                                    <p class="text-xs font-bold text-slate-800">Re: propuesta comercial Q3</p>
+                                    <p class="text-[11px] text-slate-500 mt-1">De: <span class="font-semibold text-slate-700">ana.silva@cliente.cl</span></p>
+                                    <p class="text-xs text-slate-600 mt-3 leading-relaxed">
+                                        Hola, necesitamos la cotización actualizada para el viernes. El directorio revisa el presupuesto mañana a las 09:00.
+                                    </p>
+                                </div>
+
+                                <!-- Trabajo del agente -->
+                                <div class="space-y-2">
+                                    <template v-for="(run, i) in demoRunSteps" :key="demoCycle + '-r-' + i">
+                                    <div v-if="demoRunIndex >= i"
+                                         class="demo-enter flex items-center gap-3 bg-white border rounded-xl px-3 py-2.5"
+                                         :class="demoRunIndex > i || demoPhase === 'result' || demoPhase === 'done' ? 'border-emerald-200 bg-emerald-50/50' : 'border-slate-200'">
+                                        <span v-if="demoRunIndex > i || demoPhase === 'result' || demoPhase === 'done'" class="demo-check w-5 h-5 rounded-full bg-emerald-500 text-white text-[10px] font-bold flex items-center justify-center shrink-0">✓</span>
+                                        <span v-else class="w-5 h-5 rounded-full border-2 border-brand-blue border-t-transparent animate-spin shrink-0"></span>
+                                        <span class="text-xs font-semibold text-slate-700 min-w-0">{{ run.label }}</span>
+                                    </div>
+                                    </template>
+                                </div>
+                            </div>
+
+                            <!-- Resultado -->
+                            <div v-if="demoPhase === 'result' || demoPhase === 'done'" class="demo-enter bg-gradient-to-r from-brand-blueLight to-brand-purpleLight border border-brand-purple/20 rounded-xl p-4">
+                                <p class="text-xs font-bold text-brand-purple uppercase tracking-wider mb-2">Listo para tu revisión</p>
+                                <div class="flex flex-wrap gap-2 mb-3">
+                                    <span class="text-[10px] font-bold uppercase px-2 py-1 rounded bg-red-100 text-red-700">Prioridad: urgente</span>
+                                    <span class="text-[10px] font-bold uppercase px-2 py-1 rounded bg-amber-100 text-amber-800">Etiqueta: Cliente / Q3</span>
+                                    <span class="text-[10px] font-bold uppercase px-2 py-1 rounded bg-white text-slate-600 border border-slate-200">Borrador en Gmail</span>
+                                </div>
+                                <p class="text-sm text-slate-800 italic leading-relaxed">
+                                    “Ana, gracias por el aviso. Te enviamos la cotización actualizada hoy antes de las 18:00 para que el directorio la tenga mañana a las 09:00. ¿Confirmas el alcance del Q3?”
+                                </p>
+                                <p class="text-[11px] text-slate-500 mt-2">El agente no envía: deja el borrador. Tú apruebas con un clic.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PARA QUIÉN ES -->
+    <section class="py-12 sm:py-20 bg-slate-50 border-t border-slate-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-2xl mx-auto mb-10 sm:mb-16">
+                <h2 class="text-xs font-bold text-brand-purple uppercase tracking-widest mb-2">Diseñado para Ejecutivos y Profesionales</h2>
+                <p class="text-2xl sm:text-3xl font-bold text-slate-900">¿Para quién es este programa?</p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-6 sm:gap-8">
+                <div class="bg-white border border-slate-200 p-6 sm:p-8 rounded-2xl shadow-sm hover:shadow-md hover:border-brand-blue/40 transition-all">
+                    <div class="w-12 h-12 rounded-xl bg-brand-blueLight text-brand-blue flex items-center justify-center mb-6">
+                        <i data-lucide="briefcase" class="w-6 h-6"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-slate-900 mb-3">Líderes de TI y Operaciones</h3>
+                    <p class="text-slate-600 text-sm leading-relaxed">
+                        Que buscan automatizar flujos de trabajo en sus equipos reduciendo la fricción entre Gmail, Drive, Docs y Calendar sin costos extra de licencias.
+                    </p>
+                </div>
+
+                <div class="bg-white border border-slate-200 p-6 sm:p-8 rounded-2xl shadow-sm hover:shadow-md hover:border-brand-purple/40 transition-all">
+                    <div class="w-12 h-12 rounded-xl bg-brand-purpleLight text-brand-purple flex items-center justify-center mb-6">
+                        <i data-lucide="trending-up" class="w-6 h-6"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-slate-900 mb-3">Consultores y PMs</h3>
+                    <p class="text-slate-600 text-sm leading-relaxed">
+                        Profesionales que gestionan múltiples proyectos y necesitan asistentes inteligentes que extraigan compromisos y minutas de forma autónoma.
+                    </p>
+                </div>
+
+                <div class="bg-white border border-slate-200 p-6 sm:p-8 rounded-2xl shadow-sm hover:shadow-md hover:border-brand-blue/40 transition-all">
+                    <div class="w-12 h-12 rounded-xl bg-brand-blueLight text-brand-blue flex items-center justify-center mb-6">
+                        <i data-lucide="zap" class="w-6 h-6"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-slate-900 mb-3">Fundadores y Directores</h3>
+                    <p class="text-slate-600 text-sm leading-relaxed">
+                        Orientados a optimizar el tiempo directivo delegando tareas administrativas complejas a agentes basados en Gemini.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- METODOLOGÍA EXPERIENCIAL -->
+    <section id="metodologia" class="py-12 sm:py-20 bg-white border-t border-slate-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid lg:grid-cols-2 gap-10 lg:gap-12 items-center">
+                <div class="space-y-6">
+                    <div class="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-brand-blueLight text-brand-blue text-xs font-bold uppercase tracking-wider">
+                        <span>Aprende Construyendo</span>
+                    </div>
+                    <h2 class="text-2xl sm:text-4xl font-bold text-slate-900 leading-tight">
+                        Metodología 100% Práctica y Orientada a Resultados
+                    </h2>
+                    <p class="text-slate-600 leading-relaxed">
+                        El taller no se queda en teorías sobre IA. Trabajarás directamente en tu entorno para dejar desplegados agentes reales al finalizar la sesión.
+                    </p>
+
+                    <div class="space-y-4 pt-2">
+                        <div class="flex items-start space-x-4">
+                            <div class="w-8 h-8 rounded-lg bg-brand-purpleLight text-brand-purple flex items-center justify-center shrink-0 mt-1">
+                                <i data-lucide="check-circle" class="w-5 h-5"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-slate-900 font-semibold">Laboratorio Práctico Guiado paso a paso</h4>
+                                <p class="text-slate-500 text-sm">Construcción en vivo de 2 casos de uso reales de automatización empresarial.</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start space-x-4">
+                            <div class="w-8 h-8 rounded-lg bg-brand-purpleLight text-brand-purple flex items-center justify-center shrink-0 mt-1">
+                                <i data-lucide="check-circle" class="w-5 h-5"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-slate-900 font-semibold">Instrucciones Efectivas para Agentes de IA</h4>
+                                <p class="text-slate-500 text-sm">Estructura de formatos consistentes para ejecutar acciones automáticas.</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start space-x-4">
+                            <div class="w-8 h-8 rounded-lg bg-brand-purpleLight text-brand-purple flex items-center justify-center shrink-0 mt-1">
+                                <i data-lucide="check-circle" class="w-5 h-5"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-slate-900 font-semibold">Acompañamiento Personalizado</h4>
+                                <p class="text-slate-500 text-sm">Aforo reducido a máximo 10 asistentes para asegurar una experiencia personalizada.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-gradient-to-br from-slate-50 to-brand-blueLight/50 p-5 sm:p-8 rounded-3xl border border-slate-200 relative shadow-sm">
+                    <div class="flex flex-wrap items-center justify-between gap-3 pb-6 border-b border-slate-200">
+                        <span class="text-sm font-semibold text-slate-900">Entregables Inmediatos</span>
+                        <span class="text-xs px-2.5 py-1 rounded bg-brand-purpleLight text-brand-purple font-mono font-bold">Kit Completo</span>
+                    </div>
+                    <ul class="divide-y divide-slate-200 text-sm text-slate-700">
+                        <li class="py-4 flex items-start gap-3 justify-between">
+                            <span class="min-w-0 pr-2">Agente de Clasificación de Correo en Gmail</span>
+                            <i data-lucide="check" class="w-4 h-4 text-brand-blue font-bold shrink-0 mt-0.5"></i>
+                        </li>
+                        <li class="py-4 flex items-start gap-3 justify-between">
+                            <span class="min-w-0 pr-2">Asistente de Minutas & Google Calendar</span>
+                            <i data-lucide="check" class="w-4 h-4 text-brand-blue font-bold shrink-0 mt-0.5"></i>
+                        </li>
+                        <li class="py-4 flex items-start gap-3 justify-between">
+                            <span class="min-w-0 pr-2">Librería de Prompts para agentes de IA</span>
+                            <i data-lucide="check" class="w-4 h-4 text-brand-blue font-bold shrink-0 mt-0.5"></i>
+                        </li>     
+                        <li class="py-4 flex items-start gap-3 justify-between">
+                            <span class="min-w-0 pr-2">Certificado de Asistencia y Cumplimiento del curso.</span>
+                            <i data-lucide="check" class="w-4 h-4 text-brand-blue font-bold shrink-0 mt-0.5"></i>
+                        </li>                                                                      
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PLAN DE ESTUDIOS (ACORDEÓN INTERACTIVO VUE) -->
+    <section id="temario" class="py-12 sm:py-20 bg-slate-50 border-t border-slate-200">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-10 sm:mb-16">
+                <h2 class="text-xs font-bold text-brand-purple uppercase tracking-widest mb-2">4 Horas Intensivas</h2>
+                <p class="text-2xl sm:text-3xl font-bold text-slate-900">Plan de Estudios Estructurado</p>
+            </div>
+
+            <div class="space-y-4">
+                <div v-for="(bloque, index) in temario" :key="index" class="bg-white border border-slate-200 rounded-2xl overflow-hidden shadow-sm transition-all">
+                    <button @click="toggleBloque(index)" class="w-full p-4 sm:p-6 text-left flex items-start sm:items-center justify-between gap-3 hover:bg-slate-50 transition-colors">
+                        <div class="flex items-start sm:items-center space-x-3 sm:space-x-4 min-w-0">
+                            <span class="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-brand-blue text-white font-bold flex items-center justify-center text-sm shadow-sm shrink-0">
+                                {{ index + 1 }}
+                            </span>
+                            <div class="min-w-0">
+                                <h3 class="text-base sm:text-lg font-bold text-slate-900 leading-snug">{{ bloque.titulo }}</h3>
+                                <p class="text-xs text-slate-500 font-medium mt-0.5">{{ bloque.duracion }} • {{ bloque.subtitulo }}</p>
+                            </div>
+                        </div>
+                        <i data-lucide="chevron-down" :class="{'rotate-180': activeBloque === index}" class="w-5 h-5 text-slate-500 transition-transform shrink-0 mt-1 sm:mt-0"></i>
+                    </button>
+
+                    <div v-show="activeBloque === index" class="px-4 sm:px-6 pb-6 pt-2 border-t border-slate-100 bg-slate-50/50">
+                        <ul class="space-y-3">
+                            <li v-for="(tema, tIdx) in bloque.temas" :key="tIdx" class="flex items-start space-x-3 text-sm text-slate-700">
+                                <span class="text-brand-purple font-bold">•</span>
+                                <span>{{ tema }}</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SIMULADOR DE ROI (COMPONENTE INTERACTIVO VUE) -->
+    <section id="calculadora" class="py-12 sm:py-20 bg-white border-t border-slate-200">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="bg-gradient-to-br from-brand-blueLight via-white to-purple-50/40 border border-slate-200 rounded-3xl p-5 sm:p-12 shadow-lg">
+                <div class="text-center max-w-xl mx-auto mb-8 sm:mb-10">
+                    <span class="text-xs font-bold text-brand-purple uppercase tracking-widest">Simulador Interactivo</span>
+                    <h2 class="text-xl sm:text-3xl font-bold text-slate-900 mt-1 leading-snug">Calcula el ROI (Retorno de la Inversión) de la Automatización</h2>
+                    <p class="text-slate-600 text-sm mt-2">Estimación del impacto financiero al automatizar tareas operativas en tu equipo con Google Workspace Studio.</p>
+                </div>
+
+                <div class="grid md:grid-cols-2 gap-8 items-center">
+                    <div class="space-y-6">
+                        <div>
+                            <label class="block text-xs font-bold text-slate-700 uppercase mb-2">
+                                Horas semanales perdidas en tareas repetitivas (por persona):
+                            </label>
+                            <input type="range" min="2" max="20" v-model="horasSemanales" class="w-full accent-brand-blue bg-slate-200 rounded-lg h-2">
+                            <div class="flex flex-col sm:flex-row sm:justify-between gap-1 text-xs text-slate-500 font-semibold mt-1">
+                                <span class="hidden sm:inline">2 hrs</span>
+                                <span class="font-bold text-brand-blue text-base text-center sm:text-left">{{ horasSemanales }} hrs/semana</span>
+                                <span class="hidden sm:inline">20 hrs</span>
+                            </div>
+                        </div>
+
+                        <div>
+                            <label class="block text-xs font-bold text-slate-700 uppercase mb-2">
+                                Tamaño del equipo a impactar:
+                            </label>
+                            <input type="range" min="1" max="25" v-model="tamanoEquipo" class="w-full accent-brand-blue bg-slate-200 rounded-lg h-2">
+                            <div class="flex flex-col sm:flex-row sm:justify-between gap-1 text-xs text-slate-500 font-semibold mt-1">
+                                <span class="hidden sm:inline">1 persona</span>
+                                <span class="font-bold text-brand-blue text-base text-center sm:text-left">{{ tamanoEquipo }} colaboradores</span>
+                                <span class="hidden sm:inline">25 personas</span>
+                            </div>
+                        </div>
+
+                        <div>
+                            <label class="block text-xs font-bold text-slate-700 uppercase mb-2">
+                                Costo promedio estimado por hora (CLP):
+                            </label>
+                            <select v-model="costoHora" class="w-full max-w-full bg-white border border-slate-300 rounded-xl px-3 sm:px-4 py-2.5 text-base sm:text-sm text-slate-800 focus:outline-none focus:border-brand-blue shadow-sm">
+                                <option :value="12000">$12.000 CLP / hr (Analista)</option>
+                                <option :value="20000">$20.000 CLP / hr (Jefatura / Profesional)</option>
+                                <option :value="35000">$35.000 CLP / hr (Directivo / Senior)</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="bg-white p-6 rounded-2xl border border-slate-200 text-center space-y-4 shadow-sm">
+                        <span class="text-xs text-slate-500 font-bold uppercase tracking-wider block">Ahorro Estimado Mensual</span>
+                        <p class="text-2xl sm:text-3xl font-extrabold text-brand-purple break-all">${{ ahorroMensualFormateado }} CLP</p>
+                        
+                        <div class="pt-4 border-t border-slate-100 text-xs text-slate-600 space-y-2">
+                            <div class="flex justify-between gap-3">
+                                <span>Ahorro de Horas/Mes:</span>
+                                <span class="text-slate-900 font-bold shrink-0">{{ horasAhorradasMes }} hrs</span>
+                            </div>
+                            <div class="flex justify-between gap-3 text-left">
+                                <span>Retorno de la Inversión del Taller:</span>
+                                <span class="text-brand-blue font-bold shrink-0">{{ roiMultiplicador }}x la inversión</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PRICING / INVERSIÓN -->
+    <section id="inversion" class="py-12 sm:py-20 bg-slate-50 border-t border-slate-200">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-2xl mx-auto mb-12 sm:mb-16">
+                <h2 class="text-xs font-bold text-brand-purple uppercase tracking-widest mb-2">Aforo Limitado a 10 Personas</h2>
+                <p class="text-2xl sm:text-3xl font-bold text-slate-900">Inversión del Programa</p>
+            </div>
+
+            <div class="bg-white border-2 border-brand-blue/30 rounded-3xl p-5 sm:p-10 relative shadow-xl mt-4">
+                <div class="absolute -top-3.5 left-1/2 -translate-x-1/2 bg-gradient-to-r from-brand-blue to-brand-purple text-white text-[10px] sm:text-xs font-bold uppercase tracking-wider px-3 sm:px-4 py-1 rounded-full shadow-md whitespace-nowrap">
+                    Formato Online En Vivo
+                </div>
+
+                <div class="text-center space-y-4 mb-8">
+                    <p class="text-4xl sm:text-5xl font-extrabold text-slate-900 tracking-tight">$250.000 <span class="text-lg text-slate-500 font-normal">CLP</span></p>
+                    <p class="text-sm text-slate-600 font-medium">Programa Completo de 4 Horas</p>
+                </div>
+
+                <div class="grid sm:grid-cols-2 gap-4 text-sm text-slate-700 my-8 py-6 border-y border-slate-100">
+                    <div class="flex items-center space-x-3">
+                        <i data-lucide="check" class="w-5 h-5 text-brand-purple shrink-0 font-bold"></i>
+                        <span>Taller en vivo (4 hrs intensivas)</span>
+                    </div>
+                    <div class="flex items-center space-x-3">
+                        <i data-lucide="check" class="w-5 h-5 text-brand-purple shrink-0 font-bold"></i>
+                        <span>2 Agentes de IA funcionales</span>
+                    </div>                    
+                    <div class="flex items-center space-x-3">
+                        <i data-lucide="check" class="w-5 h-5 text-brand-purple shrink-0 font-bold"></i>
+                        <span>Librería de Prompts</span>
+                    </div>                    
+                    <div class="flex items-center space-x-3">
+                        <i data-lucide="check" class="w-5 h-5 text-brand-purple shrink-0 font-bold"></i>
+                        <span>Certificado de Asistencia y Cumplimiento del curso.</span>
+                    </div>
+                </div>
+
+                <a href="https://forms.gle/BTqtQtU5KLZSUWth7" target="_blank" rel="noopener noreferrer" class="block w-full py-4 rounded-xl bg-gradient-to-r from-brand-blue to-brand-purple text-white font-bold text-base hover:opacity-95 transition-all shadow-lg shadow-brand-blue/20 text-center">
+                    Reservar Mi Cupo Ahora
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="py-10 sm:py-12 bg-white border-t border-slate-200 text-center text-xs text-slate-500">
+        <div class="max-w-7xl mx-auto px-4">
+            <p>© 2026 Taller de Automatizaciones con Google Workspace Studio. Todos los derechos reservados por Hei01.</p>
+            <p class="mt-2 leading-relaxed">Google Workspace, Gmail, Google Docs y Google Calendar son marcas registradas de Google LLC.</p>
+        </div>
+    </footer>
+
+    <!-- LOGICA VUE 3 -->
+    <script>
+        const { createApp, ref, computed, onMounted, onUnmounted, nextTick } = Vue;
+
+        createApp({
+            setup() {
+                const activeBloque = ref(0);
+                const menuOpen = ref(false);
+                const horasSemanales = ref(6);
+                const tamanoEquipo = ref(4);
+                const costoHora = ref(20000);
+
+                const demoPrompt = 'Cuando llegue un correo de un cliente, clasifícalo por urgencia y genera un borrador de respuesta en Gmail. No lo envíes: déjalo listo para que yo lo apruebe.';
+                const demoTyped = ref('');
+                const demoPhase = ref('idle');
+                const demoBuildIndex = ref(-1);
+                const demoRunIndex = ref(-1);
+                const demoCycle = ref(0);
+                let demoGeneration = 0;
+                let demoTimer = null;
+                let demoWaitResolve = null;
+
+                const demoBuildSteps = [
+                    { tool: 'Gmail', title: 'Activador: correo nuevo', desc: 'Se dispara al llegar un mensaje a la bandeja de entrada.', tone: 'bg-red-500' },
+                    { tool: 'Gemini', title: 'Analizar contenido', desc: 'Extrae cliente, plazo, urgencia y el pedido concreto.', tone: 'bg-brand-purple' },
+                    { tool: 'Gmail', title: 'Clasificar y etiquetar', desc: 'Aplica Urgente, Normal o Informativo según el análisis.', tone: 'bg-brand-blue' },
+                    { tool: 'Gmail', title: 'Redactar borrador', desc: 'Escribe una respuesta ejecutiva y la deja sin enviar.', tone: 'bg-emerald-600' }
+                ];
+
+                const demoRunSteps = [
+                    { label: 'Leyendo el correo en Gmail' },
+                    { label: 'Gemini detecta plazo: viernes / 09:00' },
+                    { label: 'Etiqueta aplicada: Urgente · Cliente' },
+                    { label: 'Borrador creado, pendiente de tu OK' }
+                ];
+
+                const demoWait = (ms) => new Promise((resolve) => {
+                    demoWaitResolve = resolve;
+                    demoTimer = setTimeout(() => {
+                        demoWaitResolve = null;
+                        resolve();
+                    }, ms);
+                });
+
+                const stopStudioDemo = () => {
+                    demoGeneration += 1;
+                    if (demoTimer) {
+                        clearTimeout(demoTimer);
+                        demoTimer = null;
+                    }
+                    if (demoWaitResolve) {
+                        const resolve = demoWaitResolve;
+                        demoWaitResolve = null;
+                        resolve();
+                    }
+                };
+
+                const runStudioDemo = async () => {
+                    const gen = ++demoGeneration;
+                    const alive = () => gen === demoGeneration;
+
+                    demoCycle.value += 1;
+                    demoTyped.value = '';
+                    demoPhase.value = 'typing';
+                    demoBuildIndex.value = -1;
+                    demoRunIndex.value = -1;
+
+                    for (let i = 1; i <= demoPrompt.length; i++) {
+                        if (!alive()) return;
+                        demoTyped.value = demoPrompt.slice(0, i);
+                        const ch = demoPrompt[i - 1];
+                        await demoWait(ch === ' ' ? 28 : 16);
+                    }
+
+                    if (!alive()) return;
+                    await demoWait(5000);
+                    demoPhase.value = 'building';
+
+                    for (let i = 0; i < demoBuildSteps.length; i++) {
+                        if (!alive()) return;
+                        demoBuildIndex.value = i;
+                        await demoWait(750);
+                    }
+
+                    if (!alive()) return;
+                    await demoWait(5000);
+                    demoPhase.value = 'running';
+
+                    for (let i = 0; i < demoRunSteps.length; i++) {
+                        if (!alive()) return;
+                        demoRunIndex.value = i;
+                        await demoWait(850);
+                    }
+
+                    if (!alive()) return;
+                    demoPhase.value = 'result';
+                    await demoWait(1400);
+                    if (!alive()) return;
+                    demoPhase.value = 'done';
+                };
+
+                const replayDemo = () => {
+                    stopStudioDemo();
+                    runStudioDemo();
+                };
+
+                const temario = ref([
+                    {
+                        titulo: "Bloque 1: Clasificación de Correos y Respuestas en Gmail",
+                        duracion: "2 Horas",
+                        subtitulo: "Fundamentos y Clasificación Automático",
+                        temas: [
+                            "Diferencias clave entre cuentas personales, Google One y licencias de Google Workspace.",
+                            "Configuración del entorno de pruebas.",
+                            "Anatomía de un Agente: Activadores (Triggers), Pasos (Steps) y Prompts estructurados.",
+                            "Laboratorio Práctico #1: Agente que analiza correos de Gmail, los clasifica por prioridad y genera borradores automáticos."
+                        ]
+                    },
+                    {
+                        titulo: "Bloque 2: Gestión de reuniones efectivas con Google Meet y Google Calendar",
+                        duracion: "2 Horas",
+                        subtitulo: "Procesamiento Multiasociado y Gobernanza",
+                        temas: [
+                            "Laboratorio Práctico #2: Flujo automático que lee transcripciones de Google Meet desde Drive.",
+                            "Procesamiento con Gemini: Extracción de resumen, tareas y compromisos.",
+                            "Generación automática de minutas en Google Docs y agendamiento directo en Google Calendar.",                            
+                        ]
+                    }
+                ]);
+
+                const toggleBloque = (index) => {
+                    activeBloque.value = activeBloque.value === index ? null : index;
+                };
+
+                const horasAhorradasMes = computed(() => {
+                    return Math.round(horasSemanales.value * 4 * tamanoEquipo.value * 0.7);
+                });
+
+                const ahorroMensualFormateado = computed(() => {
+                    const total = horasAhorradasMes.value * costoHora.value;
+                    return total.toLocaleString('es-CL');
+                });
+
+                const roiMultiplicador = computed(() => {
+                    const ahorro = horasAhorradasMes.value * costoHora.value;
+                    const inversion = 110000;
+                    return (ahorro / inversion).toFixed(1);
+                });
+
+                const closeMenuOnDesktop = () => {
+                    if (window.innerWidth >= 768) menuOpen.value = false;
+                };
+
+                onMounted(() => {
+                    nextTick(() => {
+                        if (window.lucide) {
+                            window.lucide.createIcons();
+                        }
+                    });
+                    window.addEventListener('resize', closeMenuOnDesktop);
+                });
+
+                onUnmounted(() => {
+                    window.removeEventListener('resize', closeMenuOnDesktop);
+                    stopStudioDemo();
+                });
+
+                return {
+                    activeBloque,
+                    temario,
+                    toggleBloque,
+                    horasSemanales,
+                    tamanoEquipo,
+                    costoHora,
+                    horasAhorradasMes,
+                    ahorroMensualFormateado,
+                    roiMultiplicador,
+                    menuOpen,
+                    demoPrompt,
+                    demoTyped,
+                    demoPhase,
+                    demoBuildIndex,
+                    demoRunIndex,
+                    demoBuildSteps,
+                    demoRunSteps,
+                    demoCycle,
+                    replayDemo
+                };
+            }
+        }).mount('#app');
+    </script>
+</body>
+</html>
