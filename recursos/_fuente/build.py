@@ -96,19 +96,24 @@ def cabeza(titulo, descripcion, url):
 
 
 PIE = f'''<footer class="pie">
-  <div class="contenedor pie-inner">
-    <div>
-      <img src="../assets/hero-bg.png" alt="HEI01" width="110" height="44">
-      <p class="pie-tag">IA que deja huella.</p>
-      <p class="suave">Human Empowered Intelligence · Santiago, Chile · Latam + España</p>
+  <div class="contenedor">
+    <div class="pie-fila">
+      <a href="../" class="pie-logo"><img src="../assets/hero-bg.png" alt="HEI01" width="130" height="52"></a>
+      <div class="pie-redes">
+        <a href="https://www.instagram.com/heileengoodson/" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r=".6" fill="currentColor"/></svg></a>
+        <a href="https://www.linkedin.com/company/hei01" target="_blank" rel="noopener" aria-label="LinkedIn"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M8 10.5V16M8 7.5v.01M11.5 16v-5.5M11.5 13c0-1.6 1-2.5 2.3-2.5s2.2.9 2.2 2.5V16"/></svg></a>
+        <a href="https://www.youtube.com/@HEILEENGOODSON" target="_blank" rel="noopener" aria-label="YouTube"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2.5" y="5.5" width="19" height="13" rx="4"/><path d="M10.5 9.5v5l4-2.5z"/></svg></a>
+      </div>
     </div>
-    <div class="pie-links">
-      <a href="https://linkedin.com/in/heileengoodson" target="_blank" rel="noopener">LinkedIn</a>
-      <a href="https://instagram.com/heileengoodson" target="_blank" rel="noopener">Instagram</a>
-      <a href="https://youtube.com/@heileengoodson" target="_blank" rel="noopener">YouTube</a>
-    </div>
+    <nav class="pie-links" aria-label="Pie de página">
+      <a href="../">Orquestación</a>
+      <a href="../google-workspace-ai.html">Formaciones</a>
+      <a href="../">Conferencias</a>
+      <a href="./">Recursos</a>
+    </nav>
+    <div class="pie-linea"></div>
+    <p class="pie-copy">© {datetime.date.today().year} HEI01</p>
   </div>
-  <p class="contenedor suave pie-bajo">© {datetime.date.today().year} HEI01 · Los recursos son de libre uso citando la fuente.</p>
 </footer>
 <script src="recursos.js?v={VERSION}" defer></script>
 '''
@@ -308,11 +313,17 @@ ol.pasos li::before{content:counter(p);position:absolute;left:0;top:-2px;width:3
 .cierre h2{font-weight:400;font-size:clamp(28px,4vw,40px);letter-spacing:-.035em;line-height:1.1}
 .cierre p{opacity:.7;margin:12px auto 22px;max-width:520px}
 .cierre .btn-claro{background:#fff}
-.pie{padding:36px 0 26px;border-top:1px solid var(--borde);background:rgba(255,255,255,.7)}
-.pie-inner{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
-.pie-tag{color:var(--rosa);font-weight:500;margin:10px 0 2px}
-.pie-links{display:flex;gap:18px;flex-wrap:wrap}.pie-links a{text-decoration:none;color:var(--suave);font-weight:500}.pie-links a:hover{color:var(--tinta)}
-.pie-bajo{font-size:13px;margin-top:20px}
+.pie{padding:64px 0 36px;background:transparent}
+.pie-fila{display:flex;justify-content:space-between;align-items:center;gap:20px}
+.pie-logo img{display:block;width:130px;height:auto}
+.pie-redes{display:flex;gap:4px}
+.pie-redes a{width:40px;height:40px;border-radius:20px;background:#F0EEEF;color:var(--rosa);display:grid;place-items:center;transition:transform .2s var(--ease),background .2s}
+.pie-redes a:hover{transform:translateY(-2px);background:#FBE6EB}
+.pie-links{display:flex;flex-wrap:wrap;gap:32px;margin:32px 0 28px}
+.pie-links a{font-size:16px;font-weight:500;letter-spacing:-.03em;color:var(--suave);text-decoration:none;transition:color .2s}
+.pie-links a:hover{color:var(--tinta)}
+.pie-linea{height:1px;background:var(--suave);opacity:.1}
+.pie-copy{margin-top:28px;font-size:16px;font-weight:600;letter-spacing:-.02em;color:var(--suave)}
 @media (max-width:720px){
  .nav-link:not(.activo){display:none}.nav-pill{padding:8px 8px 8px 16px;gap:6px}.nav-pill .btn-oscuro{font-size:14px;padding:10px 16px}.herramientas{padding:28px 18px 22px;border-radius:22px;margin-top:36px}
  .hero{padding-top:44px}.vitrina{height:300px;margin-top:20px}.m1,.m2,.m3,.m4{--x:0px;--ry:0deg;--rz:0deg}.mini{opacity:0;--e:.9;--y:24px;pointer-events:none}.mini.activa{pointer-events:auto}.vitrina{height:310px}.mini.activa{opacity:1;z-index:5;--x:0px;--ry:0deg;--rz:0deg}
