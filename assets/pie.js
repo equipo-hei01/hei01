@@ -10,7 +10,6 @@
      <script src="assets/pie.js" data-base="" defer></script>
    data-base = ruta a la raíz del sitio desde la página ("" en la raíz, "../" en /recursos/).
    En el placeholder se puede agregar data-nota="texto" para una línea legal extra.
-   En la portada (Framer) reemplaza el footer de Framer.
    ============================================================ */
 (function () {
   var script = document.currentScript;
@@ -21,7 +20,7 @@
   var LINKS = [
     { texto: 'Orquestación', href: '' },
     { texto: 'Formaciones', href: 'formaciones.html' },
-    { texto: 'Conferencias', href: '' },
+    { texto: 'Conferencias', href: 'conferencias.html' },
     { texto: 'Recursos', href: 'recursos/' }
   ];
   var REDES = [
@@ -78,12 +77,6 @@
       // Se rellena el marcador (no se reemplaza) para no romper páginas con Vue.
       marcadores.forEach(function (m) { m.classList.add('pie-hei'); m.innerHTML = html(m.getAttribute('data-nota')); });
       return;
-    }
-    // Portada (Framer): se oculta su footer (pie.css) y se agrega el componente al final.
-    var main = document.getElementById('main');
-    if (main && !document.querySelector('footer.pie-hei')) {
-      document.documentElement.classList.add('con-pie-hei');
-      main.parentNode.insertBefore(crear(''), main.nextSibling);
     }
   }
 

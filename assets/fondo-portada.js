@@ -3,7 +3,7 @@
    - Algunos navegadores no inician el autoplay si la pestaña cargó en segundo plano.
    Por eso se marca como silenciado y se reintenta durante unos segundos. */
 (function () {
-  // Igual que la portada de Framer: se reproduce aunque el sistema pida menos movimiento.
+  // Decisión de la dueña: se reproduce aunque el sistema pida menos movimiento.
   function reproducir() {
     var v = document.querySelector('.fondo-portada video');
     if (!v) return false;

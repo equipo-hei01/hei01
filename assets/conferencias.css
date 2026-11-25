@@ -1,0 +1,100 @@
+/* ============================================================
+   Página de Conferencias (conferencias.html). Usa la base de portada.css
+   (tokens, botones, menú, .rev / data-anim) y agrega solo lo propio de esta página.
+   ============================================================ */
+
+/* === HERO === */
+.c-hero{position:relative;padding:168px 24px 96px;text-align:center}
+.c-hero .etiqueta{margin-bottom:20px}
+.c-hero h1{max-width:900px;margin:0 auto 24px}
+.c-hero .bajada{font-size:clamp(1.05rem,2vw,1.3rem);color:var(--g5);max-width:660px;margin:0 auto 36px;line-height:1.55}
+.c-hero-btns{display:flex;gap:12px 28px;justify-content:center;align-items:center;flex-wrap:wrap}
+
+/* === CIFRAS === */
+.c-cifras{list-style:none;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:24px;max-width:var(--ancho);margin:0 auto;padding:0 24px 112px}
+.c-cifras li{border-top:1px solid var(--g2);padding-top:18px}
+.c-cifra-n{display:block;font-size:clamp(2rem,4vw,3rem);font-weight:400;letter-spacing:-.04em;line-height:1.1;font-variant-numeric:tabular-nums}
+.c-cifra-n small{font-size:.5em;color:var(--g4);margin-left:.15em;letter-spacing:-.02em}
+.c-cifra-d{display:block;margin-top:6px;color:var(--g5);font-size:15px;max-width:220px}
+
+/* === SECCIONES === */
+.c-sec{padding:112px 0}
+.c-sec-gris{background:var(--g1)}
+.c-cab{max-width:720px;margin-bottom:56px}
+.c-cab p{margin-top:16px;color:var(--g5);font-size:clamp(1.02rem,1.6vw,1.15rem)}
+
+/* === FORMATOS (dos tarjetas) === */
+.c-formatos{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px}
+.c-formato{background:var(--blanco);border:1px solid var(--g2);border-radius:20px;padding:40px 36px;box-shadow:var(--sombra)}
+.c-formato .etiqueta{margin-bottom:10px}
+.c-formato h3{font-size:clamp(1.4rem,2.4vw,1.75rem);font-weight:400;letter-spacing:-.03em;margin-bottom:12px}
+.c-formato>p{color:var(--g5);margin-bottom:24px}
+.c-lista{list-style:none;display:grid;gap:14px}
+.c-lista li{position:relative;padding-left:22px;color:var(--g5)}
+.c-lista li::before{content:"";position:absolute;left:0;top:.62em;width:8px;height:8px;border-radius:50%;background:var(--negro)}
+.c-lista strong{color:var(--negro);font-weight:600}
+
+/* === PARA QUIÉN (tres segmentos) === */
+.c-segmentos{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px}
+.c-seg{display:flex;flex-direction:column;background:var(--blanco);border:1px solid var(--g2);border-radius:20px;padding:36px 30px;transition:border-color .25s,box-shadow .25s,transform .25s var(--ease-out)}
+.c-seg:hover{border-color:var(--negro);box-shadow:var(--sombra-alta);transform:translateY(-3px)}
+.c-seg-n{font-size:13px;font-weight:600;letter-spacing:.08em;color:var(--g4);margin-bottom:18px}
+.c-seg h3{font-size:1.4rem;font-weight:500;letter-spacing:-.02em;margin-bottom:12px}
+.c-seg p{color:var(--g5);margin-bottom:18px}
+.c-seg .c-lista{margin-bottom:28px;gap:10px;font-size:15px}
+.c-seg .btn{margin-top:auto;align-self:flex-start}
+
+/* === TEMAS === */
+.c-temas{display:flex;flex-wrap:wrap;gap:10px}
+.c-tema{display:inline-flex;align-items:center;min-height:40px;padding:8px 18px;border:1px solid var(--g2);border-radius:100px;background:var(--blanco);font-size:15px;font-weight:500;color:var(--g5)}
+
+/* === CÓMO LO HACE (habilidades) === */
+.c-hab{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:32px}
+.c-hab h3{font-size:1.15rem;font-weight:600;margin:14px 0 8px}
+.c-hab p{color:var(--g5);font-size:15px}
+.c-hab-n{display:block;width:36px;height:2px;background:var(--coral)}
+
+/* === DÓNDE HA HABLADO === */
+.c-donde{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:40px}
+.c-donde h3{font-size:13px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--g4);margin-bottom:14px}
+.c-donde p{color:var(--g5);line-height:1.75}
+.c-paises{margin-top:48px;padding-top:28px;border-top:1px solid var(--g2);color:var(--g5)}
+.c-paises strong{color:var(--negro);font-weight:600}
+
+/* === TESTIMONIOS (fondo oscuro) === */
+.c-test{padding:112px 0}
+.c-citas{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px}
+.c-cita{border-top:1px solid var(--linea-osc);padding-top:24px}
+.c-cita p{font-size:clamp(1.05rem,1.6vw,1.2rem);letter-spacing:-.02em;line-height:1.5}
+.c-cita footer{margin-top:16px;font-size:14px;color:var(--sobre-oscuro)}
+
+/* === SOBRE HEILEEN === */
+.c-sobre{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.1fr);gap:64px;align-items:start}
+.c-sobre p{color:var(--g5);margin-bottom:16px}
+.c-sobre .c-lista{gap:10px}
+
+/* === CIERRE === */
+.c-cierre{padding:136px 0;text-align:center}
+.c-cierre h2{max-width:760px;margin:0 auto 20px;font-size:clamp(2.1rem,5vw,3.8rem);letter-spacing:-.04em;line-height:1.08}
+.c-cierre p{color:var(--g5);max-width:560px;margin:0 auto 36px;font-size:clamp(1.02rem,1.6vw,1.15rem)}
+
+/* === RESPONSIVE === */
+@media (max-width:980px){
+  .c-hab{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .c-segmentos{grid-template-columns:minmax(0,1fr);max-width:560px}
+}
+@media (max-width:820px){
+  .c-cifras{grid-template-columns:repeat(2,minmax(0,1fr));padding-bottom:80px}
+  .c-formatos,.c-donde,.c-citas,.c-sobre{grid-template-columns:minmax(0,1fr)}
+  .c-sobre{gap:24px}
+  .c-sec,.c-test{padding:80px 0}
+  .c-cierre{padding:96px 0}
+}
+@media (max-width:560px){
+  .c-hero{padding:136px 16px 72px}
+  .c-cifras{padding:0 16px 72px;gap:20px}
+  .c-hab{grid-template-columns:minmax(0,1fr)}
+  .c-formato,.c-seg{padding:28px 22px}
+  .c-hero-btns .btn{width:100%}
+}
+@media (prefers-reduced-motion:reduce){.c-seg{transition:none}.c-seg:hover{transform:none}}

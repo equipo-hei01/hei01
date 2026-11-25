@@ -1,4 +1,4 @@
-/* Estilos del COMPONENTE pie de página (assets/pie.js). Pie de página común: mismas medidas que el de la portada (index.html, Framer).
+/* Estilos del COMPONENTE pie de página (assets/pie.js). Pie de página común: medidas tomadas del footer original de la portada.
    Contenedor 1240 px · padding 60 px · logo 39 px de alto · redes en círculos de 40 px (#F0EEEF, ícono coral 24 px)
    · links a 40 px del logo, 16 px/500, #5C5C66, separados 32 px · línea a 32 px · © a 32 px, 16 px/600. */
 .pie-hei{padding:60px 24px;background:#fff;font-family:"Inter",system-ui,sans-serif;-webkit-font-smoothing:antialiased}
@@ -25,6 +25,4 @@
 .pie-hei-copy{margin:0;font-size:16px;font-weight:600;letter-spacing:-.02em;line-height:26px;color:#5C5C66}
 .pie-hei-nota{margin:8px 0 0;font-size:12px;line-height:1.5;color:#6B6B75}
 @media (max-width:640px){.pie-hei{padding:48px 16px}}
-/* Portada (Framer): se oculta el footer propio de Framer y se usa el componente. */
-.con-pie-hei #main footer{display:none !important}
 .pie-hei-boton{background:none;border:0;padding:0;cursor:pointer;font-family:inherit}

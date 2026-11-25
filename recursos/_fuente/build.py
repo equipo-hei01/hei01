@@ -46,7 +46,7 @@ def escribir(p, s):
 
 
 # Medición: componente común assets/analitica.js (Google Tag Manager).
-GTM = '<script src="../assets/analitica.js?v=1" async></script>'
+GTM = '<script src="../assets/analitica.js?v=2" async></script>'
 
 
 def icono(tipo, tam=22):
@@ -91,18 +91,18 @@ def cabeza(titulo, descripcion, url):
     <a href="../" class="nav-logo"><img src="../assets/marca/hei01-compacto.svg" alt="HEI01" width="75" height="34"></a>
     <a href="../" class="nav-link">Orquestación</a>
     <a href="../formaciones.html" class="nav-link">Formaciones</a>
-    <a href="../" class="nav-link">Conferencias</a>
+    <a href="../conferencias.html" class="nav-link">Conferencias</a>
     <a href="./" class="nav-link activo" aria-current="page">Recursos</a>
     <a href="../contact/" class="btn-oscuro">Agendar sesión →</a>
     <button type="button" class="menu-btn" aria-expanded="false" aria-controls="nav-drop" aria-label="Menú"><svg class="ico-abrir" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16"/></svg><svg class="ico-cerrar" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 18 18 6M6 6l12 12"/></svg></button>
-    <nav class="nav-drop" id="nav-drop" aria-label="Menú móvil" hidden><a href="../">Orquestación</a><a href="../formaciones.html">Formaciones</a><a href="../">Conferencias</a><a href="./" aria-current="page">Recursos</a><a href="../contact/" class="nav-drop-cta">Agendar sesión →</a></nav>
+    <nav class="nav-drop" id="nav-drop" aria-label="Menú móvil" hidden><a href="../">Orquestación</a><a href="../formaciones.html">Formaciones</a><a href="../conferencias.html">Conferencias</a><a href="./" aria-current="page">Recursos</a><a href="../contact/" class="nav-drop-cta">Agendar sesión →</a></nav>
   </nav>
 </header>
 '''
 
 
 PIE = f'''<footer data-componente="pie"><nav aria-label="Pie de página"><a href="../">HEI01</a> · <a href="../formaciones.html">Formaciones</a> · <a href="../recursos/">Recursos</a></nav></footer>
-<script src="../assets/pie.js?v=3" data-base="../" defer></script>
+<script src="../assets/pie.js?v=4" data-base="../" defer></script>
 '''
 
 CSS = '''/* Biblioteca de recursos HEI01 · generado por recursos/_fuente/build.py (no editar a mano) */

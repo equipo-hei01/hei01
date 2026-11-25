@@ -1,5 +1,5 @@
 /* Fondo de la portada (index.html) para el resto del sitio: video de ondas en movimiento
-   + media luna blanca traslúcida encima. Mismos valores que el hero de Framer:
+   + media luna blanca traslúcida encima. Mismos valores que el hero original:
    video 100 % x 847 px en gris; media luna de 109,6 vw x 792 px a 145 px del borde,
    invertida con brightness(.17) invert(1) y máscara que la desvanece hacia arriba. */
 .fondo-portada{position:absolute;top:0;left:0;right:0;height:937px;z-index:-1;overflow:hidden;pointer-events:none;background:#fff}
@@ -13,5 +13,5 @@
   .fondo-portada video{height:700px}
   .fondo-portada .media-luna{top:200px;width:max(200vw,900px);height:560px}
 }
-/* El video se reproduce aunque el sistema pida menos movimiento, igual que en la portada de Framer
+/* El video se reproduce aunque el sistema pida menos movimiento, decisión de la dueña
    (es un fondo lento y sin contenido). */

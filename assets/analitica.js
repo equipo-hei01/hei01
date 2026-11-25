@@ -90,7 +90,7 @@
     if (!a) return;
     var t = texto(a).toLowerCase();
     var href = a.getAttribute('href') || '';
-    if (/agendar/.test(t) || /calendar\.(app\.)?google|\/contact\/?$|^contact\/?$/.test(href)) {
+    if (/agendar|agenda y conversemos/.test(t) || /calendar\.(app\.)?google|(^|\/)contact\/?(\?|$)/.test(href)) {
       enviar('cta_agendar', a, href);
     } else if (/inscrib|asegurar mi cupo|reservar/.test(t) || /forms\.gle|docs\.google\.com\/forms/.test(href)) {
       enviar('cta_inscribir', a, href);
