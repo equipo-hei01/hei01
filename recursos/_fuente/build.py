@@ -45,8 +45,8 @@ def escribir(p, s):
     io.open(p, 'w', encoding='utf8', newline='\n').write(s)
 
 
-_f = leer(os.path.join(RAIZ, 'formaciones.html'))
-GTM = re.search(r'<script>\(function\(w,d,s,l,i\).*?</script>', _f, re.S).group(0)
+# Medición: componente común assets/analitica.js (Google Tag Manager).
+GTM = '<script src="../assets/analitica.js?v=1" async></script>'
 
 
 def icono(tipo, tam=22):
@@ -56,19 +56,20 @@ def icono(tipo, tam=22):
 
 def cabeza(titulo, descripcion, url):
     return f'''<!DOCTYPE html>
-<html lang="es">
+<html lang="es-CL">
 <head>
 <meta charset="UTF-8">
+<meta name="referrer" content="strict-origin-when-cross-origin">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>{e(titulo)}</title>
 <meta name="description" content="{e(descripcion)}">
 <link rel="canonical" href="{url}">
-<link rel="icon" href="../assets/favicon.svg">
+<link rel="icon" href="../assets/marca/hei01-icono.svg">
 <meta property="og:type" content="website">
 <meta property="og:url" content="{url}">
 <meta property="og:title" content="{e(titulo)}">
 <meta property="og:description" content="{e(descripcion)}">
-<meta property="og:locale" content="es_ES">
+<meta property="og:locale" content="es_CL">
 <meta property="og:image" content="{DOMINIO}/og-image.png">
 <meta name="twitter:card" content="summary_large_image">
 {GTM}
@@ -76,53 +77,39 @@ def cabeza(titulo, descripcion, url):
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="recursos.css?v={VERSION}">
-<style>.fondo-hero{{position:absolute;top:0;left:0;right:0;height:min(1000px,115vh);z-index:-1;overflow:hidden;pointer-events:none}}.fondo-hero video{{width:100%;height:100%;object-fit:cover;display:block}}</style>
+<link rel="stylesheet" href="../assets/menu-movil.css?v=2">
+<link rel="stylesheet" href="../assets/fondo-portada.css?v=2">
+<link rel="stylesheet" href="../assets/pie.css?v=4">
+<script src="../assets/fondo-portada.js?v=3" defer></script>
+<script src="../assets/menu-movil.js?v=2" defer></script>
 </head>
 <body>
 <div class="fondo" aria-hidden="true"></div>
-<div class="fondo-hero" aria-hidden="true">
-  <video autoplay muted loop playsinline preload="auto" poster="fondo.webp"><source src="fondo.mp4" type="video/mp4"></video>
-</div>
+<div class="fondo-portada" aria-hidden="true"><video autoplay muted loop playsinline preload="auto" poster="fondo.webp"><source src="fondo.mp4" type="video/mp4"></video><div class="media-luna"></div></div>
 <header class="barra">
   <nav class="nav-pill" aria-label="Principal">
-    <a href="../" class="nav-logo"><img src="../assets/hero-bg.png" alt="HEI01" width="80" height="32"></a>
+    <a href="../" class="nav-logo"><img src="../assets/marca/hei01-compacto.svg" alt="HEI01" width="75" height="34"></a>
     <a href="../" class="nav-link">Orquestación</a>
     <a href="../formaciones.html" class="nav-link">Formaciones</a>
+    <a href="../" class="nav-link">Conferencias</a>
     <a href="./" class="nav-link activo" aria-current="page">Recursos</a>
     <a href="../contact/" class="btn-oscuro">Agendar sesión →</a>
+    <button type="button" class="menu-btn" aria-expanded="false" aria-controls="nav-drop" aria-label="Menú"><svg class="ico-abrir" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16"/></svg><svg class="ico-cerrar" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 18 18 6M6 6l12 12"/></svg></button>
+    <nav class="nav-drop" id="nav-drop" aria-label="Menú móvil" hidden><a href="../">Orquestación</a><a href="../formaciones.html">Formaciones</a><a href="../">Conferencias</a><a href="./" aria-current="page">Recursos</a><a href="../contact/" class="nav-drop-cta">Agendar sesión →</a></nav>
   </nav>
 </header>
 '''
 
 
-PIE = f'''<footer class="pie">
-  <div class="contenedor">
-    <div class="pie-fila">
-      <a href="../" class="pie-logo"><img src="../assets/hero-bg.png" alt="HEI01" width="130" height="52"></a>
-      <div class="pie-redes">
-        <a href="https://www.instagram.com/heileengoodson/" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r=".6" fill="currentColor"/></svg></a>
-        <a href="https://www.linkedin.com/company/hei01" target="_blank" rel="noopener" aria-label="LinkedIn"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M8 10.5V16M8 7.5v.01M11.5 16v-5.5M11.5 13c0-1.6 1-2.5 2.3-2.5s2.2.9 2.2 2.5V16"/></svg></a>
-        <a href="https://www.youtube.com/@HEILEENGOODSON" target="_blank" rel="noopener" aria-label="YouTube"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2.5" y="5.5" width="19" height="13" rx="4"/><path d="M10.5 9.5v5l4-2.5z"/></svg></a>
-      </div>
-    </div>
-    <nav class="pie-links" aria-label="Pie de página">
-      <a href="../">Orquestación</a>
-      <a href="../google-workspace-ai.html">Formaciones</a>
-      <a href="../">Conferencias</a>
-      <a href="./">Recursos</a>
-    </nav>
-    <div class="pie-linea"></div>
-    <p class="pie-copy">© {datetime.date.today().year} HEI01</p>
-  </div>
-</footer>
-<script src="recursos.js?v={VERSION}" defer></script>
+PIE = f'''<footer data-componente="pie"><nav aria-label="Pie de página"><a href="../">HEI01</a> · <a href="../formaciones.html">Formaciones</a> · <a href="../recursos/">Recursos</a></nav></footer>
+<script src="../assets/pie.js?v=3" data-base="../" defer></script>
 '''
 
 CSS = '''/* Biblioteca de recursos HEI01 · generado por recursos/_fuente/build.py (no editar a mano) */
-:root{--tinta:#15131A;--suave:#6E6B65;--rosa:#E8678A;--violeta:#7C3AED;--lila:#F6F1FC;--lavanda:#D8B4FE;--borde:rgba(21,19,26,.07);
+:root{--tinta:#0D0D12;--suave:#5C5C66;--rosa:#FF6F61;--violeta:#0D0D12;--lila:#F4F4F6;--lavanda:#D9D9DE;--borde:rgba(13,13,18,.07);
 --vidrio:linear-gradient(rgba(255,255,255,.92),rgba(255,255,255,.5));
---sombra:0 .8px .8px -1px rgba(0,0,0,.04),0 2.4px 2.4px -2px rgba(0,0,0,.04),0 6.4px 6.4px -3px rgba(0,0,0,.03),0 20px 40px -6px rgba(36,10,90,.07);
---sombra-alta:0 1px 1px -.5px rgba(16,0,69,.17),0 3.6px 3.6px -1.2px rgba(16,0,69,.16),0 18px 36px -6px rgba(16,0,69,.22);
+--sombra:0 .8px .8px -1px rgba(0,0,0,.04),0 2.4px 2.4px -2px rgba(0,0,0,.04),0 6.4px 6.4px -3px rgba(0,0,0,.03),0 20px 40px -6px rgba(13,13,18,.07);
+--sombra-alta:0 1px 1px -.5px rgba(13,13,18,.17),0 3.6px 3.6px -1.2px rgba(13,13,18,.16),0 18px 36px -6px rgba(13,13,18,.22);
 --ease:cubic-bezier(.22,1,.36,1)}
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
@@ -134,9 +121,6 @@ a{color:inherit}
 /* fondo como la portada: lila suave, líneas curvas y nubes que flotan */
 .fondo{position:fixed;inset:0;z-index:-2;background:#fff}
 /* el mismo fondo de la portada: ondas blancas en movimiento, que se funden con el blanco al bajar */
-.fondo-hero{position:absolute;top:0;left:0;right:0;height:min(1000px,115vh);z-index:-1;overflow:hidden;pointer-events:none}
-.fondo-hero video{width:100%;height:100%;object-fit:cover;display:block}
-.fondo-hero::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(255,255,255,0) 0%,rgba(255,255,255,0) 55%,#fff 100%),radial-gradient(60% 40% at 50% 0%,rgba(251,230,235,.35),transparent 70%)}
 /* navegación en píldora, como la de la portada */
 .barra{position:sticky;top:18px;z-index:20;display:flex;justify-content:center;padding:0 12px}
 .nav-pill{display:flex;align-items:center;gap:10px;width:min(780px,100%);background:var(--vidrio);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-radius:100px;padding:12px 12px 12px 30px;box-shadow:var(--sombra)}
@@ -147,7 +131,7 @@ a{color:inherit}
 .nav-link:hover{color:var(--tinta)}
 .nav-link.activo{color:var(--tinta);background:var(--lila)}
 .btn-oscuro{white-space:nowrap;display:inline-flex;align-items:center;gap:6px;background:var(--tinta);color:#fff;text-decoration:none;font-weight:500;font-size:15px;padding:10px 20px;border-radius:100px;box-shadow:var(--sombra-alta);transition:transform .25s var(--ease),box-shadow .25s}
-.btn-oscuro:hover{transform:translateY(-2px);box-shadow:0 0 0 4px rgba(232,103,138,.18),var(--sombra-alta)}
+.btn-oscuro:hover{transform:translateY(-2px);box-shadow:0 0 0 4px rgba(255,111,97,.18),var(--sombra-alta)}
 .btn-claro{display:inline-flex;align-items:center;gap:6px;background:var(--vidrio);color:var(--tinta);text-decoration:none;font-weight:500;padding:10px 20px;border-radius:100px;box-shadow:var(--sombra);transition:transform .25s var(--ease)}
 .btn-claro:hover{transform:translateY(-2px)}
 /* etiquetas en píldora */
@@ -158,7 +142,7 @@ a{color:inherit}
 /* hero */
 .hero{text-align:center;padding:72px 0 24px}
 .hero h1{font-weight:400;font-size:clamp(38px,6.4vw,72px);line-height:1.04;letter-spacing:-.04em;margin:22px auto 18px;max-width:900px}
-.hero h1 .rosa{color:var(--rosa)}
+.hero h1 .rosa{color:#FF6F61}
 .hero p{max-width:600px;margin:0 auto;color:var(--suave);font-weight:500;font-size:17px}
 .hero .hero-nota{margin-top:10px;color:var(--tinta);font-size:15px}
 .palabra{display:inline-block;opacity:0;filter:blur(8px);transform:translateY(18px);animation:aparecer .9s var(--ease) forwards}
@@ -166,32 +150,32 @@ a{color:inherit}
 /* vitrina: cuatro recursos en miniatura que se muestran trabajando (prompt, checklist, plantilla, ejercicio) */
 .vitrina{position:relative;height:340px;max-width:880px;margin:34px auto 0;perspective:1500px}
 .mini{position:absolute;top:34px;left:50%;width:214px;height:256px;margin-left:-107px;border-radius:18px;background:var(--vidrio);
- box-shadow:var(--sombra),0 30px 50px -20px rgba(60,20,140,.22);padding:16px 16px 14px;display:flex;flex-direction:column;gap:10px;text-align:left;
+ box-shadow:var(--sombra),0 30px 50px -20px rgba(13,13,18,.22);padding:16px 16px 14px;display:flex;flex-direction:column;gap:10px;text-align:left;
  transform:translateX(var(--x)) translateY(var(--y,0)) rotateY(var(--ry)) rotateZ(var(--rz,0deg)) scale(var(--e,.94));transition:transform .9s var(--ease),box-shadow .9s,opacity .9s;opacity:.9}
 .mini::before{content:"";position:absolute;inset:-1px;border-radius:18px;padding:1.5px;background:linear-gradient(135deg,var(--rosa),var(--violeta));-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude;opacity:0;transition:opacity .9s}
-.mini.activa{--e:1.06;--y:-18px;opacity:1;z-index:5;box-shadow:var(--sombra),0 44px 70px -22px rgba(124,58,237,.38)}
+.mini.activa{--e:1.06;--y:-18px;opacity:1;z-index:5;box-shadow:var(--sombra),0 44px 70px -22px rgba(13,13,18,.38)}
 .mini.activa::before{opacity:1}
 .m1{--x:-330px;--ry:22deg;--rz:-2deg;z-index:1}.m2{--x:-110px;--ry:8deg;z-index:2}.m3{--x:110px;--ry:-8deg;z-index:2}.m4{--x:330px;--ry:-22deg;--rz:2deg;z-index:1}
 .mini-top{display:flex;justify-content:space-between;align-items:center}
 .mini-top .tipo{box-shadow:none;background:var(--lila);font-size:11px;padding:3px 10px}
 .mini-top .icono{color:var(--rosa);display:flex}
-.mini h4{font-size:14px;font-weight:600;line-height:1.25;letter-spacing:-.01em}
+.mini h2{font-size:14px;font-weight:600;line-height:1.25;letter-spacing:-.01em;margin:1.33em 0}
 .mini-pie{white-space:nowrap;margin-top:auto;font-size:11px;color:var(--suave);font-weight:500}
 /* prompt que se escribe */
-.term{background:var(--tinta);border-radius:12px;padding:10px 11px;font-family:ui-monospace,Menlo,Consolas,monospace;font-size:10.5px;line-height:1.55;color:#EDE9F6;flex:1;position:relative;overflow:hidden}
+.term{background:var(--tinta);border-radius:12px;padding:10px 11px;font-family:ui-monospace,Menlo,Consolas,monospace;font-size:10.5px;line-height:1.55;color:#F4F4F6;flex:1;position:relative;overflow:hidden}
 .term .lin{display:block;white-space:nowrap;overflow:hidden;width:0;border-right:2px solid transparent}
 .activa .term .lin{animation:escribir 1.1s steps(26) forwards}
 .activa .term .l2{animation-delay:1.1s}.activa .term .l3{animation-delay:2.2s}
 .activa .term .l3{border-right-color:var(--rosa)}
 @keyframes escribir{to{width:100%}}
-.term .gris{color:rgba(255,255,255,.45)}.term .rosa{color:#F5A3B9}
+.term .gris{color:rgba(255,255,255,.45)}.term .rosa{color:#FF8579}
 .copiado{position:absolute;right:8px;bottom:8px;background:#fff;color:var(--tinta);font-family:Inter,sans-serif;font-size:10px;font-weight:600;border-radius:100px;padding:3px 9px;opacity:0;transform:translateY(6px)}
 .activa .copiado{animation:copiado .5s var(--ease) 3.4s forwards}
 @keyframes copiado{to{opacity:1;transform:none}}
 /* checklist que se marca */
-.check{list-style:none;display:grid;gap:7px;font-size:11.5px;font-weight:500;color:#3b3843}
+.check{list-style:none;display:grid;gap:7px;font-size:11.5px;font-weight:500;color:#3A3A42}
 .check li{display:flex;gap:8px;align-items:center}
-.check b{flex:0 0 16px;height:16px;border-radius:5px;border:1.5px solid #D6CFE6;display:grid;place-items:center;transition:all .3s}
+.check b{flex:0 0 16px;height:16px;border-radius:5px;border:1.5px solid #D9D9DE;display:grid;place-items:center;transition:all .3s}
 .check b::after{content:"";width:7px;height:4px;border-left:2px solid #fff;border-bottom:2px solid #fff;transform:rotate(-45deg) scale(0);margin-top:-2px;transition:transform .3s var(--ease)}
 .activa .check li b{animation:marca .4s var(--ease) forwards}
 .activa .check li:nth-child(1) b{animation-delay:.3s}.activa .check li:nth-child(2) b{animation-delay:1s}.activa .check li:nth-child(3) b{animation-delay:1.7s}
@@ -200,7 +184,7 @@ a{color:inherit}
 .activa .check li:nth-child(2) b::after{transform:rotate(-45deg) scale(1);transition-delay:1.1s}
 .activa .check li:nth-child(3) b::after{transform:rotate(-45deg) scale(1);transition-delay:1.8s}
 .puntaje{white-space:nowrap;gap:6px;display:flex;justify-content:space-between;align-items:center;font-size:11px;font-weight:600;background:var(--lila);border-radius:10px;padding:6px 10px}
-.puntaje span{color:var(--rosa);opacity:0}.activa .puntaje span{animation:copiado .5s var(--ease) 2.4s forwards}
+.puntaje span{color:#0D0D12;opacity:0}.activa .puntaje span{animation:copiado .5s var(--ease) 2.4s forwards}
 /* plantilla que se llena */
 .tab{display:grid;gap:6px}
 .fila{display:grid;grid-template-columns:74px 1fr;gap:8px;align-items:center;font-size:10.5px;font-weight:600;color:var(--suave)}
@@ -209,7 +193,7 @@ a{color:inherit}
 .activa .fila:nth-child(2) i{animation-delay:.6s}.activa .fila:nth-child(3) i{animation-delay:1.2s}.activa .fila:nth-child(4) i{animation-delay:1.8s}
 @keyframes llenar{to{transform:scaleX(var(--w,1));opacity:1}}
 /* ejercicio paso a paso */
-.paso{display:flex;gap:9px;align-items:center;font-size:11.5px;font-weight:500;color:#3b3843}
+.paso{display:flex;gap:9px;align-items:center;font-size:11.5px;font-weight:500;color:#3A3A42}
 .paso b{flex:0 0 22px;height:22px;border-radius:50%;background:#fff;box-shadow:var(--sombra);display:grid;place-items:center;font-size:10.5px;color:var(--suave)}
 .activa .paso b{animation:paso .4s var(--ease) forwards}
 .activa .paso:nth-child(2) b{animation-delay:.9s}.activa .paso:nth-child(3) b{animation-delay:1.8s}
@@ -224,19 +208,19 @@ a{color:inherit}
 .leyenda button[aria-pressed="true"]{background:var(--tinta);color:#fff}
 @keyframes flota{0%,100%{transform:translateY(0)}50%{transform:translateY(-14px)}}
 /* buscador y filtros */
-.herramientas{position:relative;margin:56px auto 28px;max-width:980px;background:#fff;border-radius:28px;padding:40px 44px 36px;box-shadow:0 1px 2px rgba(0,0,0,.04),0 24px 60px -20px rgba(60,20,140,.18);border:1px solid rgba(124,58,237,.08)}
+.herramientas{position:relative;margin:56px auto 28px;max-width:980px;background:#fff;border-radius:28px;padding:40px 44px 36px;box-shadow:0 1px 2px rgba(0,0,0,.04),0 24px 60px -20px rgba(13,13,18,.18);border:1px solid rgba(13,13,18,.08)}
 .panel-cabeza{text-align:center;margin-bottom:26px}
 .panel-cabeza h2{font-weight:400;font-size:clamp(28px,3.6vw,38px);letter-spacing:-.035em;line-height:1.1;margin:16px 0 8px}
 .panel-cabeza p{color:var(--suave);font-weight:500;max-width:520px;margin:0 auto}
 .buscador{position:relative}
-.buscador input{width:100%;padding:18px 22px 18px 54px;border-radius:100px;border:1px solid rgba(124,58,237,.12);background:var(--lila);box-shadow:none;font:inherit;font-size:16px;color:var(--tinta)}
+.buscador input{width:100%;padding:18px 22px 18px 54px;border-radius:100px;border:1px solid rgba(13,13,18,.12);background:var(--lila);box-shadow:none;font:inherit;font-size:16px;color:var(--tinta)}
 .buscador input:focus{outline:2px solid var(--lavanda)}
 .buscador svg{position:absolute;left:20px;top:50%;transform:translateY(-50%);color:var(--suave)}
 .filtros{display:grid;gap:0;margin-top:26px}
 .grupo{display:grid;grid-template-columns:150px 1fr;align-items:center;gap:12px;padding:18px 0;border-top:1px solid var(--borde)}
 .chips{display:flex;flex-wrap:wrap;gap:10px}
 .grupo-titulo{font-size:12px;font-weight:600;color:var(--suave);text-transform:uppercase;letter-spacing:.06em;margin-right:10px;min-width:130px}
-.chip{border:1px solid rgba(21,19,26,.08);background:#fff;box-shadow:0 1px 2px rgba(0,0,0,.04);color:var(--tinta);font:inherit;font-size:14px;font-weight:500;padding:9px 17px;border-radius:100px;cursor:pointer;transition:transform .2s var(--ease),background .2s,color .2s}
+.chip{border:1px solid rgba(13,13,18,.08);background:#fff;box-shadow:0 1px 2px rgba(0,0,0,.04);color:var(--tinta);font:inherit;font-size:14px;font-weight:500;padding:9px 17px;border-radius:100px;cursor:pointer;transition:transform .2s var(--ease),background .2s,color .2s}
 .chip:hover{transform:translateY(-1px);border-color:var(--lavanda)}
 .chip[aria-pressed="true"]{background:var(--tinta);color:#fff}
 .estado{display:flex;justify-content:space-between;align-items:center;margin:28px auto 18px;max-width:980px;font-size:14px;color:var(--suave)}
@@ -244,8 +228,8 @@ a{color:inherit}
 /* tarjetas de vidrio */
 .grilla{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:20px;padding-bottom:30px}
 .tarjeta{position:relative;display:flex;flex-direction:column;gap:12px;padding:28px 28px 26px;border-radius:16px;background:var(--vidrio);box-shadow:var(--sombra);text-decoration:none;color:var(--tinta);overflow:hidden;transition:transform .35s var(--ease),box-shadow .35s}
-.tarjeta::before{content:"";position:absolute;inset:-1px;border-radius:16px;padding:1px;background:linear-gradient(135deg,rgba(232,103,138,.0),rgba(232,103,138,.55),rgba(124,58,237,.45));-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude;opacity:0;transition:opacity .35s}
-.tarjeta:hover{transform:translateY(-6px);box-shadow:0 30px 60px -18px rgba(60,20,140,.25)}
+.tarjeta::before{content:"";position:absolute;inset:-1px;border-radius:16px;padding:1px;background:linear-gradient(135deg,rgba(255,111,97,.0),rgba(255,111,97,.55),rgba(13,13,18,.45));-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude;opacity:0;transition:opacity .35s}
+.tarjeta:hover{transform:translateY(-6px);box-shadow:0 30px 60px -18px rgba(13,13,18,.25)}
 .tarjeta:hover::before{opacity:1}
 .tarjeta .icono{color:var(--rosa)}
 .tarjeta .min{position:absolute;top:22px;right:22px;font-size:12px;font-weight:500;color:var(--suave);background:#fff;border-radius:100px;padding:3px 10px;box-shadow:var(--sombra)}
@@ -266,11 +250,11 @@ a{color:inherit}
 .ficha span{display:block;font-size:12px;color:var(--suave);text-transform:uppercase;letter-spacing:.06em;font-weight:600;margin-bottom:2px}
 .seccion{margin:34px 0}
 .seccion h2,.seccion h3{font-size:22px;font-weight:600;letter-spacing:-.02em;margin-bottom:12px}
-.seccion p{color:#3b3843}
+.seccion p{color:#3A3A42}
 .caja{background:var(--vidrio);box-shadow:var(--sombra);border-radius:16px;padding:22px 24px;margin:14px 0}
 ol.numerada{counter-reset:n var(--inicio,0);list-style:none;display:grid;gap:10px}
 ol.numerada li{counter-increment:n;position:relative;padding:14px 18px 14px 58px;background:var(--vidrio);box-shadow:var(--sombra);border-radius:14px;font-weight:500}
-ol.numerada li::before{content:counter(n);position:absolute;left:16px;top:50%;transform:translateY(-50%);width:28px;height:28px;border-radius:50%;background:#fff;box-shadow:var(--sombra);display:grid;place-items:center;font-size:13px;font-weight:600;color:var(--rosa)}
+ol.numerada li::before{content:counter(n);position:absolute;left:16px;top:50%;transform:translateY(-50%);width:28px;height:28px;border-radius:50%;background:#fff;box-shadow:var(--sombra);display:grid;place-items:center;font-size:13px;font-weight:600;color:#FF6F61}
 ol.pasos{list-style:none;counter-reset:p;display:grid;gap:14px}
 ol.pasos li{counter-increment:p;position:relative;padding-left:48px}
 ol.pasos li::before{content:counter(p);position:absolute;left:0;top:-2px;width:32px;height:32px;border-radius:50%;background:var(--tinta);color:#fff;display:grid;place-items:center;font-weight:600;font-size:14px}
@@ -281,7 +265,7 @@ ol.pasos li::before{content:counter(p);position:absolute;left:0;top:-2px;width:3
 .tabla th{color:var(--suave);font-weight:600;font-size:12px;text-transform:uppercase;letter-spacing:.05em}
 .tabla td:first-child{font-weight:600;width:38%}
 .cita{font-size:clamp(22px,3vw,30px);line-height:1.25;letter-spacing:-.025em;text-align:center;padding:26px 10px;margin:28px 0}
-.cita b{color:var(--rosa);font-weight:400}
+.cita b{color:#FF6F61;font-weight:400}
 .dato{display:flex;gap:22px;align-items:center;background:var(--tinta);color:#fff;border-radius:20px;padding:26px 28px;margin:28px 0;box-shadow:var(--sombra-alta)}
 .dato strong{font-size:52px;font-weight:500;letter-spacing:-.04em;line-height:1;background:linear-gradient(120deg,#fff,var(--lavanda) 50%,var(--rosa));-webkit-background-clip:text;background-clip:text;color:transparent}
 .dato small{display:block;opacity:.6;margin-top:6px;font-size:13px}
@@ -291,21 +275,21 @@ ol.pasos li::before{content:counter(p);position:absolute;left:0;top:-2px;width:3
 .prompt-barra .puntos i:first-child{background:var(--rosa)}
 .copiar{border:0;background:#fff;color:var(--tinta);font:inherit;font-size:13px;font-weight:600;padding:7px 14px;border-radius:100px;cursor:pointer;transition:transform .2s}
 .copiar:hover{transform:translateY(-1px)}
-.prompt pre{white-space:pre-wrap;word-wrap:break-word;font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:14px;line-height:1.65;padding:20px 22px;color:#EDE9F6;min-height:3em}
+.prompt pre{white-space:pre-wrap;word-wrap:break-word;font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:14px;line-height:1.65;padding:20px 22px;color:#F4F4F6;min-height:3em}
 .prompt pre .cursor{display:inline-block;width:.55em;background:var(--rosa);animation:parpadeo 1s steps(1) infinite}
 @keyframes parpadeo{50%{opacity:0}}
 .conv{display:grid;gap:14px}
 .conv .caja{margin:0}
 .conv h3{font-size:19px;margin:8px 0 10px}
-.conv .no{color:#9a3b55;font-weight:500}.conv .si{color:#1f7a55;font-weight:500;margin-top:6px}
+.conv .no{color:#FF6F61;font-weight:500}.conv .si{color:#1f7a55;font-weight:500;margin-top:6px}
 .criterio{position:relative;background:var(--vidrio);box-shadow:var(--sombra);border-radius:20px;padding:26px 28px 24px 30px;margin:36px 0;overflow:hidden}
 .criterio::before{content:"";position:absolute;left:0;top:0;bottom:0;width:4px;background:linear-gradient(var(--rosa),var(--violeta))}
-.criterio h2{font-size:14px;font-weight:600;text-transform:uppercase;letter-spacing:.08em;color:var(--rosa);margin-bottom:8px}
+.criterio h2{font-size:14px;font-weight:600;text-transform:uppercase;letter-spacing:.08em;color:#0D0D12;margin-bottom:8px}
 .criterio p{font-size:18px;line-height:1.55;letter-spacing:-.015em}
 .firma{display:flex;align-items:center;gap:12px;margin-top:16px;font-size:14px;color:var(--suave)}
 .firma img{width:40px;height:40px;border-radius:50%;object-fit:cover;box-shadow:var(--sombra)}
 .pregunta{font-size:clamp(24px,3.4vw,34px);line-height:1.2;letter-spacing:-.03em;text-align:center;margin:48px auto 10px;max-width:640px}
-.siguiente{text-align:center;padding:30px 24px 34px;margin:24px 0 56px;border-radius:24px;background:radial-gradient(80% 120% at 50% 0%,#F1E9FB,#fff 70%);box-shadow:var(--sombra)}
+.siguiente{text-align:center;padding:30px 24px 34px;margin:24px 0 56px;border-radius:24px;background:radial-gradient(80% 120% at 50% 0%,#F4F4F6,#fff 70%);box-shadow:var(--sombra)}
 .siguiente p{color:var(--suave);font-weight:500;max-width:540px;margin:0 auto 18px}
 .botones{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
 .relacionados h2{font-size:28px;font-weight:400;letter-spacing:-.03em;margin-bottom:18px}
@@ -315,17 +299,17 @@ ol.pasos li::before{content:counter(p);position:absolute;left:0;top:-2px;width:3
 .cierre .btn-claro{background:#fff}
 .pie{padding:64px 0 36px;background:transparent}
 .pie-fila{display:flex;justify-content:space-between;align-items:center;gap:20px}
-.pie-logo img{display:block;width:130px;height:auto}
+.pie-logo img{display:block;width:220px;height:auto}
 .pie-redes{display:flex;gap:4px}
-.pie-redes a{width:40px;height:40px;border-radius:20px;background:#F0EEEF;color:var(--rosa);display:grid;place-items:center;transition:transform .2s var(--ease),background .2s}
-.pie-redes a:hover{transform:translateY(-2px);background:#FBE6EB}
+.pie-redes a{width:40px;height:40px;border-radius:20px;background:#F0EEEF;color:#FF6F61;display:grid;place-items:center;transition:transform .2s var(--ease),background .2s}
+.pie-redes a:hover{transform:translateY(-2px);background:#FFF0EE}
 .pie-links{display:flex;flex-wrap:wrap;gap:32px;margin:32px 0 28px}
 .pie-links a{font-size:16px;font-weight:500;letter-spacing:-.03em;color:var(--suave);text-decoration:none;transition:color .2s}
 .pie-links a:hover{color:var(--tinta)}
 .pie-linea{height:1px;background:var(--suave);opacity:.1}
 .pie-copy{margin-top:28px;font-size:16px;font-weight:600;letter-spacing:-.02em;color:var(--suave)}
 @media (max-width:720px){
- .nav-link:not(.activo){display:none}.nav-pill{padding:8px 8px 8px 16px;gap:6px}.nav-pill .btn-oscuro{font-size:14px;padding:10px 16px}.herramientas{padding:28px 18px 22px;border-radius:22px;margin-top:36px}
+.herramientas{padding:28px 18px 22px;border-radius:22px;margin-top:36px}
  .hero{padding-top:44px}.vitrina{height:300px;margin-top:20px}.m1,.m2,.m3,.m4{--x:0px;--ry:0deg;--rz:0deg}.mini{opacity:0;--e:.9;--y:24px;pointer-events:none}.mini.activa{pointer-events:auto}.vitrina{height:310px}.mini.activa{opacity:1;z-index:5;--x:0px;--ry:0deg;--rz:0deg}
  .grupo{grid-template-columns:1fr;gap:10px}
  .tabla td:first-child{width:45%}
@@ -436,22 +420,22 @@ JS = r'''// Biblioteca de recursos HEI01 · generado por recursos/_fuente/build.
 
 def vitrina():
     t = lambda k: f'<span class="icono">{icono(k, 18)}</span>'
-    return f"""<div class="vitrina" id="vitrina" aria-label="Así son los recursos: prompts, checklists, plantillas y ejercicios">
+    return f"""<div class="vitrina" id="vitrina" role="region" aria-label="Así son los recursos: prompts, checklists, plantillas y ejercicios">
       <div class="mini m1" data-i="0"><div class="mini-top"><span class="tipo">Prompt</span>{t('prompt')}</div>
-        <h4>Tu informe de IA para el directorio</h4>
+        <h2>Tu informe de IA para el directorio</h2>
         <div class="term"><span class="lin l1"><span class="gris">&gt;</span> Actúa como asesor del CEO.</span><span class="lin l2"><span class="gris">&gt;</span> Arma 1 página: gobernanza,</span><span class="lin l3"><span class="rosa">estrategia, personas.</span></span><span class="copiado">Copiado ✓</span></div>
         <span class="mini-pie">Listo para copiar · 20 min</span></div>
       <div class="mini m2" data-i="1"><div class="mini-top"><span class="tipo">Checklist</span>{t('checklist')}</div>
-        <h4>10 preguntas para tu directorio</h4>
+        <h2>10 preguntas para tu directorio</h2>
         <ul class="check"><li><b></b>¿Quién responde si sale mal?</li><li><b></b>¿Qué datos se pueden usar?</li><li><b></b>¿Qué 3 iniciativas van primero?</li></ul>
         <div class="puntaje">Tu puntaje <span>8/10 · a escalar</span></div>
         <span class="mini-pie">Sí, a medias o no · 15 min</span></div>
       <div class="mini m3" data-i="2"><div class="mini-top"><span class="tipo">Plantilla</span>{t('plantilla')}</div>
-        <h4>Política de uso de IA en una página</h4>
+        <h2>Política de uso de IA en una página</h2>
         <div class="tab"><div class="fila">Para qué sí<i style="--w:.9"></i></div><div class="fila">Qué datos no<i style="--w:.7"></i></div><div class="fila">Quién revisa<i style="--w:.55"></i></div><div class="fila">A quién preguntar<i style="--w:.8"></i></div></div>
         <span class="mini-pie">Se completa en equipo · 30 min</span></div>
       <div class="mini m4" data-i="3"><div class="mini-top"><span class="tipo">Ejercicio</span>{t('ejercicio')}</div>
-        <h4>El mapa de tareas de un rol</h4>
+        <h2>El mapa de tareas de un rol</h2>
         <div class="tab"><div class="paso"><b>1</b>Lista sus 10 tareas</div><div class="paso"><b>2</b>Clasifícalas con la IA</div><div class="paso"><b>3</b>Elige una para probar</div></div>
         <div class="barra-progreso"><i></i></div>
         <span class="mini-pie">Paso a paso · 30 min</span></div>

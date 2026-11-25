@@ -1,22 +1,32 @@
 <!DOCTYPE html>
-<html lang="es" class="scroll-smooth">
+<html lang="es-CL" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<script src="assets/analitica.js?v=1" async></script>
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
     <title>Taller Práctico: Agentes de IA y Automatizaciones con Google Workspace Studio</title>
+    <link rel="preload" as="image" href="recursos/fondo.webp">
+    <link rel="stylesheet" href="assets/fondo-portada.css?v=2">
+    <link rel="stylesheet" href="assets/pie.css?v=4">
+    <script src="assets/fondo-portada.js?v=3" defer></script>
+    <link rel="icon" href="assets/marca/hei01-icono.svg" type="image/svg+xml">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <!-- Tailwind CSS vía CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
             theme: {
                 extend: {
+                    fontFamily: { sans: ['Inter', 'system-ui', 'sans-serif'] },
                     colors: {
                         brand: {
-                            blue: '#1D4ED8',      /* Azul Rey Principal */
-                            blueDark: '#1E3A8A',  /* Azul Rey Oscuro */
-                            blueLight: '#EFF6FF', /* Fondo Azul Muy Claro */
-                            purple: '#7E22CE',    /* Morado Secundario */
-                            purpleLight: '#F3E8FF'/* Fondo Morado Claro */
+                            blue: '#0D0D12',      /* Negro HEI01 */
+                            blueDark: '#16161D',  /* Negro suave */
+                            blueLight: '#F4F4F6', /* Gris claro */
+                            purple: '#FF6F61',    /* Coral HEI01 */
+                            purpleLight: '#FFF0EE'/* Coral muy claro */
                         }
                     }
                 }
@@ -29,17 +39,107 @@
     <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
     <style>
         [v-cloak] { display: none; }
-        html { -webkit-text-size-adjust: 100%; scroll-padding-top: 5.5rem; }
+
+        /* === TOKENS (alineados con Formaciones) === */
+        :root {
+            --tinta: #0D0D12; --suave: #5C5C66; --lila: #F4F4F6; --linea: #D9D9DE; --rosa: #FF6F61;
+            --vidrio: linear-gradient(rgba(255,255,255,.92), rgba(255,255,255,.5));
+            --sombra: 0 .8px .8px -1px rgba(0,0,0,.04), 0 2.4px 2.4px -2px rgba(0,0,0,.04), 0 6.4px 6.4px -3px rgba(0,0,0,.03), 0 20px 40px -6px rgba(13,13,18,.07);
+            --sombra-alta: 0 1px 1px -.5px rgba(13,13,18,.17), 0 3.6px 3.6px -1.2px rgba(13,13,18,.16), 0 18px 36px -6px rgba(13,13,18,.22);
+            --anillo: 0 0 0 4px rgba(255,111,97,.18);
+            --ease-out: cubic-bezier(.22,1,.36,1);
+        }
+        body { background: #fff; color: var(--tinta); letter-spacing: -.01em; position: relative; }
+        :focus-visible { outline: 2px solid var(--tinta); outline-offset: 3px; }
+
+        /* === FONDO DE ONDAS === */
+
+        /* === TIPOGRAFIA === */
+        .headline { font-weight: 400; letter-spacing: -.03em; line-height: 1.15; color: var(--tinta); }
+        .hero-title { font-size: clamp(2.2rem, 6vw, 4.4rem); letter-spacing: -.04em; line-height: 1.06; margin: 22px auto 20px; }
+        .hero-title .accent { color: var(--rosa); }
+        .t-sec { font-weight: 400; letter-spacing: -.03em; line-height: 1.15; color: var(--tinta); font-size: clamp(1.75rem, 3.4vw, 2.5rem); }
+        .t-card { font-weight: 600; letter-spacing: -.02em; color: var(--tinta); }
+
+        /* === BOTONES === */
+        .btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; min-height: 48px; font-size: 16px; font-weight: 500; line-height: 1.2; text-align: center; text-decoration: none; cursor: pointer; border: 0; border-radius: 100px; transition: transform .25s var(--ease-out), box-shadow .25s, background .2s, color .2s; }
+        .btn:active { transform: scale(.98); }
+        .btn-pri { background: var(--tinta); color: #fff; padding: 14px 28px; box-shadow: var(--sombra-alta); }
+        .btn-pri:hover { background: var(--rosa); color: var(--tinta); transform: translateY(-2px); box-shadow: var(--anillo), var(--sombra-alta); }
+        .btn-sec { background: var(--vidrio); color: var(--tinta); padding: 13px 24px; box-shadow: var(--sombra); }
+        .btn-sec:hover { transform: translateY(-2px); box-shadow: inset 0 0 0 1px var(--tinta), var(--sombra); }
+        .btn-block { width: 100%; }
+
+        /* === PILDORA Y PUNTO === */
+        .pildora { display: inline-flex; align-items: center; gap: 8px; max-width: 100%; background: var(--vidrio); border-radius: 100px; padding: 6px 16px; box-shadow: var(--sombra); font-size: 13px; font-weight: 500; color: var(--suave); letter-spacing: .02em; text-transform: uppercase; text-align: left; line-height: 1.35; }
+        .punto { position: relative; width: 7px; height: 7px; border-radius: 50%; background: var(--rosa); flex-shrink: 0; }
+        .punto::after { content: ""; position: absolute; inset: -4px; border-radius: 50%; border: 1.5px solid var(--rosa); opacity: 0; }
+        @media (prefers-reduced-motion: no-preference) { .punto::after { opacity: 1; animation: pulso 2s var(--ease-out) infinite; } }
+        @keyframes pulso { 0% { transform: scale(.4); opacity: 1; } 100% { transform: scale(1.8); opacity: 0; } }
+
+        /* === NAV EN PILDORA === */
+        .nav-pill { position: fixed; top: 16px; left: 50%; transform: translateX(-50%); z-index: 100; width: min(780px, calc(100% - 24px)); border-radius: 100px; background: var(--vidrio); -webkit-backdrop-filter: blur(14px); backdrop-filter: blur(14px); box-shadow: var(--sombra); }
+        .nav-bar { display: flex; align-items: center; justify-content: space-between; gap: 10px; padding: 12px 12px 12px 30px; }
+        .nav-logo { display: flex; flex-shrink: 0; text-decoration: none; }
+        .nav-logo img { display: block; height: 34px; width: auto; }
+        .nav-links { display: none; gap: 4px; align-items: center; }
+        .nav-link { font-size: 15px; font-weight: 500; color: var(--suave); text-decoration: none; padding: 9px 16px; border-radius: 100px; transition: color .2s, background .2s; white-space: nowrap; }
+        .nav-link:hover { color: var(--tinta); background: var(--lila); }
+        .nav-end { display: flex; align-items: center; gap: 6px; flex-shrink: 0; }
+        .nav-cta { padding: 12px 24px; min-height: 44px; font-size: 15px; white-space: nowrap; }
+        .menu-btn { display: inline-flex; align-items: center; justify-content: center; width: 44px; height: 44px; border: 0; border-radius: 100px; background: transparent; color: var(--tinta); cursor: pointer; }
+        .menu-btn:hover { background: var(--lila); }
+        .nav-drop { position: absolute; top: calc(100% + 8px); left: 0; right: 0; display: flex; flex-direction: column; gap: 4px; padding: 12px; border-radius: 24px; background: linear-gradient(rgba(255,255,255,.97), rgba(255,255,255,.92)); box-shadow: var(--sombra-alta); }
+        .nav-drop a { display: block; padding: 12px 16px; border-radius: 16px; font-size: 15px; font-weight: 500; color: var(--tinta); text-decoration: none; }
+        .nav-drop a:hover { background: var(--lila); }
+        .nav-drop a.nav-drop-cta { background: var(--tinta); color: #fff; text-align: center; border-radius: 100px; margin-top: 4px; }
+        .nav-drop a.nav-drop-cta:hover { background: var(--rosa); color: var(--tinta); }
+        @media (min-width: 821px) {
+            .nav-links { display: flex; }
+            .menu-btn, .nav-drop { display: none !important; }
+        }
+        @media (max-width: 820px) { .nav-cta { display: none; } }
+        @media (max-width: 820px) and (min-width: 400px) { .nav-cta { display: inline-flex; padding: 10px 16px; font-size: 14px; } }
+        @media (max-width: 768px) { .nav-bar { padding: 8px 8px 8px 16px; } }
+
+        /* === HERO === */
+        .hero-g { position: relative; text-align: center; padding: 160px 24px 64px; }
+        .hero-content { max-width: 800px; margin: 0 auto; }
+        .hero-sub { font-size: 1.05rem; color: var(--suave); max-width: 640px; margin: 0 auto 1.75rem; line-height: 1.6; }
+        .hero-stats { display: flex; gap: 2.5rem; justify-content: center; margin-bottom: 2.5rem; flex-wrap: wrap; }
+        .stat-n { font-size: 2rem; font-weight: 500; color: var(--tinta); display: block; letter-spacing: -.03em; line-height: 1.2; }
+        .stat-l { font-size: 14px; color: var(--suave); }
+        .hero-btns { display: flex; gap: 16px; justify-content: center; align-items: center; flex-wrap: wrap; }
+        @media (max-width: 768px) {
+            .hero-g { padding: 120px 16px 40px; }
+            .hero-stats { gap: 1.5rem; }
+            .hero-btns { flex-direction: column; align-items: stretch; }
+            .hero-btns .btn { width: 100%; }
+        }
+        @media (max-width: 480px) { .pildora { text-transform: none; font-size: 12.5px; border-radius: 20px; } }
+
+        /* === TARJETAS === */
+        .card-f { background: #fff; border: 1px solid rgba(13,13,18,.07); box-shadow: var(--sombra); transition: transform .3s var(--ease-out), box-shadow .3s; }
+        .card-f-hover:hover { transform: translateY(-2px); }
+        .card-f-big { background: #fff; border: 1px solid rgba(255,111,97,.45); box-shadow: var(--sombra-alta); }
+        .label-sec { font-size: 12px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: var(--suave); margin-bottom: .75rem; }
+
+        @media (prefers-reduced-motion: reduce) {
+            html { scroll-behavior: auto !important; }
+            .btn, .card-f { transition: none; }
+            .btn:hover, .card-f-hover:hover { transform: none; }
+        }
+        html { -webkit-text-size-adjust: 100%; scroll-padding-top: 104px; }
         html, body { overflow-x: hidden; max-width: 100%; }
         img, svg, video { max-width: 100%; height: auto; }
-        section[id] { scroll-margin-top: 5.5rem; }
+        section[id] { scroll-margin-top: 104px; }
 
         .demo-caret {
             display: inline-block;
             width: 2px;
             height: 1em;
             margin-left: 1px;
-            background: #1D4ED8;
+            background: #0D0D12;
             animation: demo-blink 1s step-end infinite;
             vertical-align: -2px;
         }
@@ -50,8 +150,8 @@
         }
         .demo-enter { animation: demo-in 0.4s ease forwards; }
         @keyframes demo-pulse-ring {
-            0% { box-shadow: 0 0 0 0 rgba(29, 78, 216, 0.35); }
-            100% { box-shadow: 0 0 0 10px rgba(29, 78, 216, 0); }
+            0% { box-shadow: 0 0 0 0 rgba(255, 111, 97, 0.35); }
+            100% { box-shadow: 0 0 0 10px rgba(255, 111, 97, 0); }
         }
         .demo-live { animation: demo-pulse-ring 1.5s ease-out infinite; }
         @keyframes demo-scan {
@@ -63,7 +163,7 @@
             position: absolute;
             left: 0; right: 0;
             height: 40%;
-            background: linear-gradient(to bottom, transparent, rgba(126, 34, 206, 0.12), transparent);
+            background: linear-gradient(to bottom, transparent, rgba(255, 111, 97, 0.12), transparent);
             animation: demo-scan 1.6s ease-in-out infinite;
             pointer-events: none;
         }
@@ -74,99 +174,68 @@
         .demo-check { animation: demo-check 0.35s cubic-bezier(0.22, 1, 0.36, 1) forwards; }
     </style>
 </head>
-<body class="bg-slate-50 text-slate-800 font-sans antialiased selection:bg-brand-purple selection:text-white" id="app" v-cloak>
+<body class="bg-white font-sans antialiased selection:bg-brand-purple selection:text-black" id="app" v-cloak>
+    <div class="fondo-portada" aria-hidden="true"><video autoplay muted loop playsinline preload="auto" poster="recursos/fondo.webp"><source src="recursos/fondo.mp4" type="video/mp4"></video><div class="media-luna"></div></div>
 
     <!-- HEADER / NAVIGATION -->
-    <header class="fixed top-0 w-full z-50 bg-white/90 backdrop-blur-md border-b border-slate-200 shadow-sm">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 md:h-20 flex items-center justify-between gap-2">
-            <div class="flex items-center space-x-2 sm:space-x-3 min-w-0">
-                <div class="w-9 h-9 sm:w-10 sm:h-10 rounded-lg bg-gradient-to-tr from-brand-blue to-brand-purple flex items-center justify-center font-bold text-lg sm:text-xl text-white shadow-md shadow-brand-blue/20 shrink-0">
-                    HE
-                </div>
-                <div class="min-w-0">
-                    <span class="text-sm sm:text-lg font-bold tracking-tight text-slate-900 block truncate">Productividad Ejecutiva con IA</span>
-                    <span class="text-[10px] sm:text-xs text-brand-purple uppercase tracking-widest block font-bold truncate">Executive Workshop</span>
-                </div>
-            </div>
-            
-            <nav class="hidden md:flex items-center space-x-8 text-sm font-semibold text-slate-600">
-                <a href="#demo" class="hover:text-brand-blue transition-colors">Demo</a>
-                <a href="#metodologia" class="hover:text-brand-blue transition-colors">Metodología</a>
-                <a href="#temario" class="hover:text-brand-blue transition-colors">Plan de Estudios</a>
-                <a href="#calculadora" class="hover:text-brand-blue transition-colors">Simulador ROI</a>
-                <a href="#inversion" class="hover:text-brand-blue transition-colors">Inversión</a>
+    <header class="nav-pill">
+        <div class="nav-bar">
+            <a href="index.html" class="nav-logo" aria-label="HEI01, ir al inicio">
+                <img src="assets/marca/hei01-compacto.svg" alt="HEI01" width="380" height="172">
+            </a>
+
+            <nav class="nav-links" aria-label="Principal">
+                <a href="index.html" class="nav-link">Orquestación</a>
+                <a href="formaciones.html" class="nav-link">Formaciones</a>
+                <a href="index.html" class="nav-link">Conferencias</a>
+                <a href="recursos/" class="nav-link">Recursos</a>
             </nav>
 
-            <div class="flex items-center gap-2 shrink-0">
-                <a href="https://forms.gle/BTqtQtU5KLZSUWth7" target="_blank" rel="noopener noreferrer" class="hidden md:inline-flex px-5 py-2.5 rounded-lg bg-gradient-to-r from-brand-blue to-brand-purple text-white text-sm font-bold hover:opacity-95 transition-all shadow-md shadow-brand-blue/20">
-                    Inscribirme Ahora
+            <div class="nav-end">
+                <a href="contact/" class="btn btn-pri nav-cta">
+                    Agendar sesión →
                 </a>
-                <button type="button" class="md:hidden p-2 rounded-lg text-slate-700 hover:bg-slate-100" @click="menuOpen = !menuOpen" :aria-expanded="menuOpen ? 'true' : 'false'" :aria-label="menuOpen ? 'Cerrar menú' : 'Abrir menú'">
+                <button type="button" class="menu-btn" @click="menuOpen = !menuOpen" :aria-expanded="menuOpen ? 'true' : 'false'" :aria-label="menuOpen ? 'Cerrar menú' : 'Abrir menú'">
                     <svg v-if="!menuOpen" xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/></svg>
                     <svg v-else xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
                 </button>
             </div>
         </div>
-        <nav v-show="menuOpen" class="md:hidden border-t border-slate-200 bg-white px-4 py-3 space-y-1 text-sm font-semibold text-slate-700">
-            <a href="#demo" @click="menuOpen = false" class="block px-3 py-2.5 rounded-lg hover:bg-slate-50">Demo</a>
-            <a href="#metodologia" @click="menuOpen = false" class="block px-3 py-2.5 rounded-lg hover:bg-slate-50">Metodología</a>
-            <a href="#temario" @click="menuOpen = false" class="block px-3 py-2.5 rounded-lg hover:bg-slate-50">Plan de Estudios</a>
-            <a href="#calculadora" @click="menuOpen = false" class="block px-3 py-2.5 rounded-lg hover:bg-slate-50">Simulador ROI</a>
-            <a href="https://forms.gle/BTqtQtU5KLZSUWth7" target="_blank" rel="noopener noreferrer" @click="menuOpen = false" class="block px-3 py-2.5 rounded-lg bg-gradient-to-r from-brand-blue to-brand-purple text-white text-center">Inscribirme Ahora</a>
+        <nav v-show="menuOpen" class="nav-drop" aria-label="Menú móvil">
+            <a href="index.html" @click="menuOpen = false">Orquestación</a>
+            <a href="formaciones.html" @click="menuOpen = false">Formaciones</a>
+            <a href="index.html" @click="menuOpen = false">Conferencias</a>
+            <a href="recursos/" @click="menuOpen = false">Recursos</a>
+            <a href="contact/" @click="menuOpen = false" class="nav-drop-cta">Agendar sesión →</a>
         </nav>
     </header>
 
     <!-- HERO SECTION -->
-    <section class="pt-24 pb-14 sm:pt-32 sm:pb-20 md:pt-40 md:pb-28 relative overflow-hidden bg-gradient-to-b from-brand-blueLight via-white to-white">
-        <!-- Elementos decorativos de fondo -->
-        <div class="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-72 h-72 sm:w-[600px] sm:h-[600px] bg-brand-purple/10 rounded-full blur-3xl pointer-events-none"></div>
-        
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-            <div class="max-w-3xl mx-auto text-center space-y-5 sm:space-y-6">
-                
-                <div class="inline-flex max-w-full items-center gap-2 px-3 py-1.5 rounded-full bg-brand-purpleLight border border-brand-purple/20 text-brand-purple text-[11px] sm:text-xs font-bold tracking-wide sm:uppercase sm:tracking-wider">
-                    <i data-lucide="sparkles" class="w-4 h-4 shrink-0"></i>
-                    <span class="text-left leading-snug">Taller Práctico de Alto Valor — 4 Horas Intensivas</span>
-                </div>
+    <section class="hero-g" aria-labelledby="hero-titulo">
+        <div class="hero-content">
+            <div><span class="pildora"><span class="punto" aria-hidden="true"></span>Taller Práctico de Alto Valor — 4 Horas Intensivas</span></div>
 
-                <h1 class="text-[1.75rem] leading-tight sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-slate-900 sm:leading-tight">
-                    Agentes de IA y Automatizaciones con <span class="bg-gradient-to-r from-brand-blue via-brand-purple to-purple-800 bg-clip-text text-transparent">Google Workspace Studio</span>
-                </h1>
+            <h1 class="headline hero-title" id="hero-titulo">
+                Agentes de IA y Automatizaciones con <span class="accent">Google Workspace Studio</span>
+            </h1>
 
-                <p class="text-base sm:text-xl text-slate-600 font-normal leading-relaxed">
-                    Construye tu primer asistente inteligente capaz de procesar correos, generar minutas de reuniones y agendar compromisos automáticos en Google Calendar sin escribir código complejo ni pagar licencias adicionales.
-                </p>
+            <p class="hero-sub">
+                Construye tu primer asistente inteligente capaz de procesar correos, generar minutas de reuniones y agendar compromisos automáticos en Google Calendar sin escribir código complejo ni pagar licencias adicionales.
+            </p>
 
-                <!-- STATS STRIP -->
-                <div class="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4 px-2 sm:px-0 border-y border-slate-200 my-6 sm:my-8 py-5 sm:py-6 bg-white/60 rounded-2xl">
-                    <div>
-                        <p class="text-2xl sm:text-3xl font-extrabold text-slate-900">4 Hrs</p>
-                        <p class="text-[10px] sm:text-xs text-slate-500 font-semibold uppercase mt-1 leading-snug">Formación Práctica</p>
-                    </div>
-                    <div>
-                        <p class="text-2xl sm:text-3xl font-extrabold text-brand-purple">2</p>
-                        <p class="text-[10px] sm:text-xs text-slate-500 font-semibold uppercase mt-1 leading-snug">Agentes Listos para Usar</p>
-                    </div>
-                    <div>
-                        <p class="text-2xl sm:text-3xl font-extrabold text-slate-900">10</p>
-                        <p class="text-[10px] sm:text-xs text-slate-500 font-semibold uppercase mt-1 leading-snug">Cupos Disponibles</p>
-                    </div>
-                    <div>
-                        <p class="text-2xl sm:text-3xl font-extrabold text-brand-blue">100%</p>
-                        <p class="text-[10px] sm:text-xs text-slate-500 font-semibold uppercase mt-1 leading-snug">Ecosistema Google</p>
-                    </div>
-                </div>
+            <div class="hero-stats">
+                <div><span class="stat-n">4 Hrs</span><span class="stat-l">Formación Práctica</span></div>
+                <div><span class="stat-n">2</span><span class="stat-l">Agentes Listos para Usar</span></div>
+                <div><span class="stat-n">10</span><span class="stat-l">Cupos Disponibles</span></div>
+                <div><span class="stat-n">100%</span><span class="stat-l">Ecosistema Google</span></div>
+            </div>
 
-                <div class="flex flex-col sm:flex-row items-center justify-center gap-4 pt-2">
-                    <a href="https://forms.gle/BTqtQtU5KLZSUWth7" target="_blank" rel="noopener noreferrer" class="w-full sm:w-auto px-8 py-4 rounded-xl bg-gradient-to-r from-brand-blue to-brand-purple text-white font-bold text-base hover:opacity-95 transition-all shadow-lg shadow-brand-blue/25 flex items-center justify-center space-x-2">
-                        <span>Asegurar mi Cupo</span>
-                        <i data-lucide="arrow-right" class="w-5 h-5"></i>
-                    </a>
-                    <a href="#demo" class="w-full sm:w-auto px-8 py-4 rounded-xl bg-white border border-slate-300 text-slate-700 font-semibold text-base hover:bg-slate-50 transition-all shadow-sm flex items-center justify-center">
-                        Ver demo del agente
-                    </a>
-                </div>
-
+            <div class="hero-btns">
+                <a href="https://forms.gle/BTqtQtU5KLZSUWth7" target="_blank" rel="noopener noreferrer" class="btn btn-pri">
+                    <span>Asegurar mi Cupo</span>
+                    <i data-lucide="arrow-right" class="w-5 h-5"></i>
+                </a>
+                <a href="#demo" class="btn btn-sec">Ver demo del agente</a>
             </div>
         </div>
     </section>
@@ -175,7 +244,7 @@
     <section id="demo" class="py-12 sm:py-20 bg-white border-t border-slate-200">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center max-w-2xl mx-auto mb-10 sm:mb-12">
-                <h2 class="text-xs font-bold text-brand-purple uppercase tracking-widest mb-2">Así se usa en el día a día</h2>
+                <h2 class="label-sec">Así se usa en el día a día</h2>
                 <p class="text-2xl sm:text-3xl font-bold text-slate-900 leading-snug">Del pedido en lenguaje natural al agente trabajando en Gmail</p>
                 <p class="text-slate-600 text-sm mt-3 leading-relaxed">
                     En el taller construyes esto en tu propia cuenta: describes lo que necesitas, Workspace Studio arma los pasos con Gemini y el agente actúa solo cuando llega un correo.
@@ -186,16 +255,16 @@
             <div class="flex flex-wrap items-center justify-center gap-2 sm:gap-3 mb-8 text-xs font-bold uppercase tracking-wider">
                 <span :class="demoPhase === 'typing' ? 'bg-brand-blue text-white' : 'bg-slate-100 text-slate-500'" class="px-3 py-1.5 rounded-full transition-colors">1. Pedido</span>
                 <span class="text-slate-300 hidden sm:inline">→</span>
-                <span :class="demoPhase === 'building' ? 'bg-brand-purple text-white' : 'bg-slate-100 text-slate-500'" class="px-3 py-1.5 rounded-full transition-colors">2. Diseño del agente</span>
+                <span :class="demoPhase === 'building' ? 'bg-brand-purple text-black' : 'bg-slate-100 text-slate-500'" class="px-3 py-1.5 rounded-full transition-colors">2. Diseño del agente</span>
                 <span class="text-slate-300 hidden sm:inline">→</span>
                 <span :class="demoPhase === 'running' || demoPhase === 'result' || demoPhase === 'done' ? 'bg-emerald-600 text-white' : 'bg-slate-100 text-slate-500'" class="px-3 py-1.5 rounded-full transition-colors">3. Ejecución real</span>
             </div>
 
             <!-- Ventana tipo producto -->
-            <div class="relative max-w-5xl mx-auto rounded-2xl border border-slate-200 shadow-2xl shadow-slate-300/40 overflow-hidden bg-white">
+            <div class="card-f relative max-w-5xl mx-auto rounded-2xl overflow-hidden">
                 <div v-if="demoPhase === 'idle' || demoPhase === 'done'" class="absolute inset-0 z-20 flex flex-col items-center justify-center gap-4 px-6 text-center bg-white/80 backdrop-blur-sm">
                     <p class="text-sm sm:text-base font-semibold text-slate-700 max-w-md">{{ demoPhase === 'done' ? 'Así queda el agente listo para tu revisión. ¿Quieres ver el flujo otra vez?' : 'Mira cómo el agente clasifica un correo y deja un borrador listo para tu aprobación.' }}</p>
-                    <button type="button" @click="replayDemo" class="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl bg-gradient-to-r from-brand-blue to-brand-purple text-white font-bold text-sm sm:text-base hover:opacity-95 transition-all shadow-lg shadow-brand-blue/25">
+                    <button type="button" @click="replayDemo" class="btn btn-pri">
                         <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5.14v13.72a1 1 0 0 0 1.5.86l11-6.86a1 1 0 0 0 0-1.72l-11-6.86a1 1 0 0 0-1.5.86Z"/></svg>
                         <span>{{ demoPhase === 'done' ? 'Volver a reproducir' : 'Reproducir demo' }}</span>
                     </button>
@@ -245,18 +314,18 @@
                             </div>
                             <div class="flex items-center gap-2 text-xs text-slate-500">
                                 <span class="inline-flex items-center gap-1 px-2 py-1 rounded-md bg-red-50 text-red-600 font-semibold">Gmail</span>
-                                <span class="inline-flex items-center gap-1 px-2 py-1 rounded-md bg-blue-50 text-blue-700 font-semibold">Gemini</span>
+                                <span class="inline-flex items-center gap-1 px-2 py-1 rounded-md bg-slate-100 text-slate-700 font-semibold">Gemini</span>
                                 <span>Herramientas sugeridas</span>
                             </div>
                         </div>
 
                         <!-- FASE 2: construcción de pasos -->
                         <div v-show="demoPhase === 'building'" class="space-y-4">
-                            <p class="text-xs font-bold text-brand-purple uppercase tracking-wider">Gemini está armando el flujo</p>
+                            <p class="text-xs font-bold text-brand-blue uppercase tracking-wider">Gemini está armando el flujo</p>
                             <ol class="space-y-3">
                                 <template v-for="(step, i) in demoBuildSteps" :key="demoCycle + '-b-' + i">
                                 <li v-if="demoBuildIndex >= i"
-                                    class="demo-enter flex items-start gap-3 bg-white border border-slate-200 rounded-xl p-3 shadow-sm">
+                                    class="demo-enter flex items-start gap-3 bg-white border border-slate-200 rounded-2xl p-3 shadow-sm">
                                     <span class="w-8 h-8 rounded-lg flex items-center justify-center text-white text-xs font-bold shrink-0"
                                           :class="step.tone">{{ i + 1 }}</span>
                                     <div class="min-w-0 flex-1">
@@ -280,7 +349,7 @@
 
                             <div class="grid sm:grid-cols-2 gap-4">
                                 <!-- Correo entrante -->
-                                <div class="relative overflow-hidden bg-white border border-slate-200 rounded-xl p-4 shadow-sm" :class="{'demo-scan': demoPhase === 'running' && demoRunIndex < 2}">
+                                <div class="relative overflow-hidden bg-white border border-slate-200 rounded-2xl p-4 shadow-sm" :class="{'demo-scan': demoPhase === 'running' && demoRunIndex < 2}">
                                     <div class="flex items-center gap-2 mb-3">
                                         <span class="w-8 h-8 rounded-full bg-red-500 text-white text-xs font-bold flex items-center justify-center">G</span>
                                         <div>
@@ -299,7 +368,7 @@
                                 <div class="space-y-2">
                                     <template v-for="(run, i) in demoRunSteps" :key="demoCycle + '-r-' + i">
                                     <div v-if="demoRunIndex >= i"
-                                         class="demo-enter flex items-center gap-3 bg-white border rounded-xl px-3 py-2.5"
+                                         class="demo-enter flex items-center gap-3 bg-white border rounded-2xl px-3 py-2.5"
                                          :class="demoRunIndex > i || demoPhase === 'result' || demoPhase === 'done' ? 'border-emerald-200 bg-emerald-50/50' : 'border-slate-200'">
                                         <span v-if="demoRunIndex > i || demoPhase === 'result' || demoPhase === 'done'" class="demo-check w-5 h-5 rounded-full bg-emerald-500 text-white text-[10px] font-bold flex items-center justify-center shrink-0">✓</span>
                                         <span v-else class="w-5 h-5 rounded-full border-2 border-brand-blue border-t-transparent animate-spin shrink-0"></span>
@@ -310,8 +379,8 @@
                             </div>
 
                             <!-- Resultado -->
-                            <div v-if="demoPhase === 'result' || demoPhase === 'done'" class="demo-enter bg-gradient-to-r from-brand-blueLight to-brand-purpleLight border border-brand-purple/20 rounded-xl p-4">
-                                <p class="text-xs font-bold text-brand-purple uppercase tracking-wider mb-2">Listo para tu revisión</p>
+                            <div v-if="demoPhase === 'result' || demoPhase === 'done'" class="demo-enter bg-gradient-to-r from-brand-blueLight to-brand-purpleLight border border-brand-purple/20 rounded-2xl p-4">
+                                <p class="text-xs font-bold text-brand-blue uppercase tracking-wider mb-2">Listo para tu revisión</p>
                                 <div class="flex flex-wrap gap-2 mb-3">
                                     <span class="text-[10px] font-bold uppercase px-2 py-1 rounded bg-red-100 text-red-700">Prioridad: urgente</span>
                                     <span class="text-[10px] font-bold uppercase px-2 py-1 rounded bg-amber-100 text-amber-800">Etiqueta: Cliente / Q3</span>
@@ -333,36 +402,36 @@
     <section class="py-12 sm:py-20 bg-slate-50 border-t border-slate-200">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center max-w-2xl mx-auto mb-10 sm:mb-16">
-                <h2 class="text-xs font-bold text-brand-purple uppercase tracking-widest mb-2">Diseñado para Ejecutivos y Profesionales</h2>
-                <p class="text-2xl sm:text-3xl font-bold text-slate-900">¿Para quién es este programa?</p>
+                <h2 class="label-sec">Diseñado para Ejecutivos y Profesionales</h2>
+                <p class="t-sec">¿Para quién es este programa?</p>
             </div>
 
             <div class="grid md:grid-cols-3 gap-6 sm:gap-8">
-                <div class="bg-white border border-slate-200 p-6 sm:p-8 rounded-2xl shadow-sm hover:shadow-md hover:border-brand-blue/40 transition-all">
+                <div class="card-f card-f-hover p-6 sm:p-8 rounded-2xl">
                     <div class="w-12 h-12 rounded-xl bg-brand-blueLight text-brand-blue flex items-center justify-center mb-6">
                         <i data-lucide="briefcase" class="w-6 h-6"></i>
                     </div>
-                    <h3 class="text-xl font-bold text-slate-900 mb-3">Líderes de TI y Operaciones</h3>
+                    <h3 class="t-card text-xl mb-3">Líderes de TI y Operaciones</h3>
                     <p class="text-slate-600 text-sm leading-relaxed">
                         Que buscan automatizar flujos de trabajo en sus equipos reduciendo la fricción entre Gmail, Drive, Docs y Calendar sin costos extra de licencias.
                     </p>
                 </div>
 
-                <div class="bg-white border border-slate-200 p-6 sm:p-8 rounded-2xl shadow-sm hover:shadow-md hover:border-brand-purple/40 transition-all">
+                <div class="card-f card-f-hover p-6 sm:p-8 rounded-2xl">
                     <div class="w-12 h-12 rounded-xl bg-brand-purpleLight text-brand-purple flex items-center justify-center mb-6">
                         <i data-lucide="trending-up" class="w-6 h-6"></i>
                     </div>
-                    <h3 class="text-xl font-bold text-slate-900 mb-3">Consultores y PMs</h3>
+                    <h3 class="t-card text-xl mb-3">Consultores y PMs</h3>
                     <p class="text-slate-600 text-sm leading-relaxed">
                         Profesionales que gestionan múltiples proyectos y necesitan asistentes inteligentes que extraigan compromisos y minutas de forma autónoma.
                     </p>
                 </div>
 
-                <div class="bg-white border border-slate-200 p-6 sm:p-8 rounded-2xl shadow-sm hover:shadow-md hover:border-brand-blue/40 transition-all">
+                <div class="card-f card-f-hover p-6 sm:p-8 rounded-2xl">
                     <div class="w-12 h-12 rounded-xl bg-brand-blueLight text-brand-blue flex items-center justify-center mb-6">
                         <i data-lucide="zap" class="w-6 h-6"></i>
                     </div>
-                    <h3 class="text-xl font-bold text-slate-900 mb-3">Fundadores y Directores</h3>
+                    <h3 class="t-card text-xl mb-3">Fundadores y Directores</h3>
                     <p class="text-slate-600 text-sm leading-relaxed">
                         Orientados a optimizar el tiempo directivo delegando tareas administrativas complejas a agentes basados en Gemini.
                     </p>
@@ -379,7 +448,7 @@
                     <div class="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-brand-blueLight text-brand-blue text-xs font-bold uppercase tracking-wider">
                         <span>Aprende Construyendo</span>
                     </div>
-                    <h2 class="text-2xl sm:text-4xl font-bold text-slate-900 leading-tight">
+                    <h2 class="t-sec">
                         Metodología 100% Práctica y Orientada a Resultados
                     </h2>
                     <p class="text-slate-600 leading-relaxed">
@@ -392,7 +461,7 @@
                                 <i data-lucide="check-circle" class="w-5 h-5"></i>
                             </div>
                             <div>
-                                <h4 class="text-slate-900 font-semibold">Laboratorio Práctico Guiado paso a paso</h4>
+                                <h3 class="t-card">Laboratorio Práctico Guiado paso a paso</h3>
                                 <p class="text-slate-500 text-sm">Construcción en vivo de 2 casos de uso reales de automatización empresarial.</p>
                             </div>
                         </div>
@@ -402,7 +471,7 @@
                                 <i data-lucide="check-circle" class="w-5 h-5"></i>
                             </div>
                             <div>
-                                <h4 class="text-slate-900 font-semibold">Instrucciones Efectivas para Agentes de IA</h4>
+                                <h3 class="t-card">Instrucciones Efectivas para Agentes de IA</h3>
                                 <p class="text-slate-500 text-sm">Estructura de formatos consistentes para ejecutar acciones automáticas.</p>
                             </div>
                         </div>
@@ -412,7 +481,7 @@
                                 <i data-lucide="check-circle" class="w-5 h-5"></i>
                             </div>
                             <div>
-                                <h4 class="text-slate-900 font-semibold">Acompañamiento Personalizado</h4>
+                                <h3 class="t-card">Acompañamiento Personalizado</h3>
                                 <p class="text-slate-500 text-sm">Aforo reducido a máximo 10 asistentes para asegurar una experiencia personalizada.</p>
                             </div>
                         </div>
@@ -422,7 +491,7 @@
                 <div class="bg-gradient-to-br from-slate-50 to-brand-blueLight/50 p-5 sm:p-8 rounded-3xl border border-slate-200 relative shadow-sm">
                     <div class="flex flex-wrap items-center justify-between gap-3 pb-6 border-b border-slate-200">
                         <span class="text-sm font-semibold text-slate-900">Entregables Inmediatos</span>
-                        <span class="text-xs px-2.5 py-1 rounded bg-brand-purpleLight text-brand-purple font-mono font-bold">Kit Completo</span>
+                        <span class="text-xs px-2.5 py-1 rounded bg-brand-purpleLight text-brand-blue font-mono font-bold">Kit Completo</span>
                     </div>
                     <ul class="divide-y divide-slate-200 text-sm text-slate-700">
                         <li class="py-4 flex items-start gap-3 justify-between">
@@ -451,29 +520,29 @@
     <section id="temario" class="py-12 sm:py-20 bg-slate-50 border-t border-slate-200">
         <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-10 sm:mb-16">
-                <h2 class="text-xs font-bold text-brand-purple uppercase tracking-widest mb-2">4 Horas Intensivas</h2>
-                <p class="text-2xl sm:text-3xl font-bold text-slate-900">Plan de Estudios Estructurado</p>
+                <h2 class="label-sec">4 Horas Intensivas</h2>
+                <p class="t-sec">Plan de Estudios Estructurado</p>
             </div>
 
             <div class="space-y-4">
-                <div v-for="(bloque, index) in temario" :key="index" class="bg-white border border-slate-200 rounded-2xl overflow-hidden shadow-sm transition-all">
-                    <button @click="toggleBloque(index)" class="w-full p-4 sm:p-6 text-left flex items-start sm:items-center justify-between gap-3 hover:bg-slate-50 transition-colors">
+                <div v-for="(bloque, index) in temario" :key="index" class="card-f rounded-2xl overflow-hidden">
+                    <button @click="toggleBloque(index)" :aria-expanded="activeBloque === index ? 'true' : 'false'" :aria-controls="'bloque-' + index" class="w-full p-4 sm:p-6 text-left flex items-start sm:items-center justify-between gap-3 hover:bg-slate-50 transition-colors">
                         <div class="flex items-start sm:items-center space-x-3 sm:space-x-4 min-w-0">
                             <span class="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-brand-blue text-white font-bold flex items-center justify-center text-sm shadow-sm shrink-0">
                                 {{ index + 1 }}
                             </span>
                             <div class="min-w-0">
-                                <h3 class="text-base sm:text-lg font-bold text-slate-900 leading-snug">{{ bloque.titulo }}</h3>
+                                <h3 class="t-card text-base sm:text-lg leading-snug">{{ bloque.titulo }}</h3>
                                 <p class="text-xs text-slate-500 font-medium mt-0.5">{{ bloque.duracion }} • {{ bloque.subtitulo }}</p>
                             </div>
                         </div>
                         <i data-lucide="chevron-down" :class="{'rotate-180': activeBloque === index}" class="w-5 h-5 text-slate-500 transition-transform shrink-0 mt-1 sm:mt-0"></i>
                     </button>
 
-                    <div v-show="activeBloque === index" class="px-4 sm:px-6 pb-6 pt-2 border-t border-slate-100 bg-slate-50/50">
+                    <div v-show="activeBloque === index" :id="'bloque-' + index" class="px-4 sm:px-6 pb-6 pt-2 border-t border-slate-100 bg-slate-50/50">
                         <ul class="space-y-3">
                             <li v-for="(tema, tIdx) in bloque.temas" :key="tIdx" class="flex items-start space-x-3 text-sm text-slate-700">
-                                <span class="text-brand-purple font-bold">•</span>
+                                <span class="text-brand-blue font-bold">•</span>
                                 <span>{{ tema }}</span>
                             </li>
                         </ul>
@@ -486,20 +555,20 @@
     <!-- SIMULADOR DE ROI (COMPONENTE INTERACTIVO VUE) -->
     <section id="calculadora" class="py-12 sm:py-20 bg-white border-t border-slate-200">
         <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="bg-gradient-to-br from-brand-blueLight via-white to-purple-50/40 border border-slate-200 rounded-3xl p-5 sm:p-12 shadow-lg">
+            <div class="card-f bg-gradient-to-br from-brand-blueLight via-white to-brand-purpleLight/50 rounded-3xl p-5 sm:p-12">
                 <div class="text-center max-w-xl mx-auto mb-8 sm:mb-10">
-                    <span class="text-xs font-bold text-brand-purple uppercase tracking-widest">Simulador Interactivo</span>
-                    <h2 class="text-xl sm:text-3xl font-bold text-slate-900 mt-1 leading-snug">Calcula el ROI (Retorno de la Inversión) de la Automatización</h2>
+                    <span class="label-sec">Simulador Interactivo</span>
+                    <h2 class="t-sec mt-1">Calcula el ROI (Retorno de la Inversión) de la Automatización</h2>
                     <p class="text-slate-600 text-sm mt-2">Estimación del impacto financiero al automatizar tareas operativas en tu equipo con Google Workspace Studio.</p>
                 </div>
 
                 <div class="grid md:grid-cols-2 gap-8 items-center">
                     <div class="space-y-6">
                         <div>
-                            <label class="block text-xs font-bold text-slate-700 uppercase mb-2">
+                            <label for="roi-horas" class="block text-xs font-bold text-slate-700 uppercase mb-2">
                                 Horas semanales perdidas en tareas repetitivas (por persona):
                             </label>
-                            <input type="range" min="2" max="20" v-model="horasSemanales" class="w-full accent-brand-blue bg-slate-200 rounded-lg h-2">
+                            <input id="roi-horas" type="range" min="2" max="20" v-model="horasSemanales" class="w-full accent-brand-blue bg-slate-200 rounded-lg h-2">
                             <div class="flex flex-col sm:flex-row sm:justify-between gap-1 text-xs text-slate-500 font-semibold mt-1">
                                 <span class="hidden sm:inline">2 hrs</span>
                                 <span class="font-bold text-brand-blue text-base text-center sm:text-left">{{ horasSemanales }} hrs/semana</span>
@@ -508,10 +577,10 @@
                         </div>
 
                         <div>
-                            <label class="block text-xs font-bold text-slate-700 uppercase mb-2">
+                            <label for="roi-personas" class="block text-xs font-bold text-slate-700 uppercase mb-2">
                                 Tamaño del equipo a impactar:
                             </label>
-                            <input type="range" min="1" max="25" v-model="tamanoEquipo" class="w-full accent-brand-blue bg-slate-200 rounded-lg h-2">
+                            <input id="roi-personas" type="range" min="1" max="25" v-model="tamanoEquipo" class="w-full accent-brand-blue bg-slate-200 rounded-lg h-2">
                             <div class="flex flex-col sm:flex-row sm:justify-between gap-1 text-xs text-slate-500 font-semibold mt-1">
                                 <span class="hidden sm:inline">1 persona</span>
                                 <span class="font-bold text-brand-blue text-base text-center sm:text-left">{{ tamanoEquipo }} colaboradores</span>
@@ -520,10 +589,10 @@
                         </div>
 
                         <div>
-                            <label class="block text-xs font-bold text-slate-700 uppercase mb-2">
+                            <label for="roi-costo" class="block text-xs font-bold text-slate-700 uppercase mb-2">
                                 Costo promedio estimado por hora (CLP):
                             </label>
-                            <select v-model="costoHora" class="w-full max-w-full bg-white border border-slate-300 rounded-xl px-3 sm:px-4 py-2.5 text-base sm:text-sm text-slate-800 focus:outline-none focus:border-brand-blue shadow-sm">
+                            <select id="roi-costo" v-model="costoHora" class="w-full max-w-full bg-white border border-slate-300 rounded-xl px-3 sm:px-4 py-2.5 text-base sm:text-sm text-slate-800 focus:outline-none focus:border-brand-blue shadow-sm">
                                 <option :value="12000">$12.000 CLP / hr (Analista)</option>
                                 <option :value="20000">$20.000 CLP / hr (Jefatura / Profesional)</option>
                                 <option :value="35000">$35.000 CLP / hr (Directivo / Senior)</option>
@@ -531,9 +600,9 @@
                         </div>
                     </div>
 
-                    <div class="bg-white p-6 rounded-2xl border border-slate-200 text-center space-y-4 shadow-sm">
+                    <div class="card-f p-6 rounded-2xl text-center space-y-4">
                         <span class="text-xs text-slate-500 font-bold uppercase tracking-wider block">Ahorro Estimado Mensual</span>
-                        <p class="text-2xl sm:text-3xl font-extrabold text-brand-purple break-all">${{ ahorroMensualFormateado }} CLP</p>
+                        <p class="text-2xl sm:text-3xl font-medium text-brand-blue break-all">${{ ahorroMensualFormateado }} CLP</p>
                         
                         <div class="pt-4 border-t border-slate-100 text-xs text-slate-600 space-y-2">
                             <div class="flex justify-between gap-3">
@@ -555,17 +624,17 @@
     <section id="inversion" class="py-12 sm:py-20 bg-slate-50 border-t border-slate-200">
         <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center max-w-2xl mx-auto mb-12 sm:mb-16">
-                <h2 class="text-xs font-bold text-brand-purple uppercase tracking-widest mb-2">Aforo Limitado a 10 Personas</h2>
-                <p class="text-2xl sm:text-3xl font-bold text-slate-900">Inversión del Programa</p>
+                <h2 class="label-sec">Aforo Limitado a 10 Personas</h2>
+                <p class="t-sec">Inversión del Programa</p>
             </div>
 
-            <div class="bg-white border-2 border-brand-blue/30 rounded-3xl p-5 sm:p-10 relative shadow-xl mt-4">
-                <div class="absolute -top-3.5 left-1/2 -translate-x-1/2 bg-gradient-to-r from-brand-blue to-brand-purple text-white text-[10px] sm:text-xs font-bold uppercase tracking-wider px-3 sm:px-4 py-1 rounded-full shadow-md whitespace-nowrap">
+            <div class="card-f-big rounded-3xl p-5 sm:p-10 relative mt-4">
+                <div class="absolute -top-3.5 left-1/2 -translate-x-1/2 bg-brand-blue text-white hover:bg-brand-purple hover:text-black text-[10px] sm:text-xs font-bold uppercase tracking-wider px-3 sm:px-4 py-1 rounded-full shadow-md whitespace-nowrap">
                     Formato Online En Vivo
                 </div>
 
                 <div class="text-center space-y-4 mb-8">
-                    <p class="text-4xl sm:text-5xl font-extrabold text-slate-900 tracking-tight">$300.000 <span class="text-lg text-slate-500 font-normal">CLP</span></p>
+                    <p class="text-4xl sm:text-5xl font-medium text-slate-900 tracking-tighter">$300.000 <span class="text-lg text-slate-500 font-normal">CLP</span></p>
                     <p class="text-sm text-slate-600 font-medium">Programa Completo de 4 Horas</p>
                 </div>
 
@@ -588,7 +657,7 @@
                     </div>
                 </div>
 
-                <a href="https://forms.gle/BTqtQtU5KLZSUWth7" target="_blank" rel="noopener noreferrer" class="block w-full py-4 rounded-xl bg-gradient-to-r from-brand-blue to-brand-purple text-white font-bold text-base hover:opacity-95 transition-all shadow-lg shadow-brand-blue/20 text-center">
+                <a href="https://forms.gle/BTqtQtU5KLZSUWth7" target="_blank" rel="noopener noreferrer" class="btn btn-pri btn-block">
                     Reservar Mi Cupo Ahora
                 </a>
             </div>
@@ -596,12 +665,8 @@
     </section>
 
     <!-- FOOTER -->
-    <footer class="py-10 sm:py-12 bg-white border-t border-slate-200 text-center text-xs text-slate-500">
-        <div class="max-w-7xl mx-auto px-4">
-            <p>© 2026 Taller de Automatizaciones con Google Workspace Studio. Todos los derechos reservados por Hei01.</p>
-            <p class="mt-2 leading-relaxed">Google Workspace, Gmail, Google Docs y Google Calendar son marcas registradas de Google LLC.</p>
-        </div>
-    </footer>
+    <footer data-componente="pie" data-nota="Google Workspace, Gmail, Google Docs y Google Calendar son marcas registradas de Google LLC." v-pre><nav aria-label="Pie de página"><a href="./">HEI01</a> · <a href="formaciones.html">Formaciones</a> · <a href="recursos/">Recursos</a></nav></footer>
+<script src="assets/pie.js?v=3" data-base="" defer></script>
 
     <!-- LOGICA VUE 3 -->
     <script>
@@ -627,7 +692,7 @@
 
                 const demoBuildSteps = [
                     { tool: 'Gmail', title: 'Activador: correo nuevo', desc: 'Se dispara al llegar un mensaje a la bandeja de entrada.', tone: 'bg-red-500' },
-                    { tool: 'Gemini', title: 'Analizar contenido', desc: 'Extrae cliente, plazo, urgencia y el pedido concreto.', tone: 'bg-brand-purple' },
+                    { tool: 'Gemini', title: 'Analizar contenido', desc: 'Extrae cliente, plazo, urgencia y el pedido concreto.', tone: 'bg-brand-purple !text-black' },
                     { tool: 'Gmail', title: 'Clasificar y etiquetar', desc: 'Aplica Urgente, Normal o Informativo según el análisis.', tone: 'bg-brand-blue' },
                     { tool: 'Gmail', title: 'Redactar borrador', desc: 'Escribe una respuesta ejecutiva y la deja sin enviar.', tone: 'bg-emerald-600' }
                 ];
@@ -753,7 +818,7 @@
                 });
 
                 const closeMenuOnDesktop = () => {
-                    if (window.innerWidth >= 768) menuOpen.value = false;
+                    if (window.innerWidth > 820) menuOpen.value = false;
                 };
 
                 onMounted(() => {

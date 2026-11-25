@@ -7,8 +7,18 @@
   </url>
   <url>
     <loc>https://hei01.com/formaciones.html</loc>
-    <lastmod>2026-06-25</lastmod>
+    <lastmod>2026-11-25</lastmod>
     <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://hei01.com/google-workspace-ai.html</loc>
+    <lastmod>2026-11-25</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://hei01.com/privacidad/</loc>
+    <lastmod>2026-11-25</lastmod>
+    <priority>0.3</priority>
   </url>
   <url>
     <loc>https://hei01.com/recursos/</loc>
