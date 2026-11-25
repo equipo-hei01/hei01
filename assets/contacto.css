@@ -1,0 +1,21 @@
+/* Página de contacto (contact/). Usa la base de portada.css. */
+.k-hero{padding:152px 0 96px}
+.k-in{display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);gap:56px;align-items:start;max-width:var(--ancho-ancho)}
+.k-texto h1{font-size:clamp(2rem,3.8vw,3.2rem);margin-bottom:20px}
+.k-tema{display:inline-block;margin-bottom:20px;padding:10px 18px;border:1px solid var(--g2);border-left:3px solid var(--coral);border-radius:10px;background:var(--blanco);color:var(--g5)}
+.k-tema[hidden]{display:none}
+.k-tema strong{color:var(--negro);font-weight:600}
+.k-bajada{font-size:clamp(1.02rem,1.6vw,1.15rem);color:var(--g5);margin-bottom:32px;max-width:440px}
+.k-pasos{list-style:none;counter-reset:k;display:grid;gap:16px;margin-bottom:32px;max-width:440px}
+.k-pasos li{counter-increment:k;position:relative;padding-left:44px;color:var(--g5)}
+.k-pasos li::before{content:counter(k,decimal-leading-zero);position:absolute;left:0;top:0;width:30px;height:30px;display:grid;place-items:center;border:1.5px solid var(--negro);border-radius:50%;font-size:11px;font-weight:600;color:var(--negro)}
+.k-pasos strong{color:var(--negro);font-weight:600}
+.k-alt{color:var(--g4);font-size:15px}
+.k-alt .enlace{font-size:15px;min-height:0}
+.k-calendario{background:var(--blanco);border:1px solid var(--g2);border-radius:20px;overflow:hidden;box-shadow:var(--sombra)}
+.k-calendario iframe{display:block;width:100%;height:min(80vh,780px);min-height:680px;border:0;background:var(--blanco)}
+@media (max-width:900px){
+  .k-hero{padding:128px 0 72px}
+  .k-in{grid-template-columns:minmax(0,1fr);gap:32px}
+  .k-pasos{display:none}
+}

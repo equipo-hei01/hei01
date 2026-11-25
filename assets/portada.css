@@ -259,6 +259,11 @@ section{overflow:clip}
 .cifra-d{color:var(--g5);max-width:360px;font-size:15.5px;line-height:1.6}
 .cifra-tag{margin-top:12px;font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--negro)}
 .cifra-linea{position:absolute;left:0;right:0;bottom:0;height:1px;background:var(--g2);transform-origin:left}
+.costo-cta{margin-top:40px}
+.experiencia{margin-top:72px;padding-top:40px;border-top:1px solid var(--g2)}
+.experiencia-txt{color:var(--g5);margin-bottom:20px}
+.experiencia-lista{list-style:none;display:flex;flex-wrap:wrap;gap:12px 40px}
+.experiencia-lista li{font-size:clamp(1.1rem,2vw,1.45rem);font-weight:500;letter-spacing:-.02em;color:var(--g4)}
 .nota{margin-top:28px;font-size:13px;color:var(--g4);max-width:640px;line-height:1.55}
 @media (prefers-reduced-motion:no-preference){
   .js .costo:not(.is-in) .cifra-linea{transform:scaleX(0)}
@@ -505,4 +510,28 @@ section{overflow:clip}
 @media (prefers-reduced-motion:reduce){
   html{scroll-behavior:auto}
   .btn,.peldano,.enlace,.q-mas{transition:none}
+}
+
+/* === Diagramas en celular: las escenas se achican a la mitad, así que los textos internos suben
+   de tamaño y los que no caben pasan a una leyenda en HTML bajo la figura. === */
+.fig-leyenda{display:none}
+@media (max-width:640px){
+  .fig-leyenda{display:block;margin-top:14px;font-size:13.5px;line-height:1.55;color:var(--sobre-oscuro);text-align:left}
+  .fig-leyenda strong{color:var(--blanco);font-weight:600}
+  ol.fig-leyenda{list-style:none;counter-reset:h;display:grid;grid-template-columns:1fr 1fr;gap:4px 12px;color:var(--g5)}
+  ol.fig-leyenda li{counter-increment:h}
+  ol.fig-leyenda li::before{content:counter(h) ". ";font-weight:600;color:var(--negro)}
+  ol.fig-leyenda li:last-child{grid-column:1/-1}
+  .i-escena,.m-escena{overflow:visible}
+  .i-dato .i-txt{display:none}
+  .i-chico{font-size:21px}
+  .i-ia-t{font-size:20px}
+  .t-area{font-size:21px}
+  .t-area:nth-of-type(even){transform:translateY(26px)}
+  .t-presu{font-size:21px}
+  .t-p1{font-size:19px}
+  .x-sis-t{font-size:14px}
+  .m-nombre{font-size:21px}
+  .m-accion{font-size:17px;transform:translateY(6px)}
+  .a-nombre{display:none}
 }
