@@ -193,6 +193,10 @@ h2{font-size:clamp(1.75rem,3.4vw,2.5rem)}
 .lb5{background:rgba(255,111,97,.12);color:var(--tinta);border:1px solid rgba(255,111,97,.4)}
 /* === TARJETAS DE CURSO (acordeon) === */
 .courses-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px}
+.courses-grid>.ccard{min-width:0}
+.ccard-detail .tabla-comp{grid-template-columns:110px minmax(0,1fr);min-width:0}
+@media (max-width:640px){.ccard-detail .tabla-comp{grid-template-columns:88px minmax(0,1fr)}}
+.ccard-detail .tabla-comp [role=cell]{overflow-wrap:anywhere}
 .ccard{background:var(--vidrio);border:1px solid rgba(13,13,18,.07);border-radius:16px;padding:24px;box-shadow:var(--sombra);cursor:pointer;transition:border-color var(--dur-base),box-shadow var(--dur-base),transform var(--dur-base)}
 .ccard:hover{border-color:rgba(255,111,97,.5);transform:translateY(-4px)}
 .ccard.open{border-color:var(--rosa);box-shadow:0 0 0 3px rgba(255,111,97,.15),var(--sombra);transform:none}
@@ -684,7 +688,7 @@ h2{font-size:clamp(1.75rem,3.4vw,2.5rem)}
         </div>
         <div class="courses-grid">
           <div class="ccard" onclick="openCard(this)">
-            <div class="ccard-num">Curso 1 de 4</div>
+            <div class="ccard-num">Curso 1 de 5</div>
             <div class="ccard-top">
               <div class="ccard-title">Avanzada Operativa</div>
               <span class="ccard-hours">4h</span>
@@ -707,7 +711,7 @@ h2{font-size:clamp(1.75rem,3.4vw,2.5rem)}
             </div>
           </div>
           <div class="ccard" onclick="openCard(this)">
-            <div class="ccard-num">Curso 2 de 4</div>
+            <div class="ccard-num">Curso 2 de 5</div>
             <div class="ccard-top">
               <div class="ccard-title">IA para Líderes</div>
               <span class="ccard-hours">12h</span>
@@ -735,7 +739,56 @@ h2{font-size:clamp(1.75rem,3.4vw,2.5rem)}
             </div>
           </div>
           <div class="ccard" onclick="openCard(this)">
-            <div class="ccard-num">Curso 3 de 4</div>
+            <div class="ccard-num fila">Curso 3 de 5 <span class="tag tag-rosa">Nuevo</span></div>
+            <div class="ccard-top">
+              <div class="ccard-title">Claude para líderes</div>
+              <span class="ccard-hours">4h</span>
+            </div>
+            <p class="ccard-desc">Para jefaturas y líderes de equipo: cada uno convierte una tarea de gestión que repite, como el seguimiento semanal o la preparación de sus reuniones 1 a 1, en un sistema que trabaja solo.</p>
+            <div class="ccard-lbd">Workshop · cada líder construye con una tarea real de su equipo</div>
+            <button type="button" class="ccard-toggle" aria-expanded="false">Ver programa completo ↓</button>
+            <div class="ccard-detail">
+              <div class="tabla-wrap">
+                <div class="tabla-comp" role="table" aria-label="Agenda de 4 horas">
+                  <div role="row"><div class="h" role="cell">0:00–0:20</div><div role="cell"><span class="m">ENCUADRE</span> — Cada líder define la tarea de su equipo que va a resolver</div></div>
+                  <div role="row"><div class="h" role="cell">0:20–0:55</div><div role="cell"><span class="m">01 · PROYECTOS</span> — Crea su proyecto con contexto y archivos que no se repiten</div></div>
+                  <div role="row"><div class="h" role="cell">0:55–1:40</div><div role="cell"><span class="m">02 · SKILLS</span> — Convierte su método en pasos, reglas y formato, y lo prueba</div></div>
+                  <div role="row"><div class="h" role="cell">1:55–2:35</div><div role="cell"><span class="m">03 · MCP Y CONECTORES</span> — Conecta Claude a su correo, Drive o planillas</div></div>
+                  <div role="row"><div class="h" role="cell">2:35–3:10</div><div role="cell"><span class="m">04 · ARTEFACTOS</span> — Lleva el resultado a un documento, tablero o página</div></div>
+                  <div role="row"><div class="h" role="cell">3:10–3:40</div><div role="cell"><span class="m">05 · TAREAS PROGRAMADAS</span> — Deja la rutina corriendo en el horario que define</div></div>
+                  <div role="row"><div class="h" role="cell">3:40–4:00</div><div role="cell"><span class="m">CIERRE</span> — Muestra su sistema y elige su siguiente tarea</div></div>
+                </div>
+              </div>
+              <div class="outcomes">
+                <div class="outcomes-label">Ejercicios con casos de líderes</div>
+                <div class="outcome-item"><span><strong>Seguimiento semanal del equipo:</strong> avances, bloqueos y compromisos en un solo resumen</span></div>
+                <div class="outcome-item"><span><strong>Reuniones 1 a 1:</strong> preparación con los acuerdos anteriores y los temas pendientes de cada persona</span></div>
+                <div class="outcome-item"><span><strong>Minutas y acuerdos:</strong> de la reunión a las tareas con responsable y fecha</span></div>
+                <div class="outcome-item"><span><strong>Reporte de avance a gerencia:</strong> el estado del área en el formato que le piden</span></div>
+                <div class="outcome-item"><span><strong>Planificación del trimestre:</strong> prioridades del equipo, carga de trabajo y riesgos</span></div>
+                <div class="outcome-item"><span><strong>Inducción de nuevos integrantes:</strong> plan de las primeras semanas con los materiales del área</span></div>
+              </div>
+              <div class="outcomes">
+                <div class="outcomes-label">Cada líder se lleva su tarea resuelta</div>
+                <div class="outcome-item">Proyecto configurado con el contexto y los archivos de su equipo</div>
+                <div class="outcome-item">Skill reutilizable con su forma de hacer la tarea</div>
+                <div class="outcome-item">Conectores activos a su correo, Drive o planillas</div>
+                <div class="outcome-item">Artefacto de salida listo para compartir con su equipo o su gerencia</div>
+                <div class="outcome-item">Rutina programada, si el plan y los permisos de su cuenta lo permiten</div>
+              </div>
+              <div class="outcomes">
+                <div class="outcomes-label">Qué se necesita</div>
+                <div class="outcome-item">Cuenta de Claude con plan pagado y su computador</div>
+                <div class="outcome-item">Una tarea de gestión que repite, que sabe hacer y que tiene datos</div>
+                <div class="outcome-item">Validación previa de TI para conectar correo, Drive o planillas</div>
+              </div>
+              <div class="ccard-cta" onclick="event.stopPropagation()">
+                <button type="button" class="btn btn-sec btn-block" onclick="openGlobalReg('Claude para líderes · 4h')">Inscribir este curso</button>
+              </div>
+            </div>
+          </div>
+          <div class="ccard" onclick="openCard(this)">
+            <div class="ccard-num">Curso 4 de 5</div>
             <div class="ccard-top">
               <div class="ccard-title">IA para Ventas</div>
               <span class="ccard-hours">8h</span>
@@ -762,7 +815,7 @@ h2{font-size:clamp(1.75rem,3.4vw,2.5rem)}
             </div>
           </div>
           <div class="ccard" onclick="openCard(this)">
-            <div class="ccard-num">Curso 4 de 4</div>
+            <div class="ccard-num">Curso 5 de 5</div>
             <div class="ccard-top">
               <div class="ccard-title">Laboratorio de Innovación</div>
               <span class="ccard-hours">8h</span>
@@ -825,61 +878,66 @@ h2{font-size:clamp(1.75rem,3.4vw,2.5rem)}
               Curso 1 de 3 <span class="tag tag-rosa">Nuevo</span>
             </div>
             <div class="ccard-top">
-              <div class="ccard-title">Claude para Gerentes & Cowork</div>
+              <div class="ccard-title">Claude para gerentes</div>
               <span class="ccard-hours">4h</span>
             </div>
-            <p class="ccard-desc">Para líderes que deciden con criterio. Sus equipos ya usan IA. La pregunta es con qué método.</p>
-            <div class="ccard-lbd">70% práctica · 30% teoría · Entregable real al terminar</div>
+            <p class="ccard-desc">Del prompt al sistema: cada gerente convierte una tarea que repite, como su planificación estratégica o el reporte al directorio, en un sistema que trabaja solo.</p>
+            <div class="ccard-lbd">Workshop · 12 gerentes · 2 formadores · cada uno construye con su propia tarea</div>
             <button type="button" class="ccard-toggle" aria-expanded="false">Ver programa completo ↓</button>
             <div class="ccard-detail">
-              <!-- SIN/CON -->
               <div class="comparison" style="margin-bottom:1.25rem">
                 <div class="comp-col sin">
-                  <div class="comp-title">SIN MÉTODO</div>
-                  <div class="comp-item"><span class="comp-icon no"><svg class="ico" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg></span>Prompts a ciegas, resultados mediocres</div>
-                  <div class="comp-item"><span class="comp-icon no"><svg class="ico" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg></span>Conocimiento se pierde entre chats</div>
-                  <div class="comp-item"><span class="comp-icon no"><svg class="ico" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg></span>Inversión sin criterio ni gobernanza</div>
-                  <div class="comp-item"><span class="comp-icon no"><svg class="ico" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg></span>Equipos sobrecargados, no eficientes</div>
+                  <div class="comp-title">HOY</div>
+                  <div class="comp-item"><span class="comp-icon no"><svg class="ico" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg></span>Empieza de cero en cada conversación</div>
+                  <div class="comp-item"><span class="comp-icon no"><svg class="ico" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg></span>Pega el mismo contexto de siempre</div>
+                  <div class="comp-item"><span class="comp-icon no"><svg class="ico" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg></span>Explica otra vez el formato que espera el directorio</div>
+                  <div class="comp-item"><span class="comp-icon no"><svg class="ico" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg></span>Copia el resultado a otro lado, a mano</div>
                 </div>
                 <div class="comp-col con">
-                  <div class="comp-title">CON MÉTODO HEI01</div>
-                  <div class="comp-item"><span class="comp-icon si"><svg class="ico" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M20 6 9 17l-5-5"/></svg></span>Megaprompts estandarizados por rol</div>
-                  <div class="comp-item"><span class="comp-icon si"><svg class="ico" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M20 6 9 17l-5-5"/></svg></span>Proyectos = base de conocimiento</div>
-                  <div class="comp-item"><span class="comp-icon si"><svg class="ico" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M20 6 9 17l-5-5"/></svg></span>Cowork ejecuta procesos sin supervisión</div>
-                  <div class="comp-item"><span class="comp-icon si"><svg class="ico" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M20 6 9 17l-5-5"/></svg></span>Decisiones más rápidas, menos ruido</div>
+                  <div class="comp-title">CON SU SISTEMA EN CLAUDE</div>
+                  <div class="comp-item"><span class="comp-icon si"><svg class="ico" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M20 6 9 17l-5-5"/></svg></span>Proyecto: su contexto y archivos, cargados una vez</div>
+                  <div class="comp-item"><span class="comp-icon si"><svg class="ico" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M20 6 9 17l-5-5"/></svg></span>Skill: su método, reutilizable</div>
+                  <div class="comp-item"><span class="comp-icon si"><svg class="ico" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M20 6 9 17l-5-5"/></svg></span>Conectores: sus herramientas y datos, enlazados</div>
+                  <div class="comp-item"><span class="comp-icon si"><svg class="ico" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M20 6 9 17l-5-5"/></svg></span>Tarea programada: una rutina que se ejecuta sola</div>
                 </div>
               </div>
-              <!-- SCHEDULE -->
               <div class="tabla-wrap">
-                <div class="tabla-comp" role="table" aria-label="Programa por módulos">
-                  <div role="row"><div class="h" role="cell">0:00–1:00</div><div role="cell"><span class="m">M1 · FUNDAMENTOS</span> — Claude esencial · primer artefacto</div></div>
-                  <div role="row"><div class="h" role="cell">1:00–2:00</div><div role="cell"><span class="m">M2 · MEGAPROMPTING</span> — FORMATO + pensamiento extendido</div></div>
-                  <div role="row"><div class="h" role="cell">2:00–3:00</div><div role="cell"><span class="m">M3 · SISTEMATIZACIÓN</span> — Proyectos · Estilos · Skills · MCP</div></div>
-                  <div role="row"><div class="h" role="cell">3:00–4:00</div><div role="cell"><span class="m">M4 · COWORK</span> — Agente que ejecuta sobre archivos locales</div></div>
+                <div class="tabla-comp" role="table" aria-label="Agenda de 4 horas">
+                  <div role="row"><div class="h" role="cell">0:00–0:20</div><div role="cell"><span class="m">ENCUADRE</span> — Cada gerente define la tarea que va a resolver</div></div>
+                  <div role="row"><div class="h" role="cell">0:20–0:55</div><div role="cell"><span class="m">01 · PROYECTOS</span> — Crea su proyecto con contexto y archivos que no se repiten</div></div>
+                  <div role="row"><div class="h" role="cell">0:55–1:40</div><div role="cell"><span class="m">02 · SKILLS</span> — Convierte su método en pasos, reglas y formato, y lo prueba</div></div>
+                  <div role="row"><div class="h" role="cell">1:55–2:35</div><div role="cell"><span class="m">03 · MCP Y CONECTORES</span> — Conecta Claude a su correo, Drive o planillas</div></div>
+                  <div role="row"><div class="h" role="cell">2:35–3:10</div><div role="cell"><span class="m">04 · ARTEFACTOS</span> — Lleva el resultado a un documento, tablero o página</div></div>
+                  <div role="row"><div class="h" role="cell">3:10–3:40</div><div role="cell"><span class="m">05 · TAREAS PROGRAMADAS</span> — Deja la rutina corriendo en el horario que define</div></div>
+                  <div role="row"><div class="h" role="cell">3:40–4:00</div><div role="cell"><span class="m">CIERRE</span> — Muestra su sistema y elige su siguiente tarea</div></div>
                 </div>
               </div>
-              <!-- PRICING -->
-              <div class="pricing-grid">
-                <div class="price-card std">
-                  <div class="price-type">MODALIDAD ABIERTA</div>
-                  <div class="price-amount">$500.000</div>
-                  <div class="price-detail">CLP + IVA · hasta 5 personas</div>
-                  <div class="price-item"><span class="price-check"><svg class="ico" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M20 6 9 17l-5-5"/></svg></span>4h presenciales</div>
-                  <div class="price-item"><span class="price-check"><svg class="ico" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M20 6 9 17l-5-5"/></svg></span>Material HEI01</div>
-                  <div class="price-item"><span class="price-check"><svg class="ico" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M20 6 9 17l-5-5"/></svg></span>Cuadernillo digital</div>
-                </div>
-                <div class="price-card rec">
-                  <div class="price-badge">RECOMENDADO</div>
-                  <div class="price-type">IN COMPANY</div>
-                  <div class="price-amount">$600.000</div>
-                  <div class="price-detail">CLP + IVA · hasta 5 personas</div>
-                  <div class="price-item"><span class="price-check"><svg class="ico" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M20 6 9 17l-5-5"/></svg></span>Todo lo anterior</div>
-                  <div class="price-item"><span class="price-check"><svg class="ico" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M20 6 9 17l-5-5"/></svg></span>Descubrimiento previo (60 min)</div>
-                  <div class="price-item"><span class="price-check"><svg class="ico" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M20 6 9 17l-5-5"/></svg></span>Banco de prompts a medida</div>
-                </div>
+              <div class="outcomes">
+                <div class="outcomes-label">Ejercicios con casos de gerentes</div>
+                <div class="outcome-item"><span><strong>Planificación estratégica:</strong> del diagnóstico y los objetivos del año a un plan con iniciativas, responsables e indicadores</span></div>
+                <div class="outcome-item"><span><strong>Reporte mensual para el directorio:</strong> mismos datos, mismo formato, sin rehacerlo cada mes</span></div>
+                <div class="outcome-item"><span><strong>Seguimiento de KPI:</strong> lectura de desvíos y alertas de su área</span></div>
+                <div class="outcome-item"><span><strong>Comités y reuniones:</strong> preparación de la tabla, antecedentes y decisiones pendientes</span></div>
+                <div class="outcome-item"><span><strong>Comparación de propuestas:</strong> proveedores o proyectos evaluados con los mismos criterios</span></div>
+              </div>
+              <div class="outcomes">
+                <div class="outcomes-label">Cada gerente se lleva su tarea resuelta</div>
+                <div class="outcome-item">Proyecto configurado con el contexto y los archivos de su caso</div>
+                <div class="outcome-item">Skill reutilizable, con pasos, reglas y criterios claros</div>
+                <div class="outcome-item">Conectores activos: Claude enlazado a sus herramientas y datos</div>
+                <div class="outcome-item">Artefacto de salida que puede revisar, usar y compartir</div>
+                <div class="outcome-item">Rutina programada, si el plan y los permisos de su cuenta lo permiten</div>
+                <div class="outcome-item">Guía para replicarlo con su siguiente tarea</div>
+              </div>
+              <div class="outcomes">
+                <div class="outcomes-label">Qué se necesita</div>
+                <div class="outcome-item">Cuenta de Claude con plan pagado y su computador</div>
+                <div class="outcome-item">Una tarea que repite, que sabe hacer y que tiene datos</div>
+                <div class="outcome-item">Validación previa de TI para conectar correo, Drive o planillas</div>
+                <div class="outcome-item">Una sesión de 4 horas o dos sesiones de 2 horas</div>
               </div>
               <div class="ccard-cta" onclick="event.stopPropagation()">
-                <button type="button" class="btn btn-sec btn-block" onclick="openGlobalReg('Claude para Gerentes & Cowork · 4h', true)">Inscribir este curso</button>
+                <button type="button" class="btn btn-sec btn-block" onclick="openGlobalReg('Claude para gerentes · 4h', true)">Inscribir este curso</button>
               </div>
             </div>
           </div>
@@ -966,7 +1024,7 @@ h2{font-size:clamp(1.75rem,3.4vw,2.5rem)}
         <div class="courses-grid soon">
           <div class="ccard">
             <div class="ccard-num">Curso 1 de 2</div>
-            <div class="ccard-top"><div class="ccard-title">Claude para Gerentes & Cowork</div><span class="ccard-hours">4h</span></div>
+            <div class="ccard-top"><div class="ccard-title">Claude Cowork para gerentes</div><span class="ccard-hours">TBD</span></div>
             <p class="ccard-desc">Uso estratégico de Claude como herramienta ejecutiva diaria.</p>
             <div class="ccard-lbd lbd-soon"><svg class="ico" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg> En desarrollo</div>
           </div>
@@ -1073,17 +1131,17 @@ h2{font-size:clamp(1.75rem,3.4vw,2.5rem)}
 
       <div class="faq-item">
         <button type="button" class="faq-q" aria-expanded="false" onclick="toggleFaq(this.parentNode)"><span>¿Necesito experiencia previa en IA para inscribirme?</span><span class="faq-icon" aria-hidden="true"><svg class="ico" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5 12h14"/><path d="M12 5v14"/></svg></span></button>
-        <div class="faq-a">No. Los programas están segmentados por nivel de partida. Si es tu primer contacto con la IA, comenzamos desde cero con el Nivel 1. Si ya tienes base, elegimos el nivel que corresponde. El <a href="recursos/test-scala-priorizar-ia.html">Test SCALA</a> (gratuito, en nuestra Biblioteca de recursos) te ayuda a identificar exactamente dónde estás antes de decidir.</div>
+        <div class="faq-a">No. Los programas están segmentados por nivel de partida. Si es tu primer contacto con la IA, comenzamos desde cero con el Nivel 1. Si ya tienes base, partimos del nivel que corresponde. Para elegir el mejor camino aplicamos diagnósticos que muestran el punto de partida de cada persona antes de decidir.</div>
       </div>
 
       <div class="faq-item">
         <button type="button" class="faq-q" aria-expanded="false" onclick="toggleFaq(this.parentNode)"><span>¿Las formaciones son presenciales o virtuales?</span><span class="faq-icon" aria-hidden="true"><svg class="ico" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5 12h14"/><path d="M12 5v14"/></svg></span></button>
-        <div class="faq-a">Presenciales por defecto. La metodología — con casos reales, ejercicios en vivo y conversaciones entre participantes — funciona significativamente mejor en sala. Evaluamos excepciones en formato virtual o híbrido dependiendo del contexto geográfico de la organización.</div>
+        <div class="faq-a">Manejamos formaciones presenciales y también virtuales. Tenemos metodologías de enseñanza y de formación para adultos en contextos de negocio para cualquiera de los dos formatos. Cada formación se hace en un solo formato, presencial o virtual, y lo elegimos contigo según tu organización.</div>
       </div>
 
       <div class="faq-item">
         <button type="button" class="faq-q" aria-expanded="false" onclick="toggleFaq(this.parentNode)"><span>¿Cuántas personas pueden participar por sesión?</span><span class="faq-icon" aria-hidden="true"><svg class="ico" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5 12h14"/><path d="M12 5v14"/></svg></span></button>
-        <div class="faq-a">El formato recomendado es entre 5 y 20 personas. Grupos más pequeños permiten mayor práctica individual y personalización de ejercicios. Para grupos más grandes evaluamos formatos de co-facilitación o sesiones paralelas sin perder la calidad del aprendizaje.</div>
+        <div class="faq-a">Trabajamos con la metodología <strong>Learning by Doing</strong>: 30% teoría y 70% práctica. Por eso los grupos son pequeños: <strong>sesiones individuales</strong> para gerentes generales y gerentes, <strong>sesiones grupales</strong> para ejecutivos, y <strong>grupos de 10 a máximo 15 personas</strong> para los equipos tácticos y operativos. Cada formación es un workshop: todos realizan los ejercicios y acompañamos a cada participante mientras los hace, para que le saque el máximo provecho y viva la experiencia en la práctica. Eso es lo que sostiene una calificación de entre 4 y 5, sobre 5, en el índice de aplicación de la formación en el puesto de trabajo.</div>
       </div>
 
       <div class="faq-item">
@@ -1093,7 +1151,7 @@ h2{font-size:clamp(1.75rem,3.4vw,2.5rem)}
 
       <div class="faq-item">
         <button type="button" class="faq-q" aria-expanded="false" onclick="toggleFaq(this.parentNode)"><span>¿Cómo sé qué nivel necesita mi equipo?</span><span class="faq-icon" aria-hidden="true"><svg class="ico" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5 12h14"/><path d="M12 5v14"/></svg></span></button>
-        <div class="faq-a">Tienes dos opciones: el <a href="recursos/test-scala-priorizar-ia.html">Test SCALA</a> (6 preguntas, resultado inmediato) da una lectura de la madurez percibida. La segunda opción es una sesión ejecutiva de 60 minutos — sin costo — donde evaluamos juntos el punto de partida, los objetivos y el programa más adecuado para el perfil y momento de tu equipo.</div>
+        <div class="faq-a">Realizamos diagnósticos para identificar al público objetivo y el nivel en que está cada grupo. Con eso diseñamos y ejecutamos la mejor ruta de formación. Así la inversión apoya el retorno, porque los colaboradores aprenden a usar la IA en casos de uso de su negocio. El primer paso es una sesión ejecutiva de 60 minutos, sin costo, donde revisamos juntos el punto de partida y los objetivos de tu equipo.</div>
       </div>
 
       <div class="faq-item">
@@ -1103,17 +1161,17 @@ h2{font-size:clamp(1.75rem,3.4vw,2.5rem)}
 
       <div class="faq-item">
         <button type="button" class="faq-q" aria-expanded="false" onclick="toggleFaq(this.parentNode)"><span>¿Qué diferencia a HEI01 de otras formaciones en IA del mercado?</span><span class="faq-icon" aria-hidden="true"><svg class="ico" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5 12h14"/><path d="M12 5v14"/></svg></span></button>
-        <div class="faq-a">Tres diferencias concretas: <strong>1) Casos reales de tu negocio</strong> — no ejemplos genéricos de manuales. <strong>2) Presencial e intensivo</strong> — aprendes en una jornada, no en 8 semanas online donde nadie completa el curso. <strong>3) Facilitación con experiencia organizacional real en Latam</strong> — no un relator externo que conoce la teoría pero no sabe cómo se toman decisiones en tu industria.</div>
+        <div class="faq-a">Cinco diferencias concretas: <strong>1) Casos reales de cada participante.</strong> Aprenden haciendo, con casos de su puesto de trabajo y de su día a día, no con ejemplos genéricos. <strong>2) Grupos pequeños.</strong> Nos aseguramos de que todos implementen los ejercicios, paso a paso. <strong>3) Teoría del flow.</strong> Partimos con retos pequeños para habilidades pequeñas y, a medida que avanzamos, subimos el reto para que la habilidad también crezca. <strong>4) Facilitación con experiencia organizacional real en Latam.</strong> No un relator externo que conoce la teoría pero no sabe cómo se toman decisiones en tu industria. <strong>5) Nos hacemos cargo del proceso completo.</strong> Antes de la formación preparamos un flyer y una campaña de comunicación interna que explica para qué sirve, a quién beneficia y por qué vale la pena asistir; eso ayuda a que más personas quieran venir y sube la asistencia. Después dictamos la formación, entregamos los materiales y, al finalizar, enviamos los badges digitales de los webinars y los diplomas de las formaciones de más de 4 horas. Si tu organización ya tiene un sistema para esto, usamos el suyo; si no lo tiene, lo ponemos nosotros, como parte del servicio.</div>
       </div>
 
       <div class="faq-item">
         <button type="button" class="faq-q" aria-expanded="false" onclick="toggleFaq(this.parentNode)"><span>¿Los participantes reciben certificado al finalizar?</span><span class="faq-icon" aria-hidden="true"><svg class="ico" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5 12h14"/><path d="M12 5v14"/></svg></span></button>
-        <div class="faq-a">Sí. Al completar cada programa se entrega un certificado digital de HEI01 con nombre del participante, programa cursado y horas completadas. Para los programas de nivel Ejecutivo se entrega adicionalmente un resumen con los entregables generados durante la formación.</div>
+        <div class="faq-a">Sí. Al finalizar enviamos un badge digital a quienes participan en los webinars y un diploma a quienes completan las formaciones de más de 4 horas, con el nombre del participante, el programa cursado y las horas completadas. Nos hacemos cargo de todo el proceso: si tu organización ya tiene un sistema de reconocimientos, usamos el suyo; si no lo tiene, lo ponemos nosotros. Para los programas de nivel Ejecutivo se entrega además un resumen con los entregables generados durante la formación.</div>
       </div>
 
       <div class="faq-item">
         <button type="button" class="faq-q" aria-expanded="false" onclick="toggleFaq(this.parentNode)"><span>¿Cuáles son los precios de los programas?</span><span class="faq-icon" aria-hidden="true"><svg class="ico" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5 12h14"/><path d="M12 5v14"/></svg></span></button>
-        <div class="faq-a">No publicamos precios en el sitio porque dependen del programa, la modalidad (abierta o in company), la cantidad de personas y el contexto de la organización. En la sesión ejecutiva de 60 minutos — sin costo — entregamos la propuesta con valores reales adaptados a tu caso. El único precio visible: <strong>Claude para Gerentes & Cowork</strong> parte desde $500.000 CLP + IVA (hasta 5 personas).</div>
+        <div class="faq-a">No publicamos precios en el sitio porque dependen del programa, la modalidad (abierta o in company), la cantidad de personas y el contexto de la organización. En la sesión ejecutiva de 60 minutos — sin costo — entregamos la propuesta con valores reales adaptados a tu caso.</div>
       </div>
 
       <div class="faq-item">
@@ -1338,12 +1396,13 @@ const BUILDER_DATA = [
   { level:3, name:'Practicante', courses:[
     { id:'ao', name:'Avanzada Operativa', hours:4, desc:'IA aplicada a procesos propios del área' },
     { id:'li', name:'IA para Líderes', hours:12, desc:'Gestión del cambio, Quick Wins y liderazgo de adopción' },
+    { id:'cl', name:'Claude para líderes', hours:4, desc:'Una tarea de gestión del equipo convertida en un sistema en Claude' },
     { id:'ve', name:'IA para Ventas', hours:8, desc:'Ciclo comercial completo con IA: TOFU-MOFU-BOFU' },
     { id:'la', name:'Laboratorio de Innovación', hours:8, desc:'De la idea al prototipo de IA en un día' }
   ]},
   { level:4, name:'Ejecutivo', courses:[
     { id:'ae', name:'Avanzada para Ejecutivos', hours:6, desc:'AI Canvas, ROI, gobernanza y roadmap estratégico' },
-    { id:'cg', name:'Claude para Gerentes & Cowork', hours:4, desc:'Megaprompts, Proyectos y agentes para decisores' },
+    { id:'cg', name:'Claude para gerentes', hours:4, desc:'Del prompt al sistema: proyectos, skills, conectores y tareas programadas' },
     { id:'m3', name:'IA Ejecutivos · Core (M3-M8)', hours:10, desc:'Estrategia, gobernanza, proyectos y taller integrador' },
     { id:'m8', name:'IA Ejecutivos · Completo (M1-M8)', hours:16, desc:'Todos los módulos desde fundamentos hasta co-diseño' }
   ]}
