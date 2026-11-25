@@ -12,11 +12,11 @@ a{color:inherit}
 .contenedor{max-width:1080px;margin:0 auto;padding:0 20px}
 .angosto{max-width:760px}
 /* fondo como la portada: lila suave, líneas curvas y nubes que flotan */
-.fondo{position:fixed;inset:0;z-index:-1;overflow:hidden;background:radial-gradient(70% 55% at 50% 0%,#EEE7FA 0%,rgba(246,241,252,.6) 45%,#fff 80%)}
-.lineas{position:absolute;inset:0;width:100%;height:100%;fill:none;stroke:#fff;stroke-width:2.2;opacity:.9;filter:drop-shadow(0 2px 6px rgba(124,58,237,.08))}
-.nube{position:absolute;width:520px;opacity:.28;mix-blend-mode:multiply;filter:blur(2px);animation:flotar 22s ease-in-out infinite}
-.nube-1{top:8%;left:-140px}.nube-2{top:52%;right:-180px;width:620px;animation-duration:28s;animation-delay:-8s}
-@keyframes flotar{0%,100%{transform:translate(0,0)}50%{transform:translate(40px,-18px)}}
+.fondo{position:fixed;inset:0;z-index:-2;background:#fff}
+/* el mismo fondo de la portada: ondas blancas en movimiento, que se funden con el blanco al bajar */
+.fondo-hero{position:absolute;top:0;left:0;right:0;height:min(1000px,115vh);z-index:-1;overflow:hidden;pointer-events:none}
+.fondo-hero video{width:100%;height:100%;object-fit:cover;display:block}
+.fondo-hero::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(255,255,255,0) 0%,rgba(255,255,255,0) 55%,#fff 100%),radial-gradient(60% 40% at 50% 0%,rgba(251,230,235,.35),transparent 70%)}
 /* navegación en píldora, como la de la portada */
 .barra{position:sticky;top:18px;z-index:20;display:flex;justify-content:center;padding:0 12px}
 .nav-pill{display:flex;align-items:center;gap:10px;width:min(780px,100%);background:var(--vidrio);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-radius:100px;padding:12px 12px 12px 30px;box-shadow:var(--sombra)}
@@ -204,6 +204,5 @@ ol.pasos li::before{content:counter(p);position:absolute;left:0;top:-2px;width:3
  .grupo{grid-template-columns:1fr;gap:10px}
  .tabla td:first-child{width:45%}
  .dato{flex-direction:column;align-items:flex-start}
- .nube{width:340px}
 }
 @media (prefers-reduced-motion:reduce){.term .lin{width:100%!important}.check b{background:var(--rosa)!important;border-color:var(--rosa)!important}.check b::after{transform:rotate(-45deg) scale(1)!important}.puntaje span,.copiado{opacity:1!important;transform:none!important}.barra-progreso i{width:100%!important}.paso b{background:var(--tinta)!important;color:#fff!important}.fila i{transform:scaleX(var(--w,1))!important;opacity:1!important}*,*::before,*::after{animation:none!important;transition:none!important}.palabra,.revela{opacity:1;filter:none;transform:none}}
