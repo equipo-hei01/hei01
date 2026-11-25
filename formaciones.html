@@ -111,6 +111,21 @@ h2{font-size:clamp(1.75rem,3.4vw,2.5rem)}
 .stat-n{font-size:2rem;font-weight:500;color:var(--tinta);display:block;letter-spacing:-.03em;line-height:1.2}
 .stat-l{font-size:14px;color:var(--suave)}
 .hero-btns{display:flex;gap:20px;justify-content:center;align-items:center;flex-wrap:wrap}
+/* Hero con imagen: texto a la izquierda e imagen a la derecha; en pantallas angostas la imagen va arriba. */
+#hero .hero-foto{mix-blend-mode:multiply;-webkit-mask-image:linear-gradient(to right,transparent 0,#000 10%,#000 94%,transparent 100%),linear-gradient(to bottom,transparent 0,#000 8%,#000 100%);-webkit-mask-composite:source-in;mask-image:linear-gradient(to right,transparent 0,#000 10%,#000 94%,transparent 100%),linear-gradient(to bottom,transparent 0,#000 8%,#000 100%);mask-composite:intersect}
+@media (min-width:1000px){
+  #hero{text-align:left;gap:32px;max-width:1280px;margin:0 auto;padding-top:150px}
+  #hero .hero-content{flex:1 1 46%;max-width:560px}
+  #hero .hero-title{margin-left:0;font-size:clamp(2.2rem,3.9vw,3.5rem)}
+  #hero .hero-hook,#hero .hero-sub{margin-left:0}
+  #hero .hero-stats,#hero .hero-btns{justify-content:flex-start}
+  #hero .hero-foto{flex:1 1 54%;min-width:0;width:54%;height:auto;margin-right:-24px}
+}
+@media (max-width:999px){
+  #hero{flex-direction:column}
+  #hero .hero-foto{order:-1;width:min(100%,560px);height:auto;margin-bottom:8px}
+  #hero .hero-title br{display:none}
+}
 /* === PRUEBA SOCIAL === */
 .prueba{padding:24px 0 48px}
 .prueba-titulo{text-align:center;font-size:13px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--suave);margin-bottom:28px}
@@ -431,6 +446,7 @@ h2{font-size:clamp(1.75rem,3.4vw,2.5rem)}
       <a href="#formaciones" class="btn-ter">Ver programas <svg class="ico" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
     </div>
   </div>
+  <img class="hero-foto anim-up d2" src="assets/formaciones-cajon.webp" alt="" width="1200" height="708" fetchpriority="high" decoding="async">
 </section>
 
 <!-- PRUEBA SOCIAL -->
