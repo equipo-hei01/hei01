@@ -39,7 +39,8 @@
   <section class="hero">
     <span class="pildora"><span class="punto"></span>Biblioteca de recursos</span>
     <h1><span class="palabra" style="animation-delay:0ms">Recursos</span> <span class="palabra" style="animation-delay:70ms">de</span> <span class="palabra" style="animation-delay:140ms">IA</span> <span class="palabra" style="animation-delay:210ms">con</span> <span class="rosa"><span class="palabra" style="animation-delay:280ms">criterio</span> <span class="palabra" style="animation-delay:350ms">ejecutivo.</span></span></h1>
-    <p class="revela" data-retraso="500">Sin caos, sin hype, con método. Prompts, plantillas y ejercicios para gobernar, priorizar y llevar la IA a las personas. Gratis, sin registro y listos para usar el lunes.</p>
+    <p class="revela" data-retraso="500">Sin caos, sin hype, con orden y método. Prompts, plantillas y ejercicios para gobernar, priorizar y llevar la IA a las personas.</p>
+    <p class="hero-nota revela" data-retraso="650">Gratis, sin registro y listos para usar de inmediato.</p>
     <div class="vitrina" id="vitrina" aria-label="Así son los recursos: prompts, checklists, plantillas y ejercicios">
       <div class="mini m1" data-i="0"><div class="mini-top"><span class="tipo">Prompt</span><span class="icono"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 9l-4 3 4 3"/><path d="M16 9l4 3-4 3"/><path d="M13.5 6l-3 12"/></svg></span></div>
         <h4>Tu informe de IA para el directorio</h4>
@@ -64,15 +65,20 @@
       <button type="button" data-i="0">Prompts</button><button type="button" data-i="1">Checklists</button><button type="button" data-i="2">Plantillas</button><button type="button" data-i="3">Ejercicios</button>
     </div>
   </section>
-  <div class="herramientas revela">
+  <div class="herramientas revela" id="buscar">
+    <div class="panel-cabeza">
+      <span class="pildora"><span class="punto"></span>Encuentra tu recurso</span>
+      <h2>¿Qué necesitas hoy?</h2>
+      <p>Escribe un tema o selecciona uno o varios criterios. Los recursos se filtran al instante.</p>
+    </div>
     <div class="buscador">
       <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
       <input id="q" type="search" placeholder="Busca: directorio, priorizar, equipos, prompt…" aria-label="Buscar recursos" autocomplete="off">
     </div>
     <div class="filtros">
-      <div class="grupo" data-grupo="para"><span class="grupo-titulo">Para quién</span><button class="chip" type="button" data-valor="directorio" aria-pressed="false">Directorio y gerencia general</button><button class="chip" type="button" data-valor="transformacion" aria-pressed="false">Transformación e innovación</button><button class="chip" type="button" data-valor="personas" aria-pressed="false">Personas y RR. HH.</button></div>
-      <div class="grupo" data-grupo="necesidad"><span class="grupo-titulo">Qué necesitas</span><button class="chip" type="button" data-valor="gobernar" aria-pressed="false">Gobernar</button><button class="chip" type="button" data-valor="decidir" aria-pressed="false">Decidir</button><button class="chip" type="button" data-valor="priorizar" aria-pressed="false">Priorizar</button><button class="chip" type="button" data-valor="comunicar" aria-pressed="false">Comunicar el cambio</button><button class="chip" type="button" data-valor="formar" aria-pressed="false">Formar a mi equipo</button></div>
-      <div class="grupo" data-grupo="tipo"><span class="grupo-titulo">Tipo</span><button class="chip" type="button" data-valor="checklist" aria-pressed="false">Checklist</button><button class="chip" type="button" data-valor="prompt" aria-pressed="false">Prompt</button><button class="chip" type="button" data-valor="plantilla" aria-pressed="false">Plantilla</button><button class="chip" type="button" data-valor="ejercicio" aria-pressed="false">Ejercicio</button><button class="chip" type="button" data-valor="guia" aria-pressed="false">Guía</button><button class="chip" type="button" data-valor="test" aria-pressed="false">Test</button></div>
+      <div class="grupo" data-grupo="para"><span class="grupo-titulo">Para quién</span><div class="chips"><button class="chip" type="button" data-valor="directorio" aria-pressed="false">Directorio y gerencia general</button><button class="chip" type="button" data-valor="transformacion" aria-pressed="false">Transformación e innovación</button><button class="chip" type="button" data-valor="personas" aria-pressed="false">Personas y RR. HH.</button></div></div>
+      <div class="grupo" data-grupo="necesidad"><span class="grupo-titulo">Qué necesitas</span><div class="chips"><button class="chip" type="button" data-valor="gobernar" aria-pressed="false">Gobernar</button><button class="chip" type="button" data-valor="decidir" aria-pressed="false">Decidir</button><button class="chip" type="button" data-valor="priorizar" aria-pressed="false">Priorizar</button><button class="chip" type="button" data-valor="comunicar" aria-pressed="false">Comunicar el cambio</button><button class="chip" type="button" data-valor="formar" aria-pressed="false">Formar a mi equipo</button></div></div>
+      <div class="grupo" data-grupo="tipo"><span class="grupo-titulo">Tipo</span><div class="chips"><button class="chip" type="button" data-valor="checklist" aria-pressed="false">Checklist</button><button class="chip" type="button" data-valor="prompt" aria-pressed="false">Prompt</button><button class="chip" type="button" data-valor="plantilla" aria-pressed="false">Plantilla</button><button class="chip" type="button" data-valor="ejercicio" aria-pressed="false">Ejercicio</button><button class="chip" type="button" data-valor="guia" aria-pressed="false">Guía</button><button class="chip" type="button" data-valor="test" aria-pressed="false">Test</button></div></div>
     </div>
   </div>
   <div class="estado"><span id="cuenta" aria-live="polite"></span><button class="limpiar" id="limpiar" type="button" hidden>Limpiar filtros</button></div>
