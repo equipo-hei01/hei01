@@ -1,0 +1,296 @@
+[
+  {
+    "slug": "10-preguntas-ia-directorio",
+    "titulo": "10 preguntas de IA que tu directorio debería poder responder",
+    "para": ["directorio"],
+    "necesidad": ["gobernar", "decidir"],
+    "tipo": "checklist",
+    "herramienta": "Sin herramienta",
+    "minutos": 15,
+    "palabra": "DIRECTORIO",
+    "resumen": "Responde cada pregunta con sí, a medias o no. Las que quedan en no son tu punto de partida.",
+    "para_que": "Saber, con evidencia y no con promesas, dónde está tu organización en gobernanza, estrategia y gestión del cambio de IA.",
+    "necesitas": "15 minutos y, si puedes, a alguien de tu comité para contestarlas juntos.",
+    "bloques": [
+      {"tipo": "lista_numerada", "titulo": "1 · Primero, gobernanza", "items": [
+        "¿Quién responde si una iniciativa de IA sale mal?",
+        "¿Qué datos se pueden usar con IA y cuáles no?",
+        "¿Sabemos qué herramientas de IA ya usan los equipos hoy?"]},
+      {"tipo": "cita", "texto": "Gobernar no es frenar. Es poder avanzar protegiendo a la organización."},
+      {"tipo": "lista_numerada", "inicio": 4, "titulo": "2 · Luego, estrategia", "items": [
+        "¿Qué tres iniciativas van primero, y por qué esas?",
+        "¿Qué métrica del negocio mueve cada una?",
+        "¿Qué piloto tiene fecha de término y criterio para escalar o cerrar?",
+        "¿Qué decidimos no hacer este año?"]},
+      {"tipo": "lista_numerada", "inicio": 8, "titulo": "3 · Y siempre, personas", "items": [
+        "¿Los equipos saben qué cambia en su trabajo y qué ganan?",
+        "¿Quién acompaña a los mandos medios, que son los que adoptan o frenan?",
+        "¿Cómo vamos a mostrar avance al directorio cada trimestre?"]},
+      {"tipo": "tabla", "titulo": "Tu puntaje", "filas": [
+        ["8 a 10 en sí", "Tienes criterio: toca escalar."],
+        ["4 a 7", "Hay base, falta orden."],
+        ["0 a 3", "Parte por gobernanza, antes de otro piloto."]]},
+      {"tipo": "dato", "cifra": "16 %", "texto": "89 % de los CEOs de Latam mantendrá o acelerará su inversión en IA. Solo 16 % ha logrado escalarla.", "fuente": "Deloitte, Encuesta Pulso IA"}
+    ],
+    "criterio": "No necesitas todas las respuestas: necesitas criterio para decidir qué va primero. El orden importa: si saltas a la estrategia sin gobernanza, el primer error frena todo lo demás.",
+    "pregunta": "¿Cuántas pudiste responder con evidencia?",
+    "siguiente": {"texto": "Si quieres revisar tus respuestas con alguien que lo ha visto en otros comités, conversemos 30 minutos, sin presión.", "cta": "Agendar 30 minutos", "url": "../contact/"}
+  },
+  {
+    "slug": "prompt-informe-ia-directorio",
+    "titulo": "Prompt: tu informe de IA para el directorio en una página",
+    "para": ["directorio"],
+    "necesidad": ["decidir", "gobernar"],
+    "tipo": "prompt",
+    "herramienta": "Cualquier IA",
+    "minutos": 20,
+    "resumen": "Ordena lo que ya tienes en una página que el directorio lee en 3 minutos: qué avanzó, qué riesgo hay y qué decisión necesitas.",
+    "para_que": "Llegar a la sesión de directorio con una sola página clara, en vez de una presentación de 30 láminas sobre IA.",
+    "necesitas": "Tus notas sobre las iniciativas de IA en curso (aunque estén desordenadas). Sin nombres de clientes ni datos confidenciales.",
+    "bloques": [
+      {"tipo": "prompt", "texto": "Actúa como asesor de un gerente general que debe informar a su directorio sobre inteligencia artificial.\n\nContexto: mi empresa es [rubro y tamaño]. Estas son mis notas sobre las iniciativas de IA en curso:\n[pega tus notas]\n\nArma un informe de UNA página con estas 4 secciones, en este orden:\n1) Gobernanza: quién responde, qué reglas de uso hay y qué falta definir.\n2) Estrategia: las iniciativas en curso, la métrica del negocio que mueve cada una y en qué estado está (piloto, escalando, detenida).\n3) Personas: cómo lo están viviendo los equipos y quién los acompaña.\n4) Decisiones que necesito del directorio: máximo 3, cada una con opciones y mi recomendación.\n\nReglas: usa solo lo que está en mis notas. Si falta un dato, escribe [FALTA: …] en vez de inventarlo. Frases cortas, sin jerga técnica. Al final, dime las 3 preguntas más probables del directorio y qué evidencia tengo (o no) para responderlas."},
+      {"tipo": "ejemplo", "titulo": "Lo que te devuelve (resumen)", "texto": "Una página con las 4 secciones, los datos que faltan marcados como [FALTA: …] y las 3 preguntas que probablemente te harán, con lo que tienes para responderlas."}
+    ],
+    "criterio": "Revisa cada [FALTA] antes de la sesión: es justo lo que el directorio va a preguntar. Y nunca pegues datos de clientes o contratos en una IA que tu empresa no haya aprobado.",
+    "pregunta": "¿Qué decisión le estás pidiendo hoy a tu directorio sobre IA?",
+    "siguiente": {"texto": "Si quieres que tu equipo ejecutivo aprenda a usar la IA con este criterio, mira la formación para líderes.", "cta": "Ver formaciones", "url": "../formaciones.html"}
+  },
+  {
+    "slug": "politica-uso-ia-una-pagina",
+    "titulo": "Plantilla: política de uso de IA en una página",
+    "para": ["directorio", "personas"],
+    "necesidad": ["gobernar"],
+    "tipo": "plantilla",
+    "herramienta": "Sin herramienta",
+    "minutos": 30,
+    "resumen": "Las reglas mínimas para que los equipos usen IA sin esconderse: qué sí, qué no, con qué datos y a quién preguntar.",
+    "para_que": "Pasar de prohibir (y que la usen a escondidas) a reglas simples que todos entienden.",
+    "necesitas": "30 minutos con alguien de TI o de riesgo y alguien de personas.",
+    "bloques": [
+      {"tipo": "tabla", "titulo": "Complétala con tu equipo", "filas": [
+        ["Para qué sí usamos IA", "[ej.: borradores, resúmenes, ideas, análisis de documentos públicos]"],
+        ["Para qué no", "[ej.: decisiones sobre personas sin revisión humana, información de clientes]"],
+        ["Qué datos sí", "[datos públicos, internos sin información personal]"],
+        ["Qué datos nunca", "[datos personales, contratos, información financiera no publicada]"],
+        ["Qué herramientas están aprobadas", "[nombre de cada herramienta y con qué cuenta]"],
+        ["Quién revisa lo que produce la IA", "[siempre una persona antes de enviar o publicar]"],
+        ["A quién preguntar", "[nombre o canal]"],
+        ["Cuándo revisamos estas reglas", "[cada 3 meses]"]]},
+      {"tipo": "texto", "titulo": "Cómo comunicarla", "texto": "En una conversación, no en un correo. Cuenta primero para qué sirve la política (cuidar a las personas y a la organización) y después las reglas. Deja espacio para preguntas: las dudas que aparezcan son las reglas que te faltan."}
+    ],
+    "criterio": "Una página, no un manual. Si una regla necesita un párrafo para explicarse, todavía no está clara. Y revísala cada trimestre: las herramientas cambian rápido.",
+    "pregunta": "¿Qué regla te costaría más acordar en tu organización?",
+    "siguiente": {"texto": "Si quieres armar la gobernanza de IA de tu organización con método, conversemos.", "cta": "Agendar 30 minutos", "url": "../contact/"}
+  },
+  {
+    "slug": "quien-responde-si-la-ia-sale-mal",
+    "titulo": "Ejercicio: ¿quién responde si la IA sale mal?",
+    "para": ["directorio", "transformacion"],
+    "necesidad": ["gobernar"],
+    "tipo": "ejercicio",
+    "herramienta": "Sin herramienta",
+    "minutos": 25,
+    "resumen": "Un mapa simple de responsables para cada iniciativa de IA, antes de que pase algo.",
+    "para_que": "Que cada iniciativa tenga un dueño, alguien que revisa y alguien a quien avisar, y que no se discuta después del error.",
+    "necesitas": "La lista de iniciativas o herramientas de IA en uso. 25 minutos con tu equipo de gerencia.",
+    "bloques": [
+      {"tipo": "pasos", "items": [
+        "Haz una lista de las iniciativas y herramientas de IA en uso (también las que los equipos usan por su cuenta).",
+        "Para cada una, escribe: quién decide que se use, quién revisa lo que produce, quién responde ante un error y a quién se avisa.",
+        "Marca en rojo las celdas donde dudaron o hubo dos nombres.",
+        "Para cada celda en rojo, acuerden un solo nombre y una fecha para revisarlo."]},
+      {"tipo": "tabla", "titulo": "Plantilla", "encabezado": ["Iniciativa", "Decide", "Revisa", "Responde", "Se avisa a"], "filas": [
+        ["[ej.: asistente para responder correos de clientes]", "[cargo]", "[cargo]", "[cargo]", "[cargo]"],
+        ["", "", "", "", ""]]}
+    ],
+    "criterio": "Las celdas rojas son el valor del ejercicio. Si nadie sabe quién responde, no es un problema de tecnología: es de gobernanza, y se resuelve antes del próximo piloto.",
+    "pregunta": "¿Cuántas celdas te quedaron en rojo?",
+    "siguiente": {"texto": "Si quieres ordenarlo con tu comité, conversemos 30 minutos.", "cta": "Agendar 30 minutos", "url": "../contact/"}
+  },
+  {
+    "slug": "test-scala-priorizar-ia",
+    "titulo": "Test SCALA: qué iniciativa de IA va primero",
+    "para": ["transformacion"],
+    "necesidad": ["priorizar"],
+    "tipo": "test",
+    "herramienta": "Formulario en línea",
+    "minutos": 20,
+    "palabra": "PRIORIZAR",
+    "resumen": "En unos 20 minutos, claridad sobre qué va primero y por qué.",
+    "para_que": "Dejar de defender 20 iniciativas a la vez y llegar con un orden que puedas explicar.",
+    "necesitas": "La lista de iniciativas de IA que tienes sobre la mesa.",
+    "bloques": [
+      {"tipo": "boton", "texto": "Hacer el test SCALA", "url": "https://docs.google.com/forms/d/e/1FAIpQLSfwKgVCczsaYaE-BjOUSP2ObV2G5uaQPwXK0qf9bFJjH20pgw/viewform?utm_source=web&utm_medium=biblioteca&utm_content=priorizar"},
+      {"tipo": "texto", "titulo": "Qué vas a obtener", "texto": "Un orden de tus iniciativas según su valor para el negocio y lo preparada que está tu organización para sostenerlas. No es una respuesta definitiva: es un punto de partida para la conversación con tu jefatura."}
+    ],
+    "criterio": "La iniciativa que queda primero no siempre es la más atractiva. A veces es la más chica, la que tu jefatura puede aprobar y ver funcionar antes de invertir más.",
+    "pregunta": "¿Qué iniciativa te quedó primero, y quién la va a defender?",
+    "siguiente": {"texto": "Si quieres revisar el resultado conmigo, agenda 30 minutos.", "cta": "Agendar 30 minutos", "url": "../contact/"}
+  },
+  {
+    "slug": "prompt-matriz-priorizacion-ia",
+    "titulo": "Prompt: matriz de priorización de iniciativas de IA",
+    "para": ["transformacion", "directorio"],
+    "necesidad": ["priorizar", "decidir"],
+    "tipo": "prompt",
+    "herramienta": "Cualquier IA",
+    "minutos": 20,
+    "resumen": "Ordena tus iniciativas por valor, factibilidad, riesgo y adopción, con la razón de cada puntaje.",
+    "para_que": "Tener argumentos para priorizar, en vez de defender todas las iniciativas a la vez.",
+    "necesitas": "Tu lista de iniciativas con una línea de descripción cada una.",
+    "bloques": [
+      {"tipo": "prompt", "texto": "Actúa como gerente de transformación con experiencia en adopción de IA en empresas grandes.\n\nEstas son mis iniciativas de IA (una por línea, con una descripción corta):\n[pega tu lista]\n\nPuntúa cada iniciativa de 1 a 5 en estos 4 criterios y explica cada puntaje en una frase:\n- Valor: qué métrica del negocio mueve y cuánto.\n- Factibilidad: datos, herramientas y personas disponibles hoy.\n- Riesgo: qué pasa si sale mal (datos, clientes, reputación).\n- Adopción: qué tan dispuestos están los equipos que la usarían.\n\nDevuélveme una tabla ordenada de mayor a menor, y después:\n1) Las 3 que irían primero y por qué.\n2) Una que conviene NO hacer este año.\n3) Qué dato me falta para puntuar mejor cada una.\n\nSi algo es una suposición tuya, márcalo como (supuesto)."},
+      {"tipo": "ejemplo", "titulo": "Lo que te devuelve (resumen)", "texto": "Una tabla con los 4 puntajes por iniciativa, su razón, las 3 primeras, una para dejar fuera y los datos que faltan."}
+    ],
+    "criterio": "Revisa con especial cuidado el puntaje de adopción: la IA lo suele inflar. Valídalo con alguien del equipo que la usaría antes de presentarla.",
+    "pregunta": "¿Cuál dejaste fuera, y quién se va a molestar?",
+    "siguiente": {"texto": "En la formación Avanzada Operativa tu equipo pasa del problema al caso de uso con sus procesos reales.", "cta": "Ver formaciones", "url": "../formaciones.html"}
+  },
+  {
+    "slug": "plan-90-dias-piloto-ia",
+    "titulo": "Plantilla: plan de 90 días para un piloto de IA que escale",
+    "para": ["transformacion"],
+    "necesidad": ["priorizar", "decidir"],
+    "tipo": "plantilla",
+    "herramienta": "Sin herramienta",
+    "minutos": 30,
+    "resumen": "Un piloto con fecha de término y criterio para escalar o cerrar, antes de empezar.",
+    "para_que": "Evitar el piloto eterno: que cada prueba termine con una decisión.",
+    "necesitas": "La iniciativa que va primero y 30 minutos con quien la va a usar.",
+    "bloques": [
+      {"tipo": "tabla", "titulo": "Antes de empezar", "filas": [
+        ["Problema que resuelve", "[una frase, con palabras del equipo]"],
+        ["Métrica del negocio que mueve", "[ej.: tiempo de respuesta, horas por informe]"],
+        ["Línea base hoy", "[el número de hoy, medido]"],
+        ["Meta a 90 días", "[el número que hace que valga la pena escalar]"],
+        ["Quién lo usa", "[equipo y número de personas]"],
+        ["Quién responde", "[un nombre]"],
+        ["Criterio para escalar", "[si llegamos a … escalamos a …]"],
+        ["Criterio para cerrar", "[si en el día 60 no vemos … lo cerramos]"]]},
+      {"tipo": "tabla", "titulo": "Los 90 días", "encabezado": ["Tramo", "Qué pasa"], "filas": [
+        ["Días 1 a 15", "Reglas de uso, acceso y formación corta sobre su trabajo real."],
+        ["Días 16 a 60", "Uso diario, una conversación cada 2 semanas sobre qué funciona y qué no."],
+        ["Días 61 a 75", "Medición contra la línea base."],
+        ["Días 76 a 90", "Decisión: escalar, ajustar o cerrar, y contarlo al equipo."]]}
+    ],
+    "criterio": "Cerrar un piloto que no funcionó también es un buen resultado: libera presupuesto y credibilidad para el siguiente. Lo que no puede pasar es que no termine nunca.",
+    "pregunta": "¿Tu piloto actual tiene fecha de término?",
+    "siguiente": {"texto": "Si quieres diseñar el piloto con acompañamiento, conversemos 30 minutos.", "cta": "Agendar 30 minutos", "url": "../contact/"}
+  },
+  {
+    "slug": "prompt-proceso-a-caso-de-uso",
+    "titulo": "Prompt: de un proceso de tu área a un caso de uso de IA",
+    "para": ["transformacion", "personas"],
+    "necesidad": ["priorizar", "formar"],
+    "tipo": "prompt",
+    "herramienta": "Cualquier IA",
+    "minutos": 15,
+    "resumen": "Describe un proceso tal como lo hacen hoy y obtén dónde ayuda la IA, dónde no y cómo probarlo.",
+    "para_que": "Pasar de “deberíamos usar IA” a un caso concreto que se puede probar la próxima semana.",
+    "necesitas": "Un proceso que tu equipo repite cada semana, descrito paso a paso. Sin datos personales.",
+    "bloques": [
+      {"tipo": "prompt", "texto": "Actúa como consultor de procesos con experiencia en IA generativa.\n\nEste es un proceso de mi área, tal como lo hacemos hoy:\n[describe los pasos, quién los hace y cuánto tiempo toma cada uno]\n\n1) Marca en qué pasos la IA puede ayudar (y cómo), en cuáles no conviene y por qué.\n2) Propón UN caso de uso para probar la próxima semana: qué se le pide a la IA, quién revisa el resultado y cómo medimos si sirvió.\n3) Escribe el prompt que usaría la persona del equipo para ese caso.\n4) Dime qué riesgo hay con los datos de este proceso y cómo evitarlo.\n\nNo inventes tiempos ni cifras: si no te los di, pregúntamelos."},
+      {"tipo": "ejemplo", "titulo": "Lo que te devuelve (resumen)", "texto": "El proceso con los pasos marcados, un caso de uso listo para probar, el prompt para el equipo y el cuidado con los datos."}
+    ],
+    "criterio": "El mejor primer caso es aburrido: una tarea repetitiva que el equipo odia. Si el primer caso es espectacular, suele ser difícil de sostener.",
+    "pregunta": "¿Qué proceso de tu área elegirías para probar primero?",
+    "siguiente": {"texto": "En la formación Avanzada Operativa trabajamos así, con los procesos reales de tu equipo.", "cta": "Ver formaciones", "url": "../formaciones.html"}
+  },
+  {
+    "slug": "ia-como-aliada-5-conversaciones",
+    "titulo": "IA como aliada: 5 conversaciones con tus equipos",
+    "para": ["personas"],
+    "necesidad": ["comunicar"],
+    "tipo": "guia",
+    "herramienta": "Sin herramienta",
+    "minutos": 10,
+    "palabra": "PERSONAS",
+    "resumen": "Para cuidar y avanzar a la vez: qué decir (y qué no) cuando el equipo pregunta por la IA.",
+    "para_que": "Gestionar el miedo que nadie gestiona. No falta otra capacitación: falta una narrativa clara y conversaciones honestas.",
+    "necesitas": "Saber qué está decidido y qué no en tu organización sobre IA.",
+    "bloques": [
+      {"tipo": "conversaciones", "items": [
+        {"titulo": "¿Qué cambia en mi trabajo?", "no": "“La IA nos va a hacer más eficientes.”", "si": "“Estas tareas cambian, estas se quedan igual, y esto es lo que ganas tú.”"},
+        {"titulo": "¿Me va a reemplazar?", "no": "Evitar la pregunta o prometer lo que no sabes.", "si": "Decir lo que está decidido, lo que no, y cuándo vas a contar más."},
+        {"titulo": "¿Qué puedo usar?", "no": "Prohibir y que la usen a escondidas.", "si": "Reglas simples: qué datos sí, cuáles no y a quién preguntar."},
+        {"titulo": "¿Cómo aprendo?", "no": "Un curso genérico para todos.", "si": "Formación conectada a su rol real, con práctica sobre su trabajo de hoy."},
+        {"titulo": "¿Cómo sabemos que funciona?", "no": "Medir solo horas de capacitación.", "si": "Medir uso real, confianza y clima, y contarlo de vuelta al equipo."}]},
+      {"tipo": "dato", "cifra": "70 %", "texto": "de las habilidades más buscadas son humanas. La IA no reemplaza lo humano: lo vuelve más valioso.", "fuente": "LBS Intelligence, agosto 2026"}
+    ],
+    "criterio": "El problema no son los equipos: es el miedo que nadie gestiona. No es personas o IA. Es personas con IA.",
+    "pregunta": "¿Cuál de las cinco te cuesta más hoy?",
+    "siguiente": {"texto": "Si quieres diseñar el plan de upskilling con IA de tus equipos, agenda 30 minutos conmigo.", "cta": "Agendar 30 minutos", "url": "../contact/"}
+  },
+  {
+    "slug": "prompt-preparar-conversacion-ia-equipo",
+    "titulo": "Prompt: prepara la conversación sobre IA con tu equipo",
+    "para": ["personas", "transformacion"],
+    "necesidad": ["comunicar"],
+    "tipo": "prompt",
+    "herramienta": "Cualquier IA",
+    "minutos": 15,
+    "resumen": "Anticipa las preguntas y los miedos de tu equipo, y llega con respuestas honestas.",
+    "para_que": "Que la conversación sobre IA no sea un anuncio, sino una conversación donde el equipo pregunta y tú respondes con claridad.",
+    "necesitas": "Lo que está decidido (y lo que no) sobre la IA en tu organización y cómo es tu equipo.",
+    "bloques": [
+      {"tipo": "prompt", "texto": "Actúa como líder de gestión del cambio que acompaña la llegada de la IA a un equipo.\n\nMi equipo: [área, número de personas, qué hacen].\nLo que está decidido: [qué herramienta, para qué y desde cuándo].\nLo que NO está decidido todavía: [lo que no sabes].\n\n1) Escribe las 8 preguntas más probables del equipo, incluidas las incómodas (por ejemplo, si alguien va a perder su trabajo).\n2) Para cada una, una respuesta honesta de 2 o 3 frases. Si la respuesta es “no lo sabemos aún”, dilo así y propón cuándo se va a saber.\n3) Propón el orden de la conversación (30 minutos): cómo abrir, qué contar, cuándo abrir preguntas y cómo cerrar.\n4) Dime qué NO decir.\n\nNo prometas nada que no esté en lo decidido."},
+      {"tipo": "ejemplo", "titulo": "Lo que te devuelve (resumen)", "texto": "Las preguntas probables con respuestas honestas, el orden de una conversación de 30 minutos y las frases a evitar."}
+    ],
+    "criterio": "Practica en voz alta las dos preguntas más incómodas antes de la reunión. Lo que más tranquiliza a un equipo no es una buena respuesta: es ver que su líder no esquiva la pregunta.",
+    "pregunta": "¿Qué pregunta de tu equipo te da más miedo responder?",
+    "siguiente": {"texto": "En IA para Líderes trabajamos la resistencia cultural, que es el mayor obstáculo de la adopción.", "cta": "Ver formaciones", "url": "../formaciones.html"}
+  },
+  {
+    "slug": "mapa-tareas-rol-ia",
+    "titulo": "Ejercicio: el mapa de tareas de un rol frente a la IA",
+    "para": ["personas", "transformacion"],
+    "necesidad": ["formar", "comunicar"],
+    "tipo": "ejercicio",
+    "herramienta": "Cualquier IA",
+    "minutos": 30,
+    "resumen": "Qué tareas de un rol puede apoyar la IA, cuáles acompaña y cuáles siguen siendo 100 % humanas.",
+    "para_que": "Responder con hechos a “¿qué cambia en mi trabajo?” y diseñar la formación sobre el trabajo real de cada rol.",
+    "necesitas": "Una persona que hace el rol y 30 minutos con ella.",
+    "bloques": [
+      {"tipo": "pasos", "items": [
+        "Con la persona que hace el rol, listen sus 10 tareas más frecuentes de una semana normal.",
+        "Clasifiquen cada una en tres columnas: la IA puede apoyarla / la IA la acompaña pero la persona decide / sigue siendo 100 % humana.",
+        "Para la columna 1, elijan una tarea para probar con IA esta semana.",
+        "Para la columna 3, escriban por qué es humana. Esa lista es lo que la persona gana tiempo para hacer mejor."]},
+      {"tipo": "prompt", "texto": "Estas son las 10 tareas frecuentes del rol [nombre del rol]:\n[pega la lista]\n\nClasifica cada tarea en: (A) la IA puede apoyarla, (B) la IA acompaña pero la persona decide, (C) sigue siendo humana. Explica cada clasificación en una frase. Después, para una tarea de la columna A, escribe el prompt que usaría la persona para probarla esta semana. No asumas datos que no te di."}
+    ],
+    "criterio": "Hazlo CON la persona, nunca sobre ella. El mismo ejercicio hecho a sus espaldas genera exactamente el miedo que quieres evitar.",
+    "pregunta": "¿Qué tarea quedó en la columna humana y te sorprendió?",
+    "siguiente": {"texto": "Si quieres diseñar el upskilling de tus equipos rol por rol, conversemos 30 minutos.", "cta": "Agendar 30 minutos", "url": "../contact/"}
+  },
+  {
+    "slug": "checklist-plan-upskilling-ia",
+    "titulo": "Checklist: tu plan de upskilling con IA antes de contratar un curso",
+    "para": ["personas"],
+    "necesidad": ["formar"],
+    "tipo": "checklist",
+    "herramienta": "Sin herramienta",
+    "minutos": 10,
+    "resumen": "8 preguntas para que la formación en IA cambie la forma de trabajar y no quede en el cajón.",
+    "para_que": "Que el próximo curso de IA no sea uno más guardado en el cajón.",
+    "necesitas": "Tu idea de formación y 10 minutos.",
+    "bloques": [
+      {"tipo": "lista_numerada", "items": [
+        "¿Sabes qué tareas de cada rol van a cambiar con la IA?",
+        "¿Los ejercicios usan los procesos y documentos reales de tu organización?",
+        "¿Hay reglas claras de qué herramientas y qué datos se pueden usar?",
+        "¿Las jefaturas participan antes que sus equipos?",
+        "¿Hay práctica en la misma sesión, no solo contenido?",
+        "¿Hay un acompañamiento después del curso (2 a 4 semanas)?",
+        "¿Vas a medir uso real y confianza, no solo asistencia?",
+        "¿Le vas a contar al equipo lo que se logró?"]},
+      {"tipo": "tabla", "titulo": "Tu resultado", "filas": [
+        ["7 u 8 en sí", "Tu plan está listo: la formación va a cambiar comportamientos."],
+        ["4 a 6", "Ajusta antes de contratar: revisa sobre todo la 2 y la 6."],
+        ["0 a 3", "Parte por el mapa de tareas del rol y las reglas de uso."]]}
+    ],
+    "criterio": "El problema no es el contenido. Es que los ejercicios son de otro planeta, no del tuyo. Menos PPT, más tu negocio.",
+    "pregunta": "¿Cuál de las 8 te quedó en no?",
+    "siguiente": {"texto": "Así diseñamos cada formación en HEI01: con los procesos y problemas reales de tu organización.", "cta": "Ver formaciones", "url": "../formaciones.html"}
+  }
+]
