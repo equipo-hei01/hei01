@@ -499,7 +499,7 @@ h2{font-size:clamp(1.75rem,3.4vw,2.5rem)}
       <!-- LEVEL TABS -->
       <div class="level-tabs" role="tablist" aria-label="Nivel de formación">
         <button type="button" class="level-tab active" id="tab-1" onclick="setLevel(1)" role="tab" aria-selected="true" aria-controls="panel-1">
-          <span class="level-tab-num">1</span> Neófito
+          <span class="level-tab-num">1</span> Inicial
         </button>
         <button type="button" class="level-tab" id="tab-2" onclick="setLevel(2)" role="tab" aria-selected="false" aria-controls="panel-2">
           <span class="level-tab-num">2</span> Explorador
@@ -520,7 +520,7 @@ h2{font-size:clamp(1.75rem,3.4vw,2.5rem)}
         <div class="level-header">
           <div class="level-badge lb1">1</div>
           <div>
-            <h3 class="lh-title">Neófito · Primer contacto con IA</h3>
+            <h3 class="lh-title">Inicial · Iniciando con la IA</h3>
             <p class="lh-sub">Para personas sin experiencia previa que quieren entender qué es la IA y cómo les afecta.</p>
           </div>
         </div>
@@ -1326,7 +1326,7 @@ async function submitGlobalForm() {
 
 /* ===== CUSTOM BUILDER ===== */
 const BUILDER_DATA = [
-  { level:1, name:'Neófito', courses:[
+  { level:1, name:'Inicial', courses:[
     { id:'w1', name:'Workshop IA Generativa', hours:1.5, desc:'Primer contacto práctico con IA generativa' },
     { id:'b1', name:'Formación Básica', hours:6, desc:'Fundamentos completos con herramientas y prompting' },
     { id:'t1', name:'IA para Todos', hours:8, desc:'Programa integral: tecnologías, casos, ética y futuro' }
@@ -1421,7 +1421,7 @@ const FINDER_QUESTIONS = [
   ]}
 ];
 const FINDER_LEVELS = {
-  1: ['Neófito', 'Tu equipo parte de cero. Un primer contacto práctico le quita el miedo y le enseña a pedir bien.'],
+  1: ['Inicial', 'Tu equipo parte de cero. Un primer contacto práctico le quita el miedo y le enseña a pedir bien.'],
   2: ['Explorador', 'Tu equipo ya probó la IA. Falta criterio para elegir herramientas, formatos y asistentes propios.'],
   3: ['Practicante', 'Tu equipo ya la usa. Toca llevarla a los procesos reales de cada área.'],
   4: ['Ejecutivo', 'Quien decide necesita estrategia, retorno y gobernanza antes de seguir sumando herramientas.'],
