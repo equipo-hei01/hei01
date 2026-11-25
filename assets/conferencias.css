@@ -10,17 +10,38 @@
 .c-hero .bajada{font-size:clamp(1.05rem,2vw,1.3rem);color:var(--g5);max-width:660px;margin:0 auto;line-height:1.55}
 
 /* === CIFRAS === */
-.c-cifras{list-style:none;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:24px;max-width:var(--ancho);margin:0 auto;padding:0 24px 112px}
+.c-cifras{list-style:none;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:24px;max-width:var(--ancho);margin:0 auto;padding:0 24px 72px}
 .c-cifras li{border-top:1px solid var(--g2);padding-top:18px}
 .c-cifra-n{display:block;font-size:clamp(2rem,4vw,3rem);font-weight:400;letter-spacing:-.04em;line-height:1.1;font-variant-numeric:tabular-nums}
 .c-cifra-n small{font-size:.5em;color:var(--g4);margin-left:.15em;letter-spacing:-.02em}
 .c-cifra-d{display:block;margin-top:6px;color:var(--g5);font-size:15px;max-width:220px}
 
+/* === CARRUSEL DE FOTOS: pista con scroll horizontal y ajuste a cada foto === */
+.c-carrusel{padding:0 0 112px}
+.c-carrusel-cab{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-bottom:20px}
+.c-carrusel-cab .etiqueta{margin:0}
+.c-carrusel-btns{display:flex;gap:8px}
+.c-flecha{width:44px;height:44px;display:grid;place-items:center;border-radius:50%;border:1px solid var(--g2);background:var(--blanco);color:var(--negro);cursor:pointer;transition:background .2s,color .2s,border-color .2s}
+.c-flecha:hover:not(:disabled){background:var(--negro);color:var(--blanco);border-color:var(--negro)}
+.c-flecha:disabled{opacity:.35;cursor:default}
+.c-flecha svg{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.c-fotos{list-style:none;display:flex;gap:16px;overflow-x:auto;scroll-snap-type:x mandatory;scroll-padding-left:max(24px,calc((100vw - var(--ancho))/2 + 24px));padding:4px max(24px,calc((100vw - var(--ancho))/2 + 24px)) 16px;scrollbar-width:thin;scrollbar-color:var(--g2) transparent;-webkit-overflow-scrolling:touch}
+.c-foto{flex:0 0 auto;scroll-snap-align:start}
+.c-foto figure{margin:0}
+.c-foto img{display:block;height:clamp(240px,34vw,420px);width:auto;border-radius:18px;background:var(--g1)}
+.c-foto figcaption{margin-top:10px;font-size:14px;font-weight:500;color:var(--g4)}
+@media (max-width:560px){
+  .c-carrusel{padding-bottom:72px}
+  .c-fotos{gap:12px;scroll-padding-left:16px;padding-left:16px;padding-right:16px}
+  .c-foto img{height:240px;max-width:86vw;object-fit:cover}
+}
+@media (prefers-reduced-motion:reduce){.c-fotos{scroll-behavior:auto}}
+
 /* === SECCIONES === */
 .c-sec{padding:112px 0}
 .c-sec-gris{background:var(--g1)}
-.c-cab{max-width:720px;margin-bottom:56px}
-.c-cab p{margin-top:16px;color:var(--g5);font-size:clamp(1.02rem,1.6vw,1.15rem)}
+.c-cab{max-width:none;margin-bottom:56px}
+.c-cab p{max-width:720px;margin-top:16px;color:var(--g5);font-size:clamp(1.02rem,1.6vw,1.15rem)}
 
 /* === FORMATOS (dos tarjetas) === */
 .c-formatos{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px}
@@ -56,7 +77,7 @@
 /* === DÓNDE HA HABLADO: logos por categoría y mapa === */
 .c-grupos{display:grid;gap:48px}
 .c-grupo h3{font-size:13px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--g4);margin-bottom:10px}
-.c-grupo p{color:var(--g5);max-width:820px;margin-bottom:20px}
+.c-grupo p{color:var(--g5);max-width:none;margin-bottom:20px}
 .c-logos{list-style:none;display:grid;grid-template-columns:repeat(auto-fill,minmax(132px,1fr));gap:12px}
 .c-logos li{display:grid;place-items:center;height:76px;padding:12px 14px;background:var(--blanco);border:1px solid var(--g2);border-radius:14px}
 .c-logos li{overflow:hidden}

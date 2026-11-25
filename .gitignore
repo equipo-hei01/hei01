@@ -1,3 +1,5 @@
 # Respaldos y copias locales que no se publican
 _respaldo/
 paginas-web-hei01/
+# Originales pesados; el sitio usa las versiones livianas de assets/eventos/
+assets/Fotos de eventos/

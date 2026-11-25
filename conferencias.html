@@ -29,7 +29,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/portada.css?v=30">
-<link rel="stylesheet" href="assets/conferencias.css?v=5">
+<link rel="stylesheet" href="assets/conferencias.css?v=7">
 <link rel="stylesheet" href="assets/menu-movil.css?v=2">
 <script src="assets/fondo-portada.js?v=3" defer></script>
 <script src="assets/menu-movil.js?v=2" defer></script>
@@ -67,6 +67,47 @@
   <li class="rev" style="--r:2"><span class="c-cifra-n">10<small>países</small></span><span class="c-cifra-d">de habla hispana, de México a España</span></li>
   <li class="rev" style="--r:3"><span class="c-cifra-n">CAIO</span><span class="c-cifra-d">Chief Artificial Intelligence Officer desde 2024</span></li>
 </ul>
+
+<!-- CARRUSEL DE FOTOS (desliza con el dedo, la rueda o los botones; sin reproducción automática) -->
+<section class="c-carrusel" aria-labelledby="fotos-titulo">
+  <div class="contenedor c-carrusel-cab">
+    <h2 id="fotos-titulo" class="etiqueta">En el escenario y en la sala</h2>
+    <div class="c-carrusel-btns">
+      <button type="button" class="c-flecha" data-carrusel="-1" aria-label="Fotos anteriores"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></button>
+      <button type="button" class="c-flecha" data-carrusel="1" aria-label="Fotos siguientes"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></button>
+    </div>
+  </div>
+  <ul class="c-fotos" id="c-fotos" tabindex="0" aria-label="Fotos de conferencias y talleres de Heileen Goodson">
+      <li class="c-foto"><figure><img src="assets/eventos/scrum-day-guatemala.webp" alt="Heileen Goodson en el escenario de Scrum Day Guatemala" width="1260" height="840" loading="eager" decoding="async"><figcaption>Scrum Day Guatemala</figcaption></figure></li>
+      <li class="c-foto"><figure><img src="assets/eventos/onu-mujeres.webp" alt="Heileen Goodson dando una conferencia en ONU Mujeres" width="1260" height="840" loading="eager" decoding="async"><figcaption>ONU Mujeres</figcaption></figure></li>
+      <li class="c-foto"><figure><img src="assets/eventos/agiles-latinoamerica.webp" alt="Heileen Goodson en el escenario de Ágiles Latinoamérica, en Brasil" width="630" height="840" loading="lazy" decoding="async"><figcaption>Ágiles Latinoamérica · Brasil</figcaption></figure></li>
+      <li class="c-foto"><figure><img src="assets/eventos/uso-responsable.webp" alt="Heileen Goodson frente a un auditorio, con una lámina sobre uso responsable de la IA" width="1260" height="840" loading="lazy" decoding="async"><figcaption>Conferencia sobre uso responsable de la IA</figcaption></figure></li>
+      <li class="c-foto"><figure><img src="assets/eventos/pm-ia.webp" alt="Heileen Goodson presentando en un evento de gestión de proyectos e IA" width="630" height="840" loading="lazy" decoding="async"><figcaption>Conferencia PM × IA</figcaption></figure></li>
+      <li class="c-foto"><figure><img src="assets/eventos/taller-practico.webp" alt="Heileen Goodson facilitando un taller con mesas de trabajo" width="1260" height="840" loading="lazy" decoding="async"><figcaption>Taller práctico</figcaption></figure></li>
+      <li class="c-foto"><figure><img src="assets/eventos/cierre-de-taller.webp" alt="Heileen Goodson junto a un grupo de participantes al cierre de un taller" width="1492" height="840" loading="lazy" decoding="async"><figcaption>Cierre de taller</figcaption></figure></li>
+      <li class="c-foto"><figure><img src="assets/eventos/sesion-ejecutiva.webp" alt="Heileen Goodson en una sesión con un equipo ejecutivo" width="1120" height="840" loading="lazy" decoding="async"><figcaption>Sesión con equipo ejecutivo</figcaption></figure></li>
+  </ul>
+</section>
+<script>
+(function () {
+  var pista = document.getElementById('c-fotos');
+  if (!pista) return;
+  var btns = document.querySelectorAll('[data-carrusel]');
+  function estado() {
+    var max = pista.scrollWidth - pista.clientWidth - 2;
+    btns[0].disabled = pista.scrollLeft <= 2;
+    btns[1].disabled = pista.scrollLeft >= max;
+  }
+  [].forEach.call(btns, function (b) {
+    b.addEventListener('click', function () {
+      pista.scrollBy({ left: +b.getAttribute('data-carrusel') * pista.clientWidth * 0.8, behavior: 'smooth' });
+    });
+  });
+  pista.addEventListener('scroll', estado, { passive: true });
+  addEventListener('resize', estado);
+  estado();
+})();
+</script>
 
 <!-- FORMATOS -->
 <section class="c-sec c-sec-gris" id="formatos" aria-labelledby="formatos-titulo">
