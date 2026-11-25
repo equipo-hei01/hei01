@@ -110,6 +110,7 @@
 
 /* === SOBRE HEILEEN === */
 .c-sobre{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.1fr);gap:64px;align-items:start}
+.c-sobre-foto{display:block;width:100%;height:auto;aspect-ratio:3/2;object-fit:cover;border-radius:18px;margin-top:28px}
 .c-sobre p{color:var(--g5);margin-bottom:16px}
 .c-sobre .c-lista{gap:10px}
 
