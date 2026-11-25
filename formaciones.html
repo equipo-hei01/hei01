@@ -107,7 +107,7 @@ h2{font-size:clamp(1.75rem,3.4vw,2.5rem)}
 .hero-hook{font-size:1.15rem;color:var(--tinta);font-weight:500;max-width:600px;margin:0 auto 1rem;line-height:1.55}
 .hero-sub{font-size:1.05rem;color:var(--suave);max-width:600px;margin:0 auto 1.5rem;line-height:1.6}
 .hero-sub strong{color:var(--tinta);font-weight:600}
-.hero-stats{display:flex;gap:2.5rem;justify-content:center;margin-bottom:2.5rem;flex-wrap:wrap}
+.hero-stats{display:flex;gap:2.5rem;justify-content:center;margin-bottom:0;flex-wrap:wrap}
 .stat-n{font-size:2rem;font-weight:500;color:var(--tinta);display:block;letter-spacing:-.03em;line-height:1.2}
 .stat-l{font-size:14px;color:var(--suave)}
 .hero-btns{display:flex;gap:20px;justify-content:center;align-items:center;flex-wrap:wrap}
@@ -129,7 +129,7 @@ h2{font-size:clamp(1.75rem,3.4vw,2.5rem)}
 /* === PRUEBA SOCIAL === */
 .prueba{padding:24px 0 48px}
 .prueba-titulo{text-align:center;font-size:13px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--suave);margin-bottom:28px}
-.prueba-fila{display:grid;grid-template-columns:1fr 1fr;max-width:860px;margin:0 auto}
+.prueba-fila{display:grid;grid-template-columns:repeat(3,1fr);max-width:1000px;margin:0 auto}
 .prueba-celda{text-align:center;padding:8px 24px}
 .prueba-celda+.prueba-celda{border-left:1px solid rgba(13,13,18,.1)}
 .prueba-cifra{font-size:56px;font-weight:500;letter-spacing:-.04em;line-height:1.05;color:var(--tinta)}
@@ -441,10 +441,6 @@ h2{font-size:clamp(1.75rem,3.4vw,2.5rem)}
       <div><span class="stat-n">11+</span><span class="stat-l">programas disponibles</span></div>
       <div><span class="stat-n">100%</span><span class="stat-l">learning by doing</span></div>
     </div>
-    <div class="hero-btns anim-up d4">
-      <a href="https://calendar.app.google/8w3sut8DU4kk4MUR6" target="_blank" rel="noopener" class="btn btn-pri">Agendar sesión ejecutiva <svg class="ico" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg></a>
-      <a href="#formaciones" class="btn-ter">Ver programas <svg class="ico" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
-    </div>
   </div>
   <img class="hero-foto anim-up d2" src="assets/formaciones-cajon.webp" alt="" width="1200" height="708" fetchpriority="high" decoding="async">
 </section>
@@ -452,11 +448,15 @@ h2{font-size:clamp(1.75rem,3.4vw,2.5rem)}
 <!-- PRUEBA SOCIAL -->
 <section class="prueba" aria-labelledby="prueba-titulo">
   <div class="container">
-    <h2 class="prueba-titulo animate-on-scroll" id="prueba-titulo">Dos años formando equipos en IA en Latam</h2>
+    <h2 class="prueba-titulo animate-on-scroll" id="prueba-titulo">15 años formando personas y equipos, 2 de ellos en inteligencia artificial</h2>
     <div class="prueba-fila animate-on-scroll delay-1">
       <div class="prueba-celda">
+        <div class="prueba-cifra">15 <span class="u">años</span></div>
+        <p class="prueba-texto">de experiencia en formación</p>
+      </div>
+      <div class="prueba-celda">
         <div class="prueba-cifra">2 <span class="u">años</span></div>
-        <p class="prueba-texto">acompañando organizaciones en adopción de IA</p>
+        <p class="prueba-texto">formando equipos en inteligencia artificial</p>
       </div>
       <div class="prueba-celda">
         <div class="prueba-cifra"><span class="u">+</span>1.000</div>
@@ -1147,7 +1147,7 @@ h2{font-size:clamp(1.75rem,3.4vw,2.5rem)}
 
       <div class="faq-item">
         <button type="button" class="faq-q" aria-expanded="false" onclick="toggleFaq(this.parentNode)"><span>¿Necesito experiencia previa en IA para inscribirme?</span><span class="faq-icon" aria-hidden="true"><svg class="ico" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5 12h14"/><path d="M12 5v14"/></svg></span></button>
-        <div class="faq-a">No. Los programas están segmentados por nivel de partida. Si es tu primer contacto con la IA, comenzamos desde cero con el Nivel 1. Si ya tienes base, partimos del nivel que corresponde. Para elegir el mejor camino aplicamos diagnósticos que muestran el punto de partida de cada persona antes de decidir.</div>
+        <div class="faq-a">No. Los programas están segmentados por nivel de partida. Si es tu primer contacto con la IA, comenzamos desde cero con el Nivel 1. Si ya tienes base, partimos del nivel que corresponde. Para saber por dónde empezar, responde el <a href="#buscador-nivel">test de 3 preguntas</a> de esta página: en un minuto te muestra el nivel de tu equipo.</div>
       </div>
 
       <div class="faq-item">
@@ -1167,7 +1167,7 @@ h2{font-size:clamp(1.75rem,3.4vw,2.5rem)}
 
       <div class="faq-item">
         <button type="button" class="faq-q" aria-expanded="false" onclick="toggleFaq(this.parentNode)"><span>¿Cómo sé qué nivel necesita mi equipo?</span><span class="faq-icon" aria-hidden="true"><svg class="ico" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5 12h14"/><path d="M12 5v14"/></svg></span></button>
-        <div class="faq-a">Realizamos diagnósticos para identificar al público objetivo y el nivel en que está cada grupo. Con eso diseñamos y ejecutamos la mejor ruta de formación. Así la inversión apoya el retorno, porque los colaboradores aprenden a usar la IA en casos de uso de su negocio. El primer paso es una sesión ejecutiva de 60 minutos, sin costo, donde revisamos juntos el punto de partida y los objetivos de tu equipo.</div>
+        <div class="faq-a">El primer paso es el <a href="#buscador-nivel">test de 3 preguntas</a> de esta página: en un minuto te muestra el nivel de partida de tu equipo y los cursos de ese nivel. Después realizamos diagnósticos para identificar al público objetivo y el nivel en que está cada grupo, y con eso diseñamos y ejecutamos la mejor ruta de formación. Así la inversión apoya el retorno, porque los colaboradores aprenden a usar la IA en casos de uso de su negocio. Si prefieres definirlo juntos, agenda una sesión ejecutiva de 60 minutos, sin costo.</div>
       </div>
 
       <div class="faq-item">
@@ -1209,7 +1209,7 @@ h2{font-size:clamp(1.75rem,3.4vw,2.5rem)}
       <p>En una sesión de 60 min diseñamos juntos el programa: nivel, modalidad, cantidad de personas y foco en los casos reales de tu negocio.</p>
       <div class="cta-btns">
         <a href="https://calendar.app.google/8w3sut8DU4kk4MUR6" target="_blank" rel="noopener" class="btn btn-pri">Agendar sesión ejecutiva <svg class="ico" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg></a>
-        <a href="recursos/test-scala-priorizar-ia.html" class="btn btn-sec">Hacer el diagnóstico SCALA</a>
+        <a href="#buscador-nivel" class="btn btn-sec">Encontrar el nivel de mi equipo</a>
       </div>
       <p class="nota">Sin precios en el sitio — los valores se entregan en la sesión, adaptados a tu organización e industria.</p>
     </div>
