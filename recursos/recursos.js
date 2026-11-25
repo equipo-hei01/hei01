@@ -10,6 +10,21 @@
     el.style.transitionDelay = (el.dataset.retraso || (i % 3) * 90) + 'ms';
     obs.observe(el);
   });
+  // vitrina: un recurso a la vez se muestra trabajando
+  var vit = document.getElementById('vitrina');
+  if(vit){
+    var minis = [].slice.call(vit.querySelectorAll('.mini')), botones = [].slice.call(document.querySelectorAll('.leyenda button')), act = -1, reloj;
+    function mostrar(i){
+      act = i;
+      minis.forEach(function(m, j){ m.classList.remove('activa'); if(j === i){ void m.offsetWidth; m.classList.add('activa'); } });
+      botones.forEach(function(b, j){ b.setAttribute('aria-pressed', j === i ? 'true' : 'false'); });
+    }
+    function siguiente(){ mostrar((act + 1) % minis.length); }
+    function andar(){ clearInterval(reloj); if(!quieto) reloj = setInterval(siguiente, 4500); }
+    botones.forEach(function(b){ b.addEventListener('click', function(){ mostrar(+b.dataset.i); andar(); }); });
+    minis.forEach(function(m){ m.addEventListener('mouseenter', function(){ mostrar(+m.dataset.i); andar(); }); });
+    mostrar(1); andar();
+  }
   // prompt en vivo: se escribe letra a letra la primera vez que se ve
   document.querySelectorAll('.prompt pre').forEach(function(pre){
     var texto = pre.textContent; pre.dataset.texto = texto;
