@@ -103,6 +103,7 @@ def cabeza(titulo, descripcion, url):
 
 PIE = f'''<footer data-componente="pie"><nav aria-label="Pie de página"><a href="../">HEI01</a> · <a href="../formaciones.html">Formaciones</a> · <a href="../recursos/">Recursos</a></nav></footer>
 <script src="../assets/pie.js?v=4" data-base="../" defer></script>
+<script src="recursos.js?v={VERSION}" defer></script>
 '''
 
 CSS = '''/* Biblioteca de recursos HEI01 · generado por recursos/_fuente/build.py (no editar a mano) */
