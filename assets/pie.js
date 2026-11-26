@@ -17,12 +17,7 @@
 
   // ---------- CONTENIDO (editar aquí) ----------
   var BAJADA = 'Humanos Empoderados por Inteligencia';
-  var LINKS = [
-    { texto: 'Orquestación', href: '' },
-    { texto: 'Formaciones', href: 'formaciones.html' },
-    { texto: 'Conferencias', href: 'conferencias.html' },
-    { texto: 'Recursos', href: 'recursos/' }
-  ];
+  // (Sin fila de enlaces a secciones: el menú superior queda fijo en todas las páginas.)
   var REDES = [
     { nombre: 'Instagram', href: 'https://www.instagram.com/heileengoodson/',
       svg: '<rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r=".6" fill="currentColor"/>' },
@@ -41,7 +36,6 @@
       return '<a href="' + r.href + '" target="_blank" rel="noopener" aria-label="' + r.nombre + '">' +
         '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' + r.svg + '</svg></a>';
     }).join('');
-    var links = LINKS.map(function (l) { return '<a href="' + url(l.href) + '">' + l.texto + '</a>'; }).join('');
     return '' +
       '<div class="pie-hei-in">' +
         '<div class="pie-hei-fila">' +
@@ -51,7 +45,6 @@
           '</div>' +
           '<div class="pie-hei-redes">' + redes + '</div>' +
         '</div>' +
-        '<nav class="pie-hei-links" aria-label="Pie de página">' + links + '</nav>' +
         '<div class="pie-hei-linea"></div>' +
         '<div class="pie-hei-base">' +
           '<p class="pie-hei-copy">© ' + new Date().getFullYear() + ' HEI01</p>' +
