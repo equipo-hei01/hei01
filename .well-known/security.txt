@@ -1,5 +1,5 @@
 # Política de reporte de vulnerabilidades de hei01.com
-Contact: mailto:hei@hei01.com
+Contact: mailto:equipo@hei01.com
 Expires: 2027-11-25T00:00:00.000Z
 Preferred-Languages: es, en
 Canonical: https://hei01.com/.well-known/security.txt
