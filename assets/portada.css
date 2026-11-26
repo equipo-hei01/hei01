@@ -261,10 +261,6 @@ section{overflow:clip}
 .cifra-tag{margin-top:12px;font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--negro)}
 .cifra-linea{position:absolute;left:0;right:0;bottom:0;height:1px;background:var(--g2);transform-origin:left}
 .costo-cta{margin-top:40px}
-.experiencia{margin-top:72px;padding-top:40px;border-top:1px solid var(--g2)}
-.experiencia-txt{color:var(--g5);margin-bottom:20px}
-.experiencia-lista{list-style:none;display:flex;flex-wrap:wrap;gap:12px 40px}
-.experiencia-lista li{font-size:clamp(1.1rem,2vw,1.45rem);font-weight:500;letter-spacing:-.02em;color:var(--g4)}
 .nota{margin-top:28px;font-size:13px;color:var(--g4);max-width:640px;line-height:1.55}
 @media (prefers-reduced-motion:no-preference){
   .js .costo:not(.is-in) .cifra-linea{transform:scaleX(0)}
