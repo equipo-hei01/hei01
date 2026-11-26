@@ -114,15 +114,15 @@ a{color:inherit}
 .chips{display:flex;flex-wrap:wrap;gap:10px}
 .grupo-titulo{font-size:12px;font-weight:600;color:var(--suave);text-transform:uppercase;letter-spacing:.06em;margin-right:10px;min-width:130px}
 .chip{border:1px solid rgba(13,13,18,.08);background:#fff;box-shadow:0 1px 2px rgba(0,0,0,.04);color:var(--tinta);font:inherit;font-size:14px;font-weight:500;padding:9px 17px;border-radius:100px;cursor:pointer;transition:transform .2s var(--ease),background .2s,color .2s}
-.chip:hover{transform:translateY(-1px);border-color:var(--lavanda)}
+.chip:hover{transform:translateY(-1px);border-color:var(--rosa)}
 .chip[aria-pressed="true"]{background:var(--tinta);color:#fff}
 .estado{display:flex;justify-content:space-between;align-items:center;margin:28px auto 18px;max-width:980px;font-size:14px;color:var(--suave)}
 .limpiar{background:none;border:0;font:inherit;color:var(--violeta);cursor:pointer;text-decoration:underline}
 /* tarjetas de vidrio */
 .grilla{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:20px;padding-bottom:30px}
-.tarjeta{position:relative;display:flex;flex-direction:column;gap:12px;padding:28px 28px 26px;border-radius:16px;background:var(--vidrio);box-shadow:var(--sombra);text-decoration:none;color:var(--tinta);overflow:hidden;transition:transform .35s var(--ease),box-shadow .35s}
+.tarjeta{position:relative;display:flex;flex-direction:column;gap:12px;padding:28px 28px 26px;border-radius:16px;border:1px solid transparent;background:var(--vidrio);box-shadow:var(--sombra);text-decoration:none;color:var(--tinta);overflow:hidden;transition:transform .35s var(--ease),box-shadow .35s}
 .tarjeta::before{content:"";position:absolute;inset:-1px;border-radius:16px;padding:1px;background:linear-gradient(135deg,rgba(255,111,97,.0),rgba(255,111,97,.55),rgba(13,13,18,.45));-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude;opacity:0;transition:opacity .35s}
-.tarjeta:hover{transform:translateY(-6px);box-shadow:0 30px 60px -18px rgba(13,13,18,.25)}
+.tarjeta:hover{transform:translateY(-3px);border-color:var(--rosa);box-shadow:0 0 0 4px rgba(255,111,97,.18),var(--sombra)}
 .tarjeta:hover::before{opacity:1}
 .tarjeta .icono{color:var(--rosa)}
 .tarjeta .min{position:absolute;top:22px;right:22px;font-size:12px;font-weight:500;color:var(--suave);background:#fff;border-radius:100px;padding:3px 10px;box-shadow:var(--sombra)}
