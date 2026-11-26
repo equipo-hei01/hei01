@@ -149,8 +149,8 @@ a{color:inherit}
 .palabra{display:inline-block;opacity:0;filter:blur(8px);transform:translateY(18px);animation:aparecer .9s var(--ease) forwards}
 @keyframes aparecer{to{opacity:1;filter:blur(0);transform:none}}
 /* vitrina: cuatro recursos en miniatura que se muestran trabajando (prompt, checklist, plantilla, ejercicio) */
-.vitrina{position:relative;height:340px;max-width:880px;margin:34px auto 0;perspective:1500px}
-.mini{position:absolute;top:34px;left:50%;width:214px;height:256px;margin-left:-107px;border-radius:18px;background:var(--vidrio);
+.vitrina{position:relative;height:372px;max-width:880px;margin:34px auto 0;perspective:1500px}
+.mini{position:absolute;top:34px;left:50%;width:214px;height:288px;margin-left:-107px;border-radius:18px;background:var(--vidrio);
  box-shadow:var(--sombra),0 30px 50px -20px rgba(13,13,18,.22);padding:16px 16px 14px;display:flex;flex-direction:column;gap:10px;text-align:left;
  transform:translateX(var(--x)) translateY(var(--y,0)) rotateY(var(--ry)) rotateZ(var(--rz,0deg)) scale(var(--e,.94));transition:transform .9s var(--ease),box-shadow .9s,opacity .9s;opacity:.9}
 .mini::before{content:"";position:absolute;inset:-1px;border-radius:18px;padding:1.5px;background:linear-gradient(135deg,var(--rosa),var(--violeta));-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude;opacity:0;transition:opacity .9s}
@@ -160,8 +160,8 @@ a{color:inherit}
 .mini-top{display:flex;justify-content:space-between;align-items:center}
 .mini-top .tipo{box-shadow:none;background:var(--lila);font-size:11px;padding:3px 10px}
 .mini-top .icono{color:var(--rosa);display:flex}
-.mini h2{font-size:14px;font-weight:600;line-height:1.25;letter-spacing:-.01em;margin:1.33em 0}
-.mini-pie{white-space:nowrap;margin-top:auto;font-size:11px;color:var(--suave);font-weight:500}
+.mini h2{font-size:14px;font-weight:600;line-height:1.25;letter-spacing:-.01em;margin:8px 0 6px}
+.mini-pie{white-space:nowrap;margin-top:auto;padding-top:2px;flex-shrink:0;font-size:11px;color:var(--suave);font-weight:500}
 /* prompt que se escribe */
 .term{background:var(--tinta);border-radius:12px;padding:10px 11px;font-family:ui-monospace,Menlo,Consolas,monospace;font-size:10.5px;line-height:1.55;color:#F4F4F6;flex:1;position:relative;overflow:hidden}
 .term .lin{display:block;white-space:nowrap;overflow:hidden;width:0;border-right:2px solid transparent}
@@ -311,7 +311,7 @@ ol.pasos li::before{content:counter(p);position:absolute;left:0;top:-2px;width:3
 .pie-copy{margin-top:28px;font-size:16px;font-weight:600;letter-spacing:-.02em;color:var(--suave)}
 @media (max-width:720px){
 .herramientas{padding:28px 18px 22px;border-radius:22px;margin-top:36px}
- .hero{padding-top:44px}.vitrina{height:300px;margin-top:20px}.m1,.m2,.m3,.m4{--x:0px;--ry:0deg;--rz:0deg}.mini{opacity:0;--e:.9;--y:24px;pointer-events:none}.mini.activa{pointer-events:auto}.vitrina{height:310px}.mini.activa{opacity:1;z-index:5;--x:0px;--ry:0deg;--rz:0deg}
+ .hero{padding-top:44px}.vitrina{height:332px;margin-top:20px}.m1,.m2,.m3,.m4{--x:0px;--ry:0deg;--rz:0deg}.mini{opacity:0;--e:.9;--y:24px;pointer-events:none}.mini.activa{pointer-events:auto}.vitrina{height:342px}.mini.activa{opacity:1;z-index:5;--x:0px;--ry:0deg;--rz:0deg}
  .grupo{grid-template-columns:1fr;gap:10px}
  .tabla td:first-child{width:45%}
  .dato{flex-direction:column;align-items:flex-start}
