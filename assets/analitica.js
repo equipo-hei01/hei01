@@ -3,7 +3,10 @@
    Único lugar donde se define el contenedor. Todas las páginas cargan este archivo:
      <script src="assets/analitica.js" async></script>      (en /recursos/: ../assets/analitica.js)
    Google Analytics 4 se configura DENTRO de Tag Manager (etiqueta "Google tag" con el ID G-41TTEEDFB5).
-   Incluye el aviso de cookies: Analytics queda bloqueado (Modo de consentimiento v2) hasta que la persona acepta.
+   Incluye el aviso de cookies (Modo de consentimiento v2): nada se activa hasta que la persona elige.
+     Aceptar todas   -> medición (Analytics) y publicidad (Google Ads)
+     Solo medición   -> solo Analytics
+     Rechazar        -> nada
 
    Eventos que se envían a la capa de datos (dataLayer) para usarlos como activadores en GTM:
      cta_agendar      clic en "Agendar sesión" / "Agendar sesión ejecutiva" (calendario o /contact)
@@ -13,8 +16,8 @@
    ============================================================ */
 (function () {
   var GTM_ID = 'GTM-5G4MFF75';
-  var CLAVE = 'hei01_consentimiento';            // 'aceptado' | 'rechazado'
-  var VERSION_AVISO = '2026-11-25';                // cambiar para volver a preguntar a todos
+  var CLAVE = 'hei01_consentimiento';            // 'aceptado' (todas) | 'medicion' | 'rechazado'
+  var VERSION_AVISO = '2026-11-26';                // cambiar para volver a preguntar a todos
 
   window.dataLayer = window.dataLayer || [];
   function gtag() { window.dataLayer.push(arguments); }
@@ -23,14 +26,15 @@
   // Por defecto todo denegado: Analytics no guarda cookies ni identifica al visitante hasta que acepte.
   function leer() { try { var v = JSON.parse(localStorage.getItem(CLAVE) || 'null'); return v && v.version === VERSION_AVISO ? v.estado : null; } catch (e) { return null; } }
   function guardar(estado) { try { localStorage.setItem(CLAVE, JSON.stringify({ estado: estado, version: VERSION_AVISO, fecha: new Date().toISOString() })); } catch (e) {} }
-  function permisos(ok) { var v = ok ? 'granted' : 'denied'; return { analytics_storage: v, ad_storage: 'denied', ad_user_data: 'denied', ad_personalization: 'denied' }; }
+  // estado: 'aceptado' = medición y publicidad · 'medicion' = solo Analytics · cualquier otro = todo denegado
+  function permisos(estado) { var m = (estado === 'aceptado' || estado === 'medicion') ? 'granted' : 'denied'; var p = estado === 'aceptado' ? 'granted' : 'denied'; return { analytics_storage: m, ad_storage: p, ad_user_data: p, ad_personalization: p }; }
   if (!window.__heiConsent) {
     window.__heiConsent = true;
-    var d = permisos(false); d.wait_for_update = 500;
+    var d = permisos('rechazado'); d.wait_for_update = 500;
     gtag('consent', 'default', d);
     gtag('set', 'ads_data_redaction', true);
     var previo = leer();
-    if (previo === 'aceptado') gtag('consent', 'update', permisos(true));
+    if (previo === 'aceptado' || previo === 'medicion') gtag('consent', 'update', permisos(previo));
   }
 
   var BASE = (function () { var s = document.currentScript; var src = s && s.getAttribute('src') || ''; return src.indexOf('../') === 0 ? '../' : ''; })();
@@ -47,15 +51,16 @@
     if (!document.getElementById('hei-cookies-css')) { var st = document.createElement('style'); st.id = 'hei-cookies-css'; st.textContent = CSS; document.head.appendChild(st); }
     var c = document.createElement('div');
     c.id = 'hei-cookies'; c.className = 'hei-cookies'; c.setAttribute('role', 'region'); c.setAttribute('aria-label', 'Aviso de cookies');
-    c.innerHTML = '<p>Usamos cookies de medición (Google Analytics) para saber qué contenidos sirven y mejorar el sitio. Solo se activan si aceptas. ' +
+    c.innerHTML = '<p>Usamos cookies de medición (Google Analytics) para mejorar el sitio y de publicidad (Google Ads) para medir nuestras campañas y mostrarte anuncios de HEI01. Solo se activan si las aceptas. ' +
       '<a href="' + BASE + 'privacidad/">Política de privacidad</a></p>' +
-      '<div class="hei-cookies-btns"><button type="button" class="hei-ok" data-c="si">Aceptar</button><button type="button" data-c="no">Rechazar</button></div>';
+      '<div class="hei-cookies-btns"><button type="button" class="hei-ok" data-c="aceptado">Aceptar todas</button><button type="button" data-c="medicion">Solo medición</button><button type="button" data-c="rechazado">Rechazar</button></div>';
     c.addEventListener('click', function (e) {
       var b = e.target.closest('button[data-c]'); if (!b) return;
-      var ok = b.getAttribute('data-c') === 'si';
-      guardar(ok ? 'aceptado' : 'rechazado');
-      gtag('consent', 'update', permisos(ok));
-      window.dataLayer.push({ event: ok ? 'consentimiento_aceptado' : 'consentimiento_rechazado' });
+      var estado = b.getAttribute('data-c');
+      guardar(estado);
+      gtag('consent', 'update', permisos(estado));
+      // 'consentimiento_aceptado' es el activador de la etiqueta de Google en GTM: se envía también con 'Solo medición'.
+      window.dataLayer.push({ event: estado === 'rechazado' ? 'consentimiento_rechazado' : 'consentimiento_aceptado', consentimiento_alcance: estado === 'aceptado' ? 'todas' : estado });
       c.remove();
     });
     document.body.appendChild(c);

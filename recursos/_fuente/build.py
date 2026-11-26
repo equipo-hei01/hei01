@@ -46,7 +46,7 @@ def escribir(p, s):
 
 
 # Medición: componente común assets/analitica.js (Google Tag Manager).
-GTM = '<script src="../assets/analitica.js?v=2" async></script>'
+GTM = '<script src="../assets/analitica.js?v=3" async></script>'
 
 
 def icono(tipo, tam=22):
